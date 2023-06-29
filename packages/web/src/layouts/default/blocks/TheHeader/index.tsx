@@ -9,8 +9,6 @@ import MobileNav from './MobileNav'
 import ULogo from '@/components/ULogo'
 import { useGlobalConfigStore } from '@/stores'
 
-const indexUrl = import.meta.env.VITE_COMUNION_HOMEPAGE_URL
-
 const TheHeader = defineComponent({
   name: 'TheHeader',
   setup(props, ctx) {
@@ -138,6 +136,8 @@ const TheHeader = defineComponent({
       }
     }
 
+    const goHome = () => router.replace('/')
+
     return {
       navigations,
       MainMenuActive,
@@ -146,7 +146,8 @@ const TheHeader = defineComponent({
       stickyStyle,
       fixedLogoStyle,
       handleClickLevelOne,
-      globalConfigStore
+      globalConfigStore,
+      goHome
     }
   },
   render() {
@@ -166,7 +167,7 @@ const TheHeader = defineComponent({
           <div
             class="cursor-pointer flex transition-all top-5 left-4 z-10 fixed items-center <lg:static"
             style={this.fixedLogoStyle}
-            onClick={() => window.open(indexUrl, '_self')}
+            onClick={this.goHome}
           >
             <ULogo height={this.globalConfigStore.isLargeScreen ? 28 : 36} />
             <span class="font-600 text-lg ml-1 text-[#636366] hidden 1366:block">WELaunch</span>
