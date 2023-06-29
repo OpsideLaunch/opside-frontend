@@ -9,5 +9,5 @@
 }
 
 .u-scroll-list:hover::-webkit-scrollbar-thumb {
-  background-color: #5331f4;
+  @apply bg-primary;
 }
