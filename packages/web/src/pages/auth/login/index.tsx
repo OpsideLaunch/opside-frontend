@@ -77,7 +77,7 @@ export default defineComponent({
 
         <div class="mx-auto max-w-1120px py-6 <sm:w-[90%]">
           Powered by
-          <a class="text-primary px-1" href="//weconomy.network" target="_blank">
+          <a class="text-primary px-1" href="https://twitter.com/WEconomyNetwork" target="_blank">
             WEconomy.network
           </a>
           ©{currentYear}
