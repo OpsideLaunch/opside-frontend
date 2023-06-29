@@ -36,12 +36,6 @@ const contractEnvMap: {
   //   confDir: '/conf',
   //   confFileName: 'contractAddress_dev.json'
   // },
-  release: {
-    url: 'https://static.refined-x.com',
-    rootDir: '/comunion-contract/comunion-contract-release',
-    confDir: '/conf',
-    confFileName: 'contractAddress_rel.json'
-  },
   // prod: {
   //   url: 'https://static.refined-x.com',
   //   rootDir: '/comunion-contract/comunion-contract-main',
