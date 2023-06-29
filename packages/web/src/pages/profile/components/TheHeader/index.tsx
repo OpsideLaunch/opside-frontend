@@ -5,7 +5,6 @@ import { useRouter } from 'vue-router'
 import ULogo from '@/components/ULogo'
 import type { ComerProfileState } from '@/types'
 
-const indexUrl = import.meta.env.VITE_COMUNION_HOMEPAGE_URL
 const TheHeader = defineComponent({
   name: 'TheHeader',
   props: {
@@ -61,16 +60,19 @@ const TheHeader = defineComponent({
       }
     }
 
+    const goHome = () => router.replace('/')
+
     return {
       styles,
       headerClass,
-      toComerDetail
+      toComerDetail,
+      goHome
     }
   },
   render() {
     return (
       <div class={this.headerClass} style={this.styles}>
-        <div class="cursor-pointer mr-4" onClick={() => window.open(indexUrl, '_self')}>
+        <div class="cursor-pointer mr-4" onClick={this.goHome}>
           <ULogo height={20} theme="colorful" />
         </div>
         <div class="flex-1"></div>

@@ -6,12 +6,12 @@
   }
 
   .n-base-close {
-    color: #3f2d99;
+    @apply text-primary;
   }
 }
 
 .u-card.n-card--bordered:hover {
-  border-color: #5331f4;
+  @apply border-primary;
 }
 
 /* create dialog no need hover border */
