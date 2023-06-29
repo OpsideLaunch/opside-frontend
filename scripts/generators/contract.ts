@@ -19,35 +19,41 @@ const contractEnvMap: {
   [key: string]: fileMapType
 } = {
   dev: {
-    url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/comunion-io/comunion-contract/develop',
+    url: 'https://static.refined-x.com',
+    rootDir: '/comunion-contract/gorollux-contract-develop',
     confDir: '/conf',
     confFileName: 'contractAddress_dev.json'
+  },
+  prod: {
+    url: 'https://static.refined-x.com',
+    rootDir: '/comunion-contract/gorollux-contract-main',
+    confDir: '/conf',
+    confFileName: 'contractAddress_main.json'
   },
   saleLaunchpadDev: {
-    url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/comunion-io/sale-launch-contracts/develop',
+    url: 'https://static.refined-x.com',
+    rootDir: '/comunion-contract/gorollux-contract-develop',
     confDir: '/conf',
     confFileName: 'contractAddress_dev.json'
-  },
+  }
   // dev: {
-  //   url: 'https://static.refined-x.com',
-  //   rootDir: '/comunion-contract/comunion-contract-develop',
+  //   url: GITHUB_RAW_PROXY_URL,
+  //   rootDir: '/comunion-io/comunion-contract/develop',
   //   confDir: '/conf',
   //   confFileName: 'contractAddress_dev.json'
   // },
   // prod: {
-  //   url: 'https://static.refined-x.com',
-  //   rootDir: '/comunion-contract/comunion-contract-main',
+  //   url: GITHUB_RAW_PROXY_URL,
+  //   rootDir: '/comunion-io/comunion-contract/main',
   //   confDir: '/conf',
   //   confFileName: 'contractAddress_main.json'
   // },
-  prod: {
-    url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/comunion-io/comunion-contract/main',
-    confDir: '/conf',
-    confFileName: 'contractAddress_main.json'
-  }
+  // saleLaunchpadDev: {
+  //   url: GITHUB_RAW_PROXY_URL,
+  //   rootDir: '/comunion-io/sale-launch-contracts/develop',
+  //   confDir: '/conf',
+  //   confFileName: 'contractAddress_dev.json'
+  // }
 }
 
 type ABIArgBaseType = {
