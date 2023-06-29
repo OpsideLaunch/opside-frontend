@@ -9,8 +9,7 @@ export const StartupAddresses: Record<number, string> = {
   56: '0xFefEab21A1CddBAda7c1077FBc1cC92e07B5ce78',
   250: '0xFefEab21A1CddBAda7c1077FBc1cC92e07B5ce78',
   137: '0xFefEab21A1CddBAda7c1077FBc1cC92e07B5ce78',
-  57: '0xFefEab21A1CddBAda7c1077FBc1cC92e07B5ce78',
-  57000: '0xB44257926FC5EFD6Df94783A8B4f011c6BF64767'
+  57: '0xFefEab21A1CddBAda7c1077FBc1cC92e07B5ce78'
 }
 
 const abi =
