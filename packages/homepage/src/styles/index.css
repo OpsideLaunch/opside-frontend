@@ -1,0 +1,23 @@
+@import '@comunion/components/dist/es/index.css';
+
+body {
+  font-size: 8px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+  @apply bg-color-body font-primary px-5 text-color2 relative break-words <lg:px-0;
+}
+
+::-webkit-scrollbar {
+  @apply h-1 w-1;
+
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded h-1 w-1;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
