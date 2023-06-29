@@ -24,9 +24,20 @@ export type SocialPropType = {
   name: string
 }
 
+type tagListTypeKeys =
+  | 'comer_tagList'
+  | 'startup_tagList'
+  | 'startup_ad_tagList'
+  | 'bounty_tagList'
+  | 'comer_skill_tagList'
+  | 'startup_skill_tagList'
+  | 'bounty_skill_tagList'
+  | 'social_tagList'
+
 type tagListGroupType = {
   comer_tagList: tagListType | null
   startup_tagList: tagListType | null
+  startup_ad_tagList: tagListType | null
   bounty_tagList: tagListType | null
   comer_skill_tagList: tagListType | null
   startup_skill_tagList: tagListType | null
@@ -36,6 +47,7 @@ type tagListGroupType = {
 const TagList = reactive<tagListGroupType>({
   comer_tagList: null,
   startup_tagList: null,
+  startup_ad_tagList: null,
   bounty_tagList: null,
   comer_skill_tagList: null,
   startup_skill_tagList: null,
@@ -44,14 +56,15 @@ const TagList = reactive<tagListGroupType>({
 })
 
 export function useTags(type: typeText, refresh = false, params?: Record<string, any>) {
+  const dataKey = `${type}${params?.ad ? '_ad' : ''}_tagList` as tagListTypeKeys
   const getTypeList = async (reload = refresh) => {
-    if (reload || TagList[`${type}_tagList`] === null) {
+    if (reload || TagList[dataKey] === null) {
       if (type === 'social') {
         const { error, data } = await services['Social@get-socials']({ type })
         if (!error) {
-          TagList[`${type}_tagList`] = data?.list || null
+          TagList[dataKey] = data?.list || null
         } else {
-          TagList[`${type}_tagList`] = null
+          TagList[dataKey] = null
         }
       } else {
         const { error, data } = await services['Tag@get-tags-by-tag-type']({
@@ -59,9 +72,9 @@ export function useTags(type: typeText, refresh = false, params?: Record<string,
           ...(params || {})
         })
         if (!error) {
-          TagList[`${type}_tagList`] = data?.list || null
+          TagList[dataKey] = data?.list || null
         } else {
-          TagList[`${type}_tagList`] = null
+          TagList[dataKey] = null
         }
       }
     }
@@ -70,7 +83,7 @@ export function useTags(type: typeText, refresh = false, params?: Record<string,
   getTypeList()
 
   return {
-    TagList: computed(() => TagList[`${type}_tagList`]),
+    TagList: computed(() => TagList[dataKey]),
     reload: () => getTypeList(true)
   }
 }
