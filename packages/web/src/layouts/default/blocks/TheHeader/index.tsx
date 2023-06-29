@@ -170,7 +170,7 @@ const TheHeader = defineComponent({
             onClick={this.goHome}
           >
             <ULogo height={this.globalConfigStore.isLargeScreen ? 28 : 36} />
-            <span class="font-600 text-lg ml-1 text-[#636366] hidden 1366:block">WELaunch</span>
+            <span class="font-600 text-lg ml-1 text-[#636366] hidden 1366:block">GoRollux</span>
           </div>
           <div class="flex-1 hidden <lg:block">
             <MobileNav class="h-10 ml-2 w-10" navigations={this.navigations} />

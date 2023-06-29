@@ -38,7 +38,7 @@ export default defineComponent({
         v-slots={{
           content: () => (
             <p>
-              If you already have data from another account at WELaunch, you can associate it with
+              If you already have data from another account at GoRollux, you can associate it with
               that account.
             </p>
           ),

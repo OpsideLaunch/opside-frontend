@@ -191,8 +191,8 @@ export default defineComponent({
                   ]
                 }}
                 route={window.location.href}
-                title={this.bountySection.detail.value.startup?.name + '--Bounty | WELaunch'}
-                description={`Check out the bounty on WELaunch, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
+                title={this.bountySection.detail.value.startup?.name + '--Bounty | GoRollux'}
+                description={`Check out the bounty on GoRollux, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
                 text={`${
                   this.bountySection.detail.value.startup.name
                 } just posted a #bounty that pays out ${this.rewordsInfo?.token1_amount || 0} ${
@@ -201,7 +201,7 @@ export default defineComponent({
                   this.rewordsInfo?.token2_amount
                     ? '+' + this.rewordsInfo?.token2_amount + ' ' + this.rewordsInfo?.token2_symbol
                     : ''
-                }, check out this #rewards on #WELaunch Network: `}
+                }, check out this #rewards on #GoRollux Network: `}
                 tipPlacement="right"
               />
             )}

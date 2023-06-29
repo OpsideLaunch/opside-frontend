@@ -225,10 +225,10 @@ export default defineComponent({
                 ]
               }}
               route={window.location.href}
-              title={this.startup.name + '--Project | WELaunch'}
-              description={`Check out the project on WELaunch, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
-              text={'Check out this #NFT #DAO #Web3 project on #WELaunch Network: '}
-              copyText={`Check out this #NFT #DAO #Web3 project "${this.startup.name}" on #WELaunch Network: ${window.location.href}`}
+              title={this.startup.name + '--Project | GoRollux'}
+              description={`Check out the project on GoRollux, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
+              text={'Check out this #NFT #DAO #Web3 project on #GoRollux Network: '}
+              copyText={`Check out this #NFT #DAO #Web3 project "${this.startup.name}" on #GoRollux Network: ${window.location.href}`}
             >
               {this.isAdmin && this.globalConfigStore.isLargeScreen && (
                 <UTooltip

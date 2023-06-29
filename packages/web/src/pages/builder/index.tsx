@@ -135,10 +135,10 @@ export default defineComponent({
               noShadow: true
             }}
             route={`https://${import.meta.env.VITE_HOST}/profile/${this.profile.custom_domain}`}
-            title={this.profile.name + '--Builder | WELaunch'}
-            description={`Check out the Web3Profile on WELaunch, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
-            text={`Connect this #Web3Profile on #WELaunch Network:`}
-            copyText={`Connect this #Web3Profile on #WELaunch Network: https://${
+            title={this.profile.name + '--Builder | GoRollux'}
+            description={`Check out the Web3Profile on GoRollux, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
+            text={`Connect this #Web3Profile on #GoRollux Network:`}
+            copyText={`Connect this #Web3Profile on #GoRollux Network: https://${
               import.meta.env.VITE_HOST
             }/profile/${this.profile.custom_domain}`}
           />
