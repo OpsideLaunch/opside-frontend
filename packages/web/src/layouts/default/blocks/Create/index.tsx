@@ -1,15 +1,14 @@
 import { UButton, message } from '@comunion/components'
-import {
-  CreateStartupNewFilled,
-  CreateBountyNewFilled,
-  CreateCrowdfundingNewFilled,
-  CreateProposalNewFilled
-} from '@comunion/icons'
+
 import { defineComponent, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import HeaderDropdown from '../../components/HeaderDropdown'
 import NoFollowedStartupTip from './components/NoFollowedStartupTip'
 import NoStartupTip from './components/NoStartupTip'
+import CreateBountyNewFilled from '@/assets/create/bounty.png'
+import CreateCrowdfundingNewFilled from '@/assets/create/launchpad.png'
+import CreateStartupNewFilled from '@/assets/create/project.png'
+import CreateProposalNewFilled from '@/assets/create/proposal.png'
 import CreateBountyBlock, { CreateBountyRef } from '@/blocks/Bounty/Create'
 import CreateFairLaunchpadBlock, { type CreateFairLaunchRef } from '@/blocks/FairLaunchpad/Create'
 import CreateProposalBlock, { CreateProposalRef } from '@/blocks/Proposal/Create'
@@ -143,7 +142,7 @@ const CreateBlock = defineComponent({
               label: () => (
                 <div class="flex items-center" onClick={onCreateStartup}>
                   <div class="rounded flex h-full mr-4 w-8 items-center justify-center">
-                    <CreateStartupNewFilled />
+                    <img src={CreateStartupNewFilled} class="w-full " />
                   </div>
                   <div class="text-[#000000] u-h4">Project</div>
                 </div>
@@ -154,7 +153,7 @@ const CreateBlock = defineComponent({
               label: () => (
                 <div class="flex items-center" onClick={onCreateBounty}>
                   <div class="rounded flex h-full mr-4 w-8 items-center justify-center">
-                    <CreateBountyNewFilled class="text-primary" />
+                    <img src={CreateBountyNewFilled} class="w-full " />
                   </div>
                   <div class="text-[#000000] u-h4">Bounty</div>
                 </div>
@@ -165,7 +164,7 @@ const CreateBlock = defineComponent({
               label: () => (
                 <div class="flex items-center">
                   <div class="rounded flex h-full mr-4 w-8 items-center justify-center">
-                    <CreateCrowdfundingNewFilled class="text-primary" />
+                    <img src={CreateCrowdfundingNewFilled} class="w-full " />
                   </div>
                   <div class="text-[#000000] u-h4">Launchpad</div>
                 </div>
@@ -174,9 +173,9 @@ const CreateBlock = defineComponent({
                 {
                   key: 'pair',
                   label: () => (
-                    <div class="flex-col items-center mx-[30px] my-[10px]" onClick={onCreateFair}>
-                      <div class="text-[#333] u-h4 font-normal">Fair Launch</div>
-                      <div class="w-[300px] whitespace-normal text-gray-500 leading-4 mt-2">
+                    <div class="flex-col my-[10px] mx-[30px] items-center" onClick={onCreateFair}>
+                      <div class="font-normal text-[#333] u-h4">Fair Launch</div>
+                      <div class="mt-2 text-gray-500 leading-4 w-[300px] whitespace-normal">
                         During the fair liquidity, a presale pool is established with a fixed swap
                         price. This presale pool allows investors to invest in and withdraw tokens
                         in real-time.
@@ -187,9 +186,9 @@ const CreateBlock = defineComponent({
                 {
                   key: 'sale',
                   label: () => (
-                    <div class="flex-col items-center mx-[30px] my-[10px]" onClick={onCreateSale}>
-                      <div class="text-[#333] u-h4 font-normal">Sale Launch</div>
-                      <div class="w-[300px] whitespace-normal text-gray-500 leading-4 mt-2">
+                    <div class="flex-col my-[10px] mx-[30px] items-center" onClick={onCreateSale}>
+                      <div class="font-normal text-[#333] u-h4">Sale Launch</div>
+                      <div class="mt-2 text-gray-500 leading-4 w-[300px] whitespace-normal">
                         After a set vesting date, investors will be able to receive the tokens they
                         invested in during the presale
                       </div>
@@ -203,7 +202,7 @@ const CreateBlock = defineComponent({
               label: () => (
                 <div class="flex items-center" onClick={onCreateProposal}>
                   <div class="rounded flex h-full mr-4 w-8 items-center justify-center">
-                    <CreateProposalNewFilled class="text-primary" />
+                    <img src={CreateProposalNewFilled} class="w-full " />
                   </div>
                   <div class="text-[#000000] u-h4">Proposal</div>
                 </div>
