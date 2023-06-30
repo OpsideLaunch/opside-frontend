@@ -847,6 +847,7 @@ export const InvestFair = defineComponent({
                         type="primary"
                         class="basis-1/3"
                         size="small"
+                        tag="div"
                         style={{
                           '--n-color-disabled': '#E0E0E0',
                           '--n-opacity-disabled': 1,
