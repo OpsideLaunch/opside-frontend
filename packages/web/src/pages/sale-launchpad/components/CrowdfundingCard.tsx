@@ -40,8 +40,8 @@ export const CrowdfundingCard = defineComponent({
       raiseState.value.raiseAmount = Number(
         formatToFloor(Number(props.info.invest_token_balance), 8)
       )
-      raiseState.value.raisePercent = Number(
-        formatToFloor((raiseState.value.raiseAmount / raiseState.value.raiseGoal) * 100, 4)
+      raiseState.value.raisePercent = Math.round(
+        Number(formatToFloor((raiseState.value.raiseAmount / raiseState.value.raiseGoal) * 100, 4))
       )
       // }
     }
@@ -145,7 +145,7 @@ export const CrowdfundingCard = defineComponent({
             <span class="flex-1 mr-4 text-color1 truncate u-h3" title={props.info.title}>
               {props.info.title}
             </span>
-            <img src={logo.value} />
+            <img class="w-[22px]" src={logo.value} />
           </div>
           <div class="flex mb-2">
             <div class="flex-1 text-0.75rem">

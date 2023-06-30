@@ -28,21 +28,24 @@ export default defineComponent({
     startup: {
       type: Object as PropType<StartupDetail>,
       require: true
+    },
+    investState: {
+      type: Object as PropType<ReturnType<typeof useInvestState>['investState']>,
+      require: true
     }
   },
   setup(props, ctx) {
     const walletStore = useWalletStore()
     const router = findRouterByAddress(props.info.dex_router!)
     const isAutoListing = Boolean(router)
-    const investState = useInvestState(walletStore.chainId!, {
-      [walletStore.chainId!]: props.info.contract_address!
-    })
     const saleContract = useWESaleContract({
       chainId: walletStore.chainId!,
       addresses: { [walletStore.chainId!]: props.info.contract_address! }
     })
 
     const cancelModal = ref(false)
+
+    const investState = props.investState!
 
     function cancel() {
       saleContract.cancel('Cancelling launchpad.', 'Cancelling launchpad.')
@@ -129,7 +132,12 @@ export default defineComponent({
           </UButton>
         ) : investState.isEnd ? (
           <>
-            <UButton class="flex-1" size="small" onClick={cancel} disabled={investState.isTransed}>
+            <UButton
+              class="flex-2 w-50"
+              size="small"
+              onClick={cancel}
+              disabled={investState.isTransed}
+            >
               Cancel
             </UButton>
             {investState.isTransed ? (
@@ -164,7 +172,7 @@ export default defineComponent({
           investState.isStarted && (
             <>
               <UButton
-                class="flex-1"
+                class="flex-2 w-50"
                 size="small"
                 onClick={() => {
                   cancelModal.value = true
@@ -208,7 +216,14 @@ export default defineComponent({
               >
                 Cancel
               </UButton>
-              <UButton type="primary" class="w-41" onClick={() => cancel()}>
+              <UButton
+                type="primary"
+                class="w-41"
+                onClick={() => {
+                  cancelModal.value = false
+                  cancel()
+                }}
+              >
                 Yes
               </UButton>
             </div>

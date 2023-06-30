@@ -30,19 +30,22 @@ export default defineComponent({
     amount: {
       type: Number,
       require: true
+    },
+    investState: {
+      type: Object as PropType<ReturnType<typeof useInvestState>['investState']>,
+      require: true
     }
   },
   setup(props, ctx) {
     const walletStore = useWalletStore()
     const confirmModal = ref(false)
-    const investState = useInvestState(walletStore.chainId!, {
-      [walletStore.chainId!]: props.info.contract_address!
-    })
 
     const saleContract = useWESaleContract({
       chainId: walletStore.chainId!,
       addresses: { [walletStore.chainId!]: props.info.contract_address! }
     })
+
+    const investState = props.investState!
 
     async function buy() {
       await saleContract.invest(
@@ -118,7 +121,7 @@ export default defineComponent({
           </div>
         ) : investState.isEnd ? (
           investState.isTransed ? (
-            investState.canClaim ? (
+            !investState.canClaim.isZero() ? (
               <UButton class="flex-1" size="small" onClick={claim} type="primary">
                 Claim ( {ethers.utils.formatUnits(investState.canClaim)} {props.sellCoinInfo.symbol}
                 )
@@ -138,7 +141,7 @@ export default defineComponent({
                       Claim
                     </UButton>
                   ),
-                  default: () => <div>You have not contributed.</div>
+                  default: () => <div>You have no tokens to claim.</div>
                 }}
               </UTooltip>
             )

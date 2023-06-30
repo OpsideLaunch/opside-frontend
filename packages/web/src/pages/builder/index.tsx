@@ -4,10 +4,11 @@ import Bio from './components/bio'
 import Bounty from './components/bounty'
 import Comer from './components/comer'
 import Connection from './components/connection'
-import Launchpad from './components/crowdfunding'
+import FairLaunchpad from './components/crowdfunding'
 import Education from './components/education'
 import Language from './components/language'
 import Proposal from './components/proposal'
+import SaleLaunchpad from './components/saleLaunchpad'
 import Skill from './components/skill'
 import Social from './components/social'
 import Startup from './components/startup'
@@ -38,28 +39,34 @@ export default defineComponent({
         moduleCount.postedCount.startup_count === 0 &&
         moduleCount.participatedCount.bounty_count === 0 &&
         moduleCount.participatedCount.crowdfunding_count === 0 &&
+        moduleCount.participatedCount.sale_launchpad_count === 0 &&
         moduleCount.participatedCount.governance_count === 0 &&
         moduleCount.participatedCount.startup_count === 0
       )
     })
 
     const systemTasks = computed(() => {
-      return ['All', 'Projects', 'Bounty', 'Launchpad', 'Proposal'].filter(itemName => {
-        return (
-          (itemName === 'Projects' &&
-            (moduleCount.postedCount.startup_count !== 0 ||
-              moduleCount.participatedCount.startup_count !== 0)) ||
-          (itemName === 'Bounty' &&
-            (moduleCount.postedCount.bounty_count !== 0 ||
-              moduleCount.participatedCount.bounty_count !== 0)) ||
-          (itemName === 'Launchpad' &&
-            (moduleCount.postedCount.crowdfunding_count !== 0 ||
-              moduleCount.participatedCount.crowdfunding_count !== 0)) ||
-          (itemName === 'Proposal' &&
-            (moduleCount.postedCount.governance_count !== 0 ||
-              moduleCount.participatedCount.governance_count !== 0))
-        )
-      })
+      return ['All', 'Projects', 'Bounty', 'FairLaunchpad', 'SaleLaunchpad', 'Proposal'].filter(
+        itemName => {
+          return (
+            (itemName === 'Projects' &&
+              (moduleCount.postedCount.startup_count !== 0 ||
+                moduleCount.participatedCount.startup_count !== 0)) ||
+            (itemName === 'Bounty' &&
+              (moduleCount.postedCount.bounty_count !== 0 ||
+                moduleCount.participatedCount.bounty_count !== 0)) ||
+            (itemName === 'FairLaunchpad' &&
+              (moduleCount.postedCount.crowdfunding_count !== 0 ||
+                moduleCount.participatedCount.crowdfunding_count !== 0)) ||
+            (itemName === 'SaleLaunchpad' &&
+              (moduleCount.postedCount.sale_launchpad_count !== 0 ||
+                moduleCount.participatedCount.sale_launchpad_count !== 0)) ||
+            (itemName === 'Proposal' &&
+              (moduleCount.postedCount.governance_count !== 0 ||
+                moduleCount.participatedCount.governance_count !== 0))
+          )
+        }
+      )
     })
 
     const editAll = () => {
@@ -119,7 +126,12 @@ export default defineComponent({
         />
       ),
       Bounty: <Bounty moduleCount={this.moduleCount} comerId={this.profile?.id as number} />,
-      Launchpad: <Launchpad moduleCount={this.moduleCount} comerId={this.profile?.id as number} />,
+      FairLaunchpad: (
+        <FairLaunchpad moduleCount={this.moduleCount} comerId={this.profile?.id as number} />
+      ),
+      SaleLaunchpad: (
+        <SaleLaunchpad moduleCount={this.moduleCount} comerId={this.profile?.id as number} />
+      ),
       Proposal: <Proposal moduleCount={this.moduleCount} comerId={this.profile?.id as number} />
     }
 

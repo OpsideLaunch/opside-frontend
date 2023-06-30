@@ -125,7 +125,7 @@ export default defineComponent({
               h('img', {
                 src: option.logo,
                 round: true,
-                width: 20,
+                size: 20,
                 style: {
                   marginRight: '12px'
                 }

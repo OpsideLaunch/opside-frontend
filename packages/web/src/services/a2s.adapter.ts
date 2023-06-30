@@ -2,7 +2,8 @@
 import axios, { AxiosRequestHeaders } from 'axios'
 import { message } from '@comunion/components'
 import { RequestFunctionArgs } from './a2s.types'
-import { useUserStore, useWalletStore } from '@/stores'
+
+import { useUserStore } from '@/stores'
 
 export interface BaseResponse<T = any> {
   status: number
@@ -27,7 +28,7 @@ function onErrorHandler(
   message?: string
   code?: number
 } {
-  const walletStore = useWalletStore()
+  const userStore = useUserStore()
   let msg = error.message ?? 'Error occured'
   try {
     const response: BaseResponse = error.response
@@ -35,8 +36,7 @@ function onErrorHandler(
       msg = response.data.message
     }
     if (response.status === 401 && location.pathname !== '/auth/login') {
-      message.warning('The token expired, please login')
-      walletStore.ensureWalletConnected()
+      userStore.logout('The token expired, please re-login', { from: location.pathname })
       return { error: true, data: null }
     }
   } catch (error) {

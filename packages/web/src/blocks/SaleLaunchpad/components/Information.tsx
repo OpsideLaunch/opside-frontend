@@ -35,7 +35,6 @@ export const Information = defineComponent({
     const walletStore = useWalletStore()
     const crowdfundingInfoForm = ref<FormInst | null>(null)
     const BuyCoinAddress = getBuyCoinAddress(MAIN_COIN_ADDR)[walletStore.chainId as number]
-    console.log(BuyCoinAddress, 8989)
     // === props.crowdfundingInfo.sellTokenContract
     const raiseGoalOptions = computed(() => {
       return BuyCoinAddress.filter(item => item.value === MAIN_COIN_ADDR)
@@ -51,7 +50,7 @@ export const Information = defineComponent({
         props.crowdfundingInfo.buyTokenDecimals = '18'
       }
     }
-    // const getMainCoin = async () => {}
+
     onMounted(() => {
       props.crowdfundingInfo.buyTokenContract = raiseGoalOptions.value[0].value as string
       props.crowdfundingInfo.buyTokenName = raiseGoalOptions.value[0].label as string
@@ -165,8 +164,8 @@ export const Information = defineComponent({
                   class="flex-1"
                 ></UInputBigNumber>
                 <div class="my-1 text-xs text-color3">
-                  {props.crowdfundingInfo.liquidityPercent || '?'} ？% of raised funds that should
-                  be allocated to Liquidity.
+                  {props.crowdfundingInfo.liquidityPercent || '?'} % of raised funds that should be
+                  allocated to Liquidity.
                 </div>
               </div>
             )
@@ -589,6 +588,11 @@ export const Information = defineComponent({
             {
               validator: (rule, value) => value > 0,
               message: 'Vesting period must be positive number.',
+              trigger: 'blur'
+            },
+            {
+              validator: (rule, value) => +value % 1 === 0,
+              message: 'Period must be a positive integer.',
               trigger: 'blur'
             }
           ],

@@ -58,78 +58,17 @@ export default defineComponent({
         addresses: { [walletStore.chainId!]: props.info.crowdfunding_contract! }
       })
 
-      const parametersRes: any = await fundingContract.parameters(
-        'Waiting to load.',
-        'Waiting to load.'
+      await fundingContract.parameters('Waiting to load.', 'Waiting to load.')
+      const updateRes: any = await fundingContract.updateParas(
+        BigNumber.from(crowdfundingInfo.value.endTime / 1000),
+        'Waiting to update.',
+        'Waiting to update.'
       )
-      if (parametersRes) {
-        const [
-          sellTokenAddress,
-          buyTokenAddress,
-          sellTokenDecimals,
-          buyTokenDecimals,
-          buyTokenIsNative,
-          raiseTotal,
-          buyPrice,
-          swapPercent,
-          sellTax,
-          maxBuyAmount,
-          minBuyAmount,
-          maxSellPercent,
-          teamWallet,
-          startTime,
-          endTime,
-          router,
-          dexInitPrice
-        ] = parametersRes
-        console.log(
-          sellTokenAddress,
-          buyTokenAddress,
-          sellTokenDecimals,
-          buyTokenDecimals,
-          buyTokenIsNative,
-          raiseTotal,
-          buyPrice,
-          swapPercent,
-          sellTax,
-          maxBuyAmount,
-          minBuyAmount,
-          maxSellPercent,
-          teamWallet,
-          startTime,
-          endTime,
-          router,
-          dexInitPrice,
-          'new endTime=',
-          crowdfundingInfo.value.endTime / 1000
-        )
-        const updateRes: any = await fundingContract.updateParas(
-          buyPrice,
-          swapPercent,
-          maxBuyAmount,
-          minBuyAmount,
-          maxSellPercent,
-          BigNumber.from(crowdfundingInfo.value.endTime / 1000),
-          'Waiting to update.',
-          'Waiting to update.'
-        )
-        if (updateRes) {
-          updateRes.wait().then((res: any) => {
-            console.log(33333333, res)
-          })
-        }
-        return updateRes
+      if (updateRes) {
+        updateRes.wait().then((res: any) => {
+          console.log(33333333, res)
+        })
       }
-
-      // updateParas
-      //   buyPrice: number | BigNumber,
-      // swapPercent: any,
-      // maxBuyAmount: number | BigNumber,
-      // maxSellPercent: any,
-      // _endTime: number | BigNumber,
-      // pendingText: string,
-      // waitingText: string,
-      // overrides?: any
     }
 
     const loading = ref(false)

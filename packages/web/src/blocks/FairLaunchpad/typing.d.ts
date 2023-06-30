@@ -10,7 +10,7 @@ export interface CrowdfundingInfo {
   sellTokenSupply: string
   teamWallet: string
   listing: string
-  Router: string
+  Router: string | null
   chainId?: number
   listingRate?: number
   raiseGoal: number | null

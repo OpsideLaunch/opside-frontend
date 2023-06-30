@@ -646,6 +646,22 @@ export const services = {
       ...extract('GET', args, [], ['crowdfunding_id'])
     })
   },
+  'Crowdfunding@get-crowdfunding-transfer-lp-sign'(args: {
+    /**
+     * @description crowdfunding id
+     */
+    crowdfunding_id: number
+  }) {
+    return requestAdapter<
+      ApiDocuments.proto_Response & {
+        data?: ApiDocuments.proto_SignResponse
+      }
+    >({
+      url: replacePath('/crowdfundings/{crowdfunding_id}/sign', args),
+      method: 'GET',
+      ...extract('GET', args, [], ['crowdfunding_id'])
+    })
+  },
   'Crowdfunding@get-crowdfunding-invest-records'(
     args: {
       /**
@@ -912,6 +928,13 @@ export const services = {
       url: replacePath('/sale_launchpads', args),
       method: 'POST',
       ...extract('POST', args, [], [])
+    })
+  },
+  'SaleLaunchpad@get-sale-launchpad-supply-dex'(args?: any) {
+    return requestAdapter<ApiDocuments.proto_SaleLaunchpadResponse>({
+      url: replacePath('/sale_launchpads/supply_dex', args),
+      method: 'GET',
+      ...extract('GET', args, [], [])
     })
   },
   'SaleLaunchpad@get-sale-launchpad-info'(args: {

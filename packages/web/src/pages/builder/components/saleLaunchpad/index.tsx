@@ -2,9 +2,9 @@ import { UCard, UScrollList, USpin } from '@comunion/components'
 import { defineComponent, reactive, ref } from 'vue'
 import ListSwitcher from '../ListSwitcher'
 import Empty from '@/components/Empty'
-import { default as ItemCard } from '@/pages/launchpad/components/CrowdfundingMiniCard'
+import { default as ItemCard } from '@/pages/launchpad/components/SaleLaunchpadMiniCard'
 import { services } from '@/services'
-import { CrowdfundingItem } from '@/types'
+import { CrowdfundingItem, SaleCrowdfundingItem } from '@/types'
 
 export default defineComponent({
   props: {
@@ -30,7 +30,7 @@ export default defineComponent({
     // createdByMe.value
     const totalCount = ref(0)
     const loading = ref(false)
-    const list = ref<CrowdfundingItem[]>([])
+    const list = ref<SaleCrowdfundingItem[]>([])
     const fetchData = async () => {
       const reqData: any = {
         page: pagination.page,
@@ -41,7 +41,7 @@ export default defineComponent({
       } else {
         reqData.participate_comer_id = props.comerId
       }
-      const { error, data } = await services['Crowdfunding@get-crowdfunding'](reqData)
+      const { error, data } = await services['SaleLaunchpad@get-sale-launchpad'](reqData)
 
       loading.value = false
 
@@ -52,7 +52,7 @@ export default defineComponent({
                 ...item,
                 kyc: item.kyc || '',
                 contract_audit: item.contract_audit || '',
-                buy_token_amount: item.buy_token_amount || 0
+                buy_token_amount: item.invest_token_amount || 0
               }
             })
           : []
@@ -88,7 +88,7 @@ export default defineComponent({
     return (
       <USpin show={this.loading}>
         <UCard
-          title="Fair Launchpad"
+          title="Sale Launchpad"
           class="mb-6"
           v-slots={{
             'header-extra': () => {

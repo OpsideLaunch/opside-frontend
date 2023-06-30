@@ -11,7 +11,7 @@ import {
 import { BigNumber } from 'ethers'
 import { defineComponent, PropType, computed, Ref, ref, watch, h } from 'vue'
 import RichEditor from '@/components/Editor'
-import { useCrowdfundingContract } from '@/contracts'
+import { useWESaleContract } from '@/contracts'
 import { ServiceReturn, services } from '@/services'
 import { useWalletStore } from '@/stores'
 
@@ -29,6 +29,7 @@ export default defineComponent({
   emits: ['close', 'update'],
   setup(props, ctx) {
     const walletStore = useWalletStore()
+    const canUpdateRef = ref(true)
     const crowdfundingInfo = ref({
       ...props.info,
       startTime: Number(props.info.started_at) * 1000,
@@ -37,8 +38,9 @@ export default defineComponent({
 
     watch(
       () => props.show,
-      () => {
+      async () => {
         if (props.show) {
+          ;[canUpdateRef.value] = [await fundingContract._canUpdate('', '')].flat()
           crowdfundingInfo.value = {
             ...props.info,
             startTime: Number(props.info.started_at) * 1000,
@@ -48,88 +50,31 @@ export default defineComponent({
       }
     )
 
+    const fundingContract = useWESaleContract({
+      chainId: walletStore.chainId!,
+      addresses: { [walletStore.chainId!]: props.info.contract_address! }
+    })
+
     const isInCrowdChain = computed(() => {
       return walletStore.chainId === props.info.chain_id
     })
 
     const updateOnChain = async () => {
-      const fundingContract = useCrowdfundingContract({
+      const fundingContract = useWESaleContract({
         chainId: walletStore.chainId!,
         addresses: { [walletStore.chainId!]: props.info.contract_address! }
       })
 
-      const parametersRes: any = await fundingContract.parameters(
-        'Waiting to load.',
-        'Waiting to load.'
+      const updateRes: any = await fundingContract.updateEndedAt(
+        BigNumber.from(Math.round(crowdfundingInfo.value.endTime / 1000)),
+        'Waiting to update.',
+        'Waiting to update.'
       )
-      if (parametersRes) {
-        const [
-          sellTokenAddress,
-          buyTokenAddress,
-          sellTokenDecimals,
-          buyTokenDecimals,
-          buyTokenIsNative,
-          raiseTotal,
-          buyPrice,
-          swapPercent,
-          sellTax,
-          maxBuyAmount,
-          minBuyAmount,
-          maxSellPercent,
-          teamWallet,
-          startTime,
-          endTime,
-          router,
-          dexInitPrice
-        ] = parametersRes
-        console.log(
-          sellTokenAddress,
-          buyTokenAddress,
-          sellTokenDecimals,
-          buyTokenDecimals,
-          buyTokenIsNative,
-          raiseTotal,
-          buyPrice,
-          swapPercent,
-          sellTax,
-          maxBuyAmount,
-          minBuyAmount,
-          maxSellPercent,
-          teamWallet,
-          startTime,
-          endTime,
-          router,
-          dexInitPrice,
-          'new endTime=',
-          crowdfundingInfo.value.endTime / 1000
-        )
-        const updateRes: any = await fundingContract.updateParas(
-          buyPrice,
-          swapPercent,
-          maxBuyAmount,
-          minBuyAmount,
-          maxSellPercent,
-          BigNumber.from(crowdfundingInfo.value.endTime / 1000),
-          'Waiting to update.',
-          'Waiting to update.'
-        )
-        if (updateRes) {
-          updateRes.wait().then((res: any) => {
-            console.log(33333333, res)
-          })
-        }
-        return updateRes
+      if (updateRes) {
+        updateRes.wait?.().then((res: any) => {
+          console.log(33333333, res)
+        })
       }
-
-      // updateParas
-      //   buyPrice: number | BigNumber,
-      // swapPercent: any,
-      // maxBuyAmount: number | BigNumber,
-      // maxSellPercent: any,
-      // _endTime: number | BigNumber,
-      // pendingText: string,
-      // waitingText: string,
-      // overrides?: any
     }
 
     const loading = ref(false)
@@ -171,9 +116,9 @@ export default defineComponent({
         format: 'yyyy-MM-dd HH:mm',
         required: true,
         disabled:
-          true ||
           Number(props.info.ended_at) * 1000 < new Date().getTime() ||
-          !isInCrowdChain.value,
+          !isInCrowdChain.value ||
+          !canUpdateRef.value,
         isDateDisabled: (ts: number) => {
           return ts < Number(props.info.ended_at) * 1000
         },
@@ -289,7 +234,7 @@ export default defineComponent({
           }
           console.log('save api')
           loading.value = true
-          const { error } = await services['Crowdfunding@update-crowdfunding']({
+          const { error } = await services['SaleLaunchpad@update-sale-launchpad']({
             description: crowdfundingInfo.value.description as string,
             detail: crowdfundingInfo.value.detail,
             id: crowdfundingInfo.value.id,

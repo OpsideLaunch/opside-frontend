@@ -11,24 +11,18 @@ export const CrowdfundingFactoryAddresses: Record<number, string> = {
   80001: '0x7A9a466DE08747bC8Ad79aBA6D8dCE9D64E5C767',
   2814: '0x914B75c95f3c1A090A2F255be95Bdb2B10CBD770',
   5700: '0x001547114664D1050271943eaC4657bE2c15EFcC',
-  57000: '0x32059e10b885a0D3d0131D42c5bebf0FCBfB9A46'
+  57000: '0x7531626E87BdA9B8511bea536136e5349EDacE89'
 }
 
 const abi =
-  '[{"inputs":[{"internalType":"address","name":"router","type":"address"}],"name":"addToDexRouters","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"addToWhitelist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"children","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"sellTokenAddress","type":"address"},{"internalType":"address","name":"buyTokenAddress","type":"address"},{"internalType":"uint8","name":"sellTokenDecimals","type":"uint8"},{"internalType":"uint8","name":"buyTokenDecimals","type":"uint8"},{"internalType":"bool","name":"buyTokenIsNative","type":"bool"},{"internalType":"uint256","name":"raiseTotal","type":"uint256"},{"internalType":"uint256","name":"buyPrice","type":"uint256"},{"internalType":"uint16","name":"swapPercent","type":"uint16"},{"internalType":"uint16","name":"sellTax","type":"uint16"},{"internalType":"uint256","name":"maxBuyAmount","type":"uint256"},{"internalType":"uint256","name":"minBuyAmount","type":"uint256"},{"internalType":"uint16","name":"maxSellPercent","type":"uint16"},{"internalType":"address","name":"teamWallet","type":"address"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"address","name":"router","type":"address"},{"internalType":"uint256","name":"dexInitPrice","type":"uint256"}],"internalType":"struct Parameters","name":"paras","type":"tuple"}],"name":"createCrowdfundingContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"fee","outputs":[{"internalType":"uint24","name":"","type":"uint24"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feeTo","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feeToSetter","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getStore","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"isChild","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"router","type":"address"}],"name":"isDexRouters","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isWhitelisted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"router","type":"address"}],"name":"removeFromDexRouters","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"removeFromWhitelist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_feeTo","type":"address"}],"name":"setFeeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_feeToSetter","type":"address"}],"name":"setFeeToSetter","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newFactory","type":"address"}],"name":"transferPrimary","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newStore","type":"address"}],"name":"transferStore","outputs":[],"stateMutability":"nonpayable","type":"function"}]'
+  '[{"inputs":[{"internalType":"address","name":"_router","type":"address"}],"name":"addToDexRouters","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"children","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"sellTokenAddress","type":"address"},{"internalType":"address","name":"buyTokenAddress","type":"address"},{"internalType":"uint8","name":"sellTokenDecimals","type":"uint8"},{"internalType":"uint8","name":"buyTokenDecimals","type":"uint8"},{"internalType":"bool","name":"buyTokenIsNative","type":"bool"},{"internalType":"uint256","name":"raiseTotal","type":"uint256"},{"internalType":"uint256","name":"buyPrice","type":"uint256"},{"internalType":"uint16","name":"swapPercent","type":"uint16"},{"internalType":"uint16","name":"sellTax","type":"uint16"},{"internalType":"uint256","name":"maxBuyAmount","type":"uint256"},{"internalType":"uint256","name":"minBuyAmount","type":"uint256"},{"internalType":"uint16","name":"maxSellPercent","type":"uint16"},{"internalType":"address","name":"teamWallet","type":"address"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"address","name":"router","type":"address"},{"internalType":"uint256","name":"dexInitPrice","type":"uint256"}],"internalType":"struct Parameters","name":"paras","type":"tuple"}],"name":"createCrowdfundingContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"fee","outputs":[{"internalType":"uint24","name":"","type":"uint24"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feeTo","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feeToSetter","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getStore","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"isChild","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_router","type":"address"}],"name":"isDexRouters","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_router","type":"address"}],"name":"removeFromDexRouters","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_feeTo","type":"address"}],"name":"setFeeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_feeToSetter","type":"address"}],"name":"setFeeToSetter","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_transferSigner","type":"address"}],"name":"setTransferSigner","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newFactory","type":"address"}],"name":"transferPrimary","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"transferSigner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newStore","type":"address"}],"name":"transferStore","outputs":[],"stateMutability":"nonpayable","type":"function"}]'
 
 export function useCrowdfundingFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: CrowdfundingFactoryAddresses }
 ): {
   getContract: () => Contract
   addToDexRouters: (
-    router: string,
-    pendingText: string,
-    waitingText: string,
-    overrides?: any
-  ) => Promise<[]>
-  addToWhitelist: (
-    account: string,
+    _router: string,
     pendingText: string,
     waitingText: string,
     overrides?: any
@@ -73,26 +67,14 @@ export function useCrowdfundingFactoryContract(
     overrides?: any
   ) => Promise<[/**  */ any]>
   isDexRouters: (
-    router: string,
-    pendingText: string,
-    waitingText: string,
-    overrides?: any
-  ) => Promise<[/**  */ any]>
-  isWhitelisted: (
-    account: string,
+    _router: string,
     pendingText: string,
     waitingText: string,
     overrides?: any
   ) => Promise<[/**  */ any]>
   owner: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ string]>
   removeFromDexRouters: (
-    router: string,
-    pendingText: string,
-    waitingText: string,
-    overrides?: any
-  ) => Promise<[]>
-  removeFromWhitelist: (
-    account: string,
+    _router: string,
     pendingText: string,
     waitingText: string,
     overrides?: any
@@ -110,6 +92,12 @@ export function useCrowdfundingFactoryContract(
     waitingText: string,
     overrides?: any
   ) => Promise<[]>
+  setTransferSigner: (
+    _transferSigner: string,
+    pendingText: string,
+    waitingText: string,
+    overrides?: any
+  ) => Promise<[]>
   transferOwnership: (
     newOwner: string,
     pendingText: string,
@@ -122,6 +110,11 @@ export function useCrowdfundingFactoryContract(
     waitingText: string,
     overrides?: any
   ) => Promise<[]>
+  transferSigner: (
+    pendingText: string,
+    waitingText: string,
+    overrides?: any
+  ) => Promise<[/**  */ string]>
   transferStore: (
     newStore: string,
     pendingText: string,
@@ -141,7 +134,6 @@ export function useCrowdfundingFactoryContract(
   return {
     getContract: () => getContract({ ...getContractArgs.value, ...params }),
     addToDexRouters: wrapTransaction({ ...getContractArgs.value, ...params }, 'addToDexRouters'),
-    addToWhitelist: wrapTransaction({ ...getContractArgs.value, ...params }, 'addToWhitelist'),
     children: wrapTransaction({ ...getContractArgs.value, ...params }, 'children'),
     createCrowdfundingContract: wrapTransaction(
       { ...getContractArgs.value, ...params },
@@ -153,15 +145,10 @@ export function useCrowdfundingFactoryContract(
     getStore: wrapTransaction({ ...getContractArgs.value, ...params }, 'getStore'),
     isChild: wrapTransaction({ ...getContractArgs.value, ...params }, 'isChild'),
     isDexRouters: wrapTransaction({ ...getContractArgs.value, ...params }, 'isDexRouters'),
-    isWhitelisted: wrapTransaction({ ...getContractArgs.value, ...params }, 'isWhitelisted'),
     owner: wrapTransaction({ ...getContractArgs.value, ...params }, 'owner'),
     removeFromDexRouters: wrapTransaction(
       { ...getContractArgs.value, ...params },
       'removeFromDexRouters'
-    ),
-    removeFromWhitelist: wrapTransaction(
-      { ...getContractArgs.value, ...params },
-      'removeFromWhitelist'
     ),
     renounceOwnership: wrapTransaction(
       { ...getContractArgs.value, ...params },
@@ -169,11 +156,16 @@ export function useCrowdfundingFactoryContract(
     ),
     setFeeTo: wrapTransaction({ ...getContractArgs.value, ...params }, 'setFeeTo'),
     setFeeToSetter: wrapTransaction({ ...getContractArgs.value, ...params }, 'setFeeToSetter'),
+    setTransferSigner: wrapTransaction(
+      { ...getContractArgs.value, ...params },
+      'setTransferSigner'
+    ),
     transferOwnership: wrapTransaction(
       { ...getContractArgs.value, ...params },
       'transferOwnership'
     ),
     transferPrimary: wrapTransaction({ ...getContractArgs.value, ...params }, 'transferPrimary'),
+    transferSigner: wrapTransaction({ ...getContractArgs.value, ...params }, 'transferSigner'),
     transferStore: wrapTransaction({ ...getContractArgs.value, ...params }, 'transferStore')
   }
 }
