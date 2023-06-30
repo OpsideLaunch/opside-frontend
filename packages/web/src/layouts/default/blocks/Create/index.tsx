@@ -81,8 +81,8 @@ const CreateBlock = defineComponent({
     }
 
     const onCreateSale = () => {
-      const CHAINS_NOT_SUPPORTED_SALE_LAUNCHPAD = [570, 57000]
-      if (!CHAINS_NOT_SUPPORTED_SALE_LAUNCHPAD.includes(walletStore.chainId!)) {
+      const CHAINS_SUPPORTED_SALE_LAUNCHPAD = [57, 57000]
+      if (!CHAINS_SUPPORTED_SALE_LAUNCHPAD.includes(+walletStore.chainId!)) {
         message.info(
           'The current chain does not support the sale launch function, please wait for the launch'
         )
