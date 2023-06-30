@@ -57,12 +57,6 @@ const CreateBlock = defineComponent({
     }
 
     const onCreateBounty = () => {
-      if (walletStore.chainId === 57000) {
-        message.info(
-          'The current chain does not support the bounty function, please wait for the launch'
-        )
-        return
-      }
       if (globalConfigStore.isLargeScreen) {
         if (hasStartup.value) {
           createBountyRef.value?.show()
