@@ -371,7 +371,7 @@ export const InvestFair = defineComponent({
         amountA,
         data.data,
         data.sign,
-        'Transferring liquidity into Uniswap',
+        `Transferring liquidity into ${findRouterByAddress(props.info.dex_router!)?.dex}`,
         'Transaction Submitted'
       )
 

@@ -200,17 +200,19 @@ export const VerifyToken = defineComponent({
             : 'hidden',
         render(value) {
           return (
-            <div class="grid grid-cols-[100px,2fr]">
+            <div>
               <div class="mb-6 text-grey3 u-h5 text-yellow-500">
                 If this token has already add liquidity on the exchange, the auto listing model may
                 fail to raise funds
               </div>
-              <div class="mb-6 text-grey3 u-h5">Name:</div>
-              <div>{props.crowdfundingInfo.sellTokenName}</div>
-              <div class="mb-6 text-grey3 u-h5">Symbol:</div>
-              <div>{props.crowdfundingInfo.sellTokenSymbol}</div>
-              <div class="text-grey3 u-h5">Decimals:</div>
-              <div>{props.crowdfundingInfo.sellTokenDecimals}</div>
+              <div class="grid grid-cols-[100px,2fr]">
+                <div class="mb-6 text-grey3 u-h5">Name:</div>
+                <div>{props.crowdfundingInfo.sellTokenName}</div>
+                <div class="mb-6 text-grey3 u-h5">Symbol:</div>
+                <div>{props.crowdfundingInfo.sellTokenSymbol}</div>
+                <div class="text-grey3 u-h5">Decimals:</div>
+                <div>{props.crowdfundingInfo.sellTokenDecimals}</div>
+              </div>
             </div>
           )
         }
