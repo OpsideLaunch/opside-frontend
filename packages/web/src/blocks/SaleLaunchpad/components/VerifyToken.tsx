@@ -332,7 +332,7 @@ export const VerifyToken = defineComponent({
       >
         <UFormItemsFactory fields={this.verifyTokenFields} values={this.crowdfundingInfo} />
         <div
-          style={{ borderColor: '#7459F4', background: '#7459F422' }}
+          style={{ borderColor: '#65b400', background: '#dbef8822' }}
           class="border-1 pl-3 border-solid rounded-0 h-8 text-xs flex row items-center p"
         >
           3% funding you raised as fee.

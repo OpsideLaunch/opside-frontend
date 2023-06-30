@@ -192,7 +192,7 @@ export default defineComponent({
                 }}
                 route={window.location.href}
                 title={this.bountySection.detail.value.startup?.name + '--Bounty | GoRollux'}
-                description={`Check out the bounty on GoRollux, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
+                description={`Check out the bounty on GoRollux, The lead building launchpad on Rollux and Syscoin`}
                 text={`${
                   this.bountySection.detail.value.startup.name
                 } just posted a #bounty that pays out ${this.rewordsInfo?.token1_amount || 0} ${

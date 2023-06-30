@@ -242,7 +242,7 @@ export default defineComponent({
               }}
               route={window.location.href}
               title={this.startup.name + '--Project | GoRollux'}
-              description={`Check out the project on GoRollux, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
+              description={`Check out the project on GoRollux, The lead building launchpad on Rollux and Syscoin`}
               text={'Check out this #NFT #DAO #Web3 project on #GoRollux Network: '}
               copyText={`Check out this #NFT #DAO #Web3 project "${this.startup.name}" on #GoRollux Network: ${window.location.href}`}
             >

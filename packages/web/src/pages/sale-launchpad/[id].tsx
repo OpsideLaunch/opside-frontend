@@ -231,7 +231,7 @@ const CrowdfundingDetail = defineComponent({
               }}
               route={window.location.href}
               title={this.startupInfo?.name + '--Launchpad | GoRollux'}
-              description={`Check out the launchpad on GoRollux, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
+              description={`Check out the launchpad on GoRollux, The lead building launchpad on Rollux and Syscoin`}
               text={`${this.startupInfo?.name} just launched a #presale #launchpad for ${this.raiseState?.raiseGoal} ${this.buyCoinInfo.symbol}, check it out on #GoRollux Network: `}
               tipPlacement="right"
             >

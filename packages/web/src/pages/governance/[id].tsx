@@ -468,7 +468,7 @@ const ProposalDetail = defineComponent({
               }}
               route={window.location.href}
               title={this.startupInfo?.name + '--Proposal | GoRollux'}
-              description={`Check out the proposal on GoRollux, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
+              description={`Check out the proposal on GoRollux, The lead building launchpad on Rollux and Syscoin`}
               text={`${this.startupInfo.name} just posted a #proposal, check it out on #GoRollux Network: `}
               tipPlacement="right"
             />

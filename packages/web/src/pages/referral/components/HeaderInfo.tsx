@@ -32,8 +32,7 @@ export const HeaderInfo = defineComponent({
         route: url,
         description: ' ',
         text: 'Click the link to earn rewards on GoRollux Network: ',
-        title:
-          'GoRollux is the next generation all-in-one Decentralized Economy BUIDLing and Launch Network.'
+        title: 'GoRollux is The lead building launchpad on Rollux and Syscoin'
       })
     }
     const downLoad = (name = '') => {
