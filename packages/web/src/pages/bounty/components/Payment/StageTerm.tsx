@@ -97,7 +97,7 @@ export default defineComponent({
             {this.bountyDetail?.my_role === USER_ROLE.FOUNDER &&
               (this.payBtnAbled ? (
                 <UButton
-                  class={`h-9 w-30  font-semibold  -mr-8 px-8 text-primary border-1 border-[#5331F4] border-solid rounded-sm !hover:text-primary`}
+                  class={`h-9 w-30  font-semibold  -mr-8 px-8 text-primary border-1 border-[#65b400] border-solid rounded-sm !hover:text-primary`}
                   type="default"
                   size="small"
                   onClick={triggerDialog}

@@ -88,7 +88,7 @@ export const HeaderInfo = defineComponent({
                     }`
                   )
                 }
-                class="group py-2 px-4 ml-5.5 flex items-center border border-[#DADCE0] cursor-pointer hover:text-primary hover:border-[#5331F4] rounded-sm"
+                class="group py-2 px-4 ml-5.5 flex items-center border border-[#DADCE0] cursor-pointer hover:text-primary hover:border-[#65b400] rounded-sm"
               >
                 <TwitterFilled class="text-color2 group-hover:text-primary" />
                 <span class="u-h6 text-color2 ml-2 group-hover:text-primary">share</span>

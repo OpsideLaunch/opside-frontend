@@ -98,7 +98,7 @@ export const UStyleProviderProps = {
   },
   purpleGradientBg: {
     type: String,
-    default: 'radial-gradient(117.14% 462.2% at 0% 100%, #5331F4 0%, #9783F8 71.69%, #B46AF9 100%)'
+    default: 'radial-gradient(117.14% 462.2% at 0% 100%, #65b400 0%, #9783F8 71.69%, #B46AF9 100%)'
   },
   skipLinks: {
     type: String,
