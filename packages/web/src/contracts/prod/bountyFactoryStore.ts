@@ -1,4 +1,4 @@
-import { Contract } from 'ethers'
+import { Contract, BigNumber } from 'ethers'
 import { computed } from 'vue'
 import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
