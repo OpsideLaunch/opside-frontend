@@ -135,7 +135,9 @@ export const useWalletStore = defineStore('wallet', {
         message.info('Account switched, please re-login')
         userStore.onLogout()
         // router.replace('/auth/login')
-        this.ensureWalletConnected(true)
+        this.ensureWalletConnected(true).then(() => {
+          window.location.reload()
+        })
       }
     },
     disconnectWallet() {
