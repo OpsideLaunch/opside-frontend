@@ -11,6 +11,7 @@ import {
   STORE_KEY_WALLET_CONSTAST_TYPE,
   supportedNetworks
 } from '@/constants'
+import router from '@/router'
 import { ServiceReturn, services } from '@/services'
 import { SupportedWalletTypes } from '@/types/wallet'
 import { getWallet } from '@/wallets'
@@ -116,6 +117,7 @@ export const useWalletStore = defineStore('wallet', {
       }
     },
     _onAccountsChanged(account: string, oldAccount: string) {
+      const userStore = useUserStore()
       // change address means change user, so we need to disconnect
       console.log('You have changed the account', account, oldAccount)
       if (account) {
@@ -130,10 +132,10 @@ export const useWalletStore = defineStore('wallet', {
         account !== oldAccount &&
         window.location.pathname !== '/auth/login'
       ) {
-        // message.info('Account switched, please re-login')
-        location.reload()
-        // userStore.onLogout()
+        message.info('Account switched, please re-login')
+        userStore.onLogout()
         // router.replace('/auth/login')
+        this.ensureWalletConnected(true)
       }
     },
     disconnectWallet() {
@@ -176,6 +178,7 @@ export const useWalletStore = defineStore('wallet', {
        */
       const wallet = await getWallet(walletType)
       const WALLET_CONSTAST_TYPE = storage('local').get<string>(STORE_KEY_WALLET_CONSTAST_TYPE)
+      const userStore = useUserStore()
 
       if (
         WALLET_CONSTAST_TYPE &&
@@ -184,10 +187,9 @@ export const useWalletStore = defineStore('wallet', {
       ) {
         this.disconnectWallet()
         storage('local').remove(STORE_KEY_WALLET_CONSTAST_TYPE)
-        location.reload()
-        // message.info('Account switched, please re-login')
-        // userStore.onLogout()
-        // router.replace('/auth/login')
+        message.info('Account switched, please re-login')
+        userStore.onLogout()
+        router.replace('/auth/login')
         return undefined
       }
       if (wallet) {
