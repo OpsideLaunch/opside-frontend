@@ -45,7 +45,7 @@ export default defineComponent({
       {
         label: () => h(<p>Social</p>),
         key: 'SOCIAL',
-        icon: () => h(<SocialOutlined />)
+        icon: () => h(<SocialOutlined class="text-primary" />)
       },
       {
         label: () => h(<p>Governance</p>),
