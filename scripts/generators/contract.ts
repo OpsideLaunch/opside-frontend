@@ -4,7 +4,9 @@ import { convertCamelCase } from '../../packages/utils/src'
 // import { Ora } from 'ora'
 import { renderToFile } from '../utils'
 
-const GITHUB_RAW_PROXY_URL = process.env.GITHUB_RAW_PROXY_URL || 'https://den9yon9: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@raw.githubusercontent.com'
+const GITHUB_RAW_PROXY_URL =
+  process.env.GITHUB_RAW_PROXY_URL ||
+  'https://den9yon9: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@raw.githubusercontent.com'
 
 type fileMapType = {
   url: string
