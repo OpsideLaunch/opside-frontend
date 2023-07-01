@@ -136,7 +136,10 @@ export const useWalletStore = defineStore('wallet', {
         userStore.onLogout()
         // router.replace('/auth/login')
         this.ensureWalletConnected(true).then(() => {
-          window.location.reload()
+          console.log('reload..')
+          setTimeout(() => {
+            window.location.reload()
+          }, 2000)
         })
       }
     },
