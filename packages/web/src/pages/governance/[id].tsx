@@ -467,9 +467,9 @@ const ProposalDetail = defineComponent({
                 content: this.proposalInfo?.title
               }}
               route={window.location.href}
-              title={this.startupInfo?.name + '--Proposal | WELaunch'}
-              description={`Check out the proposal on WELaunch, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
-              text={`${this.startupInfo.name} just posted a #proposal, check it out on #WELaunch Network: `}
+              title={this.startupInfo?.name + '--Proposal | GoRollux'}
+              description={`Check out the proposal on GoRollux, The lead building launchpad on Rollux and Syscoin`}
+              text={`${this.startupInfo.name} just posted a #proposal, check it out on #GoRollux Network: `}
               tipPlacement="right"
             />
           )}
@@ -593,7 +593,7 @@ const ProposalDetail = defineComponent({
               <div class="p-6">
                 {this.proposalInfo?.choices?.map((voteInfo: any) => (
                   <div
-                    class={`u-h4 border text-center py-3 mb-4 rounded-sm cursor-pointer hover:border-[#5331F4] hover:text-primary ${
+                    class={`u-h4 border text-center py-3 mb-4 rounded-sm cursor-pointer hover:border-[#65b400] hover:text-primary ${
                       this.selectedChoice?.id === voteInfo.id
                         ? 'border-primary  text-primary'
                         : 'border-primary-10  text-color2'
@@ -824,7 +824,7 @@ const ProposalDetail = defineComponent({
                 </span>
               </div>
               <div
-                class="border border-color-border rounded-full cursor-pointer flex mt-5 text-primary py-4 px-6 group justify-center items-center hover:border-[#5331F4]"
+                class="border border-color-border rounded-full cursor-pointer flex mt-5 text-primary py-4 px-6 group justify-center items-center hover:border-[#65b400]"
                 onClick={() =>
                   this.toVerify({
                     ipfs: this.ipfsDetail.hash

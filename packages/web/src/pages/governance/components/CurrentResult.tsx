@@ -35,7 +35,7 @@ export const CurrentResult = defineComponent({
               </span>
             </div>
             <UProgress
-              color="#5331F4"
+              color="#65b400"
               showIndicator={false}
               percentage={(Number(choiceOption.vote_total) / votes.value || 0) * 100}
               height={8}

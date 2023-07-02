@@ -44,6 +44,12 @@ export const startupSortItemList = [
     text: '',
     id: 5,
     icon: () => <SortIcon4Outlined class="text-primary w-full" />
+  },
+  {
+    name: 'SaleLaunchpad',
+    text: '',
+    id: 6,
+    icon: () => <SortIcon2Outlined class="text-primary w-full" />
   }
 ]
 

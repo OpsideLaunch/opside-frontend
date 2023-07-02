@@ -162,7 +162,7 @@ export const CrowdfundingCard = defineComponent({
             <span class="flex-1 mr-4 text-color1 truncate u-h3" title={props.info.startup.name}>
               {props.info.title}
             </span>
-            <img src={logo.value} />
+            <img class="w-[22px] h-[22]px" src={logo.value} />
           </div>
           <div class="flex mb-2">
             <div class="flex-1 text-0.75rem">

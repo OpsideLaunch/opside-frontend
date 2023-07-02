@@ -134,7 +134,7 @@ export default defineComponent({
             v-slots={{
               content: () => (
                 <p>
-                  After unbinding, you will not be able to sign in to the WELaunch account with this
+                  After unbinding, you will not be able to sign in to the GoRollux account with this
                   social account.
                 </p>
               ),

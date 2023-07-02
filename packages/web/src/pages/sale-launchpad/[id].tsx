@@ -54,7 +54,6 @@ const CrowdfundingDetail = defineComponent({
       const { error, data } = await services['SaleLaunchpad@get-sale-launchpad-info']({
         sale_launchpad_id: crowdfundingId
       })
-      console.log(data?.invest_token_balance, 89988999899)
       pageLoading.value = false
       if (!error) {
         crowdfundingInfo.value = data
@@ -160,7 +159,6 @@ const CrowdfundingDetail = defineComponent({
         'sale_launchpad',
         2,
         (msg: SocketMsgType) => {
-          console.log(msg, 8998, paramCrowdfundingId)
           if (msg.topic === 'subscribe' && msg.data.target_id === paramCrowdfundingId) {
             console.warn('socket get detail change, do update...', paramCrowdfundingId)
             getCrowdfundingInfo(paramCrowdfundingId).then(() => {
@@ -232,9 +230,9 @@ const CrowdfundingDetail = defineComponent({
                 ]
               }}
               route={window.location.href}
-              title={this.startupInfo?.name + '--Launchpad | WELaunch'}
-              description={`Check out the launchpad on WELaunch, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
-              text={`${this.startupInfo?.name} just launched a #presale #launchpad for ${this.raiseState?.raiseGoal} ${this.buyCoinInfo.symbol}, check it out on #WELaunch Network: `}
+              title={this.startupInfo?.name + '--Launchpad | GoRollux'}
+              description={`Check out the launchpad on GoRollux, The lead building launchpad on Rollux and Syscoin`}
+              text={`${this.startupInfo?.name} just launched a #presale #launchpad for ${this.raiseState?.raiseGoal} ${this.buyCoinInfo.symbol}, check it out on #GoRollux Network: `}
               tipPlacement="right"
             >
               {this.isFounder && this.globalConfigStore.isLargeScreen && (
@@ -289,7 +287,7 @@ const CrowdfundingDetail = defineComponent({
                 sellCoinInfo={this.sellCoinInfo}
                 info={this.crowdfundingInfo}
                 // onRefreshCoin={this.initPage}
-                // onRefreshData={this.onRefreshData}
+                onRefreshData={this.onRefreshData}
               />
             )}
 

@@ -127,6 +127,8 @@ export default defineComponent({
                 round: true,
                 size: 20,
                 style: {
+                  width: '20px',
+                  height: '20px',
                   marginRight: '12px'
                 }
               }),

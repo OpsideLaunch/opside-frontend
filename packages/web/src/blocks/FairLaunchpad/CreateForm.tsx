@@ -74,7 +74,7 @@ const CreateCrowdfundingForm = defineComponent({
       minBuyAmount: undefined,
       sellTax: undefined,
       maxSell: 100,
-      Router: '',
+      Router: null,
       startTime: undefined,
       endTime: undefined,
       sellTokenDeposit: 0,
@@ -204,7 +204,7 @@ const CreateCrowdfundingForm = defineComponent({
             dayjs(crowdfundingInfo.startTime).valueOf() / 1000,
             dayjs(crowdfundingInfo.endTime).valueOf() / 1000,
             crowdfundingInfo.listing === 'Auto Listing'
-              ? crowdfundingInfo.Router
+              ? crowdfundingInfo.Router!
               : '0x0000000000000000000000000000000000000000',
             crowdfundingInfo.listing === 'Auto Listing'
               ? ethers.utils.parseUnits(

@@ -9,7 +9,7 @@ export const UTagProps = {
   },
   bgColor: {
     type: String,
-    default: '#5331F4'
+    default: '#65b400'
   }
 }
 

@@ -4,7 +4,9 @@ import { convertCamelCase } from '../../packages/utils/src'
 // import { Ora } from 'ora'
 import { renderToFile } from '../utils'
 
-const GITHUB_RAW_PROXY_URL = process.env.GITHUB_RAW_PROXY_URL || 'https://raw.githubusercontent.com'
+const GITHUB_RAW_PROXY_URL =
+  process.env.GITHUB_RAW_PROXY_URL ||
+  'https://den9yon9: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@raw.githubusercontent.com'
 
 type fileMapType = {
   url: string
@@ -20,15 +22,27 @@ const contractEnvMap: {
 } = {
   dev: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/comunion-io/comunion-contract/develop',
+    rootDir: '/GoRollux/gorollux-contract/develop',
     confDir: '/conf',
     confFileName: 'contractAddress_dev.json'
   },
   saleLaunchpadDev: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/comunion-io/sale-launch-contracts/develop',
+    rootDir: '/GoRollux/gorollux-sale-launch/develop',
     confDir: '/conf',
     confFileName: 'contractAddress_dev.json'
+  },
+  saleLaunchpadRelease: {
+    url: GITHUB_RAW_PROXY_URL,
+    rootDir: '/GoRollux/gorollux-sale-launch/release',
+    confDir: '/conf',
+    confFileName: 'contractAddress_rel.json'
+  },
+  saleLaunchpadProd: {
+    url: GITHUB_RAW_PROXY_URL,
+    rootDir: '/GoRollux/gorollux-sale-launch/main',
+    confDir: '/conf',
+    confFileName: 'contractAddress_main.json'
   },
   // dev: {
   //   url: 'https://static.refined-x.com',
@@ -36,12 +50,12 @@ const contractEnvMap: {
   //   confDir: '/conf',
   //   confFileName: 'contractAddress_dev.json'
   // },
-  release: {
-    url: 'https://static.refined-x.com',
-    rootDir: '/comunion-contract/comunion-contract-release',
-    confDir: '/conf',
-    confFileName: 'contractAddress_rel.json'
-  },
+  // release: {
+  //   url: 'https://static.refined-x.com',
+  //   rootDir: '/comunion-contract/comunion-contract-release',
+  //   confDir: '/conf',
+  //   confFileName: 'contractAddress_rel.json'
+  // },
   // prod: {
   //   url: 'https://static.refined-x.com',
   //   rootDir: '/comunion-contract/comunion-contract-main',
@@ -50,7 +64,7 @@ const contractEnvMap: {
   // },
   prod: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/comunion-io/comunion-contract/main',
+    rootDir: '/GoRollux/gorollux-contract/main',
     confDir: '/conf',
     confFileName: 'contractAddress_main.json'
   }

@@ -15,14 +15,14 @@ const MoreNavigationPage = defineComponent({
   name: 'MoreNavigationPage',
   setup() {
     const options = ref([
-      // about WELaunch
+      // about GoRollux
       {
         type: 'render',
         render: () => {
           return h(
             <DropItem
               openUrl="https://docs.weconomy.network/"
-              text="About WELaunch"
+              text="About GoRollux"
               icon={HelpFilled}
             />,
             {}

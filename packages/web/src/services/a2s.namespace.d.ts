@@ -910,6 +910,7 @@ export declare namespace ApiDocuments {
     crowdfunding_count: number
     governance_count: number
     other_dapp_count: number
+    sale_launchpad_count: number
     startup_count: number
   }
   export interface proto_Response extends BasicDto {
@@ -957,6 +958,7 @@ export declare namespace ApiDocuments {
     startup_id?: number
     status?: number
     team_wallet?: string
+    title?: string
     tx_hash?: string
   }
   export interface proto_SaleLaunchpadHistoryResponse extends BasicDto {

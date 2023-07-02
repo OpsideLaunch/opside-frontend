@@ -9,6 +9,7 @@ import Finance from './components/finance'
 import Governance from './components/governance'
 import Overview from './components/overview'
 import Profile from './components/profile'
+import SaleLaunchpad from './components/saleLaunchpad'
 import Security from './components/security'
 import Team from './components/team'
 import { useStartup } from './hooks/useStartup'
@@ -60,6 +61,7 @@ export default defineComponent({
       Bounty: 'bounty_count',
       Launchpad: 'crowdfunding_count',
       Governance: 'governance_count',
+      SaleLaunchpad: 'sale_launchpad_count',
       'Other dapp': 'other_dapp_count'
     }
     const countKeys = Object.keys(dataCount.value)
@@ -152,12 +154,13 @@ export default defineComponent({
     const componentsMap: any = {
       Bounty: <Bounty startupId={this.paramStartupId} id="BountyId" />,
       Launchpad: <Launchpad startupId={this.paramStartupId} id="CrowdfundingId" />,
+      SaleLaunchpad: <SaleLaunchpad startupId={this.paramStartupId} id="SaleLaunchpadId" />,
       Governance: <Governance startupId={this.paramStartupId} id="GovernanceId" />
     }
 
     const _tabSequence: number[] = this.startup?.tab_sequence
       ? this.startup.tab_sequence.split(',').map(n => Number(n))
-      : [2, 3, 4, 5]
+      : [2, 3, 4, 5, 6]
 
     const handleTargetClick = (domId: string) => {
       const dom = document.getElementById(domId)
@@ -190,6 +193,15 @@ export default defineComponent({
                 Launchpad
               </UButton>
             )}
+            {this.canShowByTagName('SaleLaunchpad') && (
+              <UButton
+                class="mb-4 text-color2 !font-normal"
+                text
+                onClick={() => handleTargetClick('SaleLaunchpadId')}
+              >
+                SaleLaunchpad
+              </UButton>
+            )}
             {this.canShowByTagName('Governance') && (
               <UButton
                 class="mb-4 text-color2 !font-normal"
@@ -219,16 +231,20 @@ export default defineComponent({
                     label: 'Launchpad'
                   },
                   {
+                    count: this.dataCount.sale_launchpad_count,
+                    label: 'SaleLaunchpad'
+                  },
+                  {
                     count: this.dataCount.governance_count,
                     label: 'Proposal'
                   }
                 ]
               }}
               route={window.location.href}
-              title={this.startup.name + '--Project | WELaunch'}
-              description={`Check out the project on WELaunch, a next generation all-in-one decentralized economy BUIDLing and Launch Network`}
-              text={'Check out this #NFT #DAO #Web3 project on #WELaunch Network: '}
-              copyText={`Check out this #NFT #DAO #Web3 project "${this.startup.name}" on #WELaunch Network: ${window.location.href}`}
+              title={this.startup.name + '--Project | GoRollux'}
+              description={`Check out the project on GoRollux, The lead building launchpad on Rollux and Syscoin`}
+              text={'Check out this #NFT #DAO #Web3 project on #GoRollux Network: '}
+              copyText={`Check out this #NFT #DAO #Web3 project "${this.startup.name}" on #GoRollux Network: ${window.location.href}`}
             >
               {this.isAdmin && this.globalConfigStore.isLargeScreen && (
                 <UTooltip
@@ -292,6 +308,7 @@ export default defineComponent({
                 return null
               }
               const widgetName = startupSortItemList[targetIndex].name
+              console.log(widgetName, this.canShowByTagName(widgetName), 899)
               return this.canShowByTagName(widgetName) ? componentsMap[widgetName] : null
             })}
 

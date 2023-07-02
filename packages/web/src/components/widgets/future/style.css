@@ -4,5 +4,6 @@
 
 .__futureItem:hover ._border {
   background: #fff;
-  border-color: #5331f4;
+  border-color: #65b400;
+  @apply border-primary;
 }

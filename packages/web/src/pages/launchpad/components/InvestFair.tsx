@@ -12,11 +12,10 @@ import {
   useCrowdfundingContract,
   useCrowdfundingFactoryContract
 } from '@/contracts'
-import { ServiceReturn } from '@/services'
+import { ServiceReturn, services } from '@/services'
 import { useUserStore, useWalletStore } from '@/stores'
 import { useContractStore } from '@/stores/contract'
 import { StartupDetail } from '@/types'
-import { encodeDataUniswap, encodeDataPegasys } from '@/utils/encodeDexData'
 import { getChainInfoByChainId } from '@/utils/etherscan'
 import { formatToFloor } from '@/utils/numberFormat'
 import { checkSupportNetwork } from '@/utils/wallet'
@@ -57,7 +56,6 @@ export const InvestFair = defineComponent({
   },
   emits: ['refreshCoin', 'refreshData'],
   setup(props, ctx) {
-    console.log(999)
     const crowdfundingContract = useCrowdfundingFactoryContract()
     const walletStore = useWalletStore()
     const userStore = useUserStore()
@@ -77,8 +75,6 @@ export const InvestFair = defineComponent({
       raisePercent: 0,
       swapAmount: 0
     })
-
-    console.log(props.info, 9090)
 
     const fundingContractStateSecound = ref()
     let fundingContract = useCrowdfundingContract({
@@ -347,87 +343,40 @@ export const InvestFair = defineComponent({
         )
       }
 
-      // TODO transferLiquidity
       const router = findRouterByAddress(props.info.dex_router!)
       if (!router || !props.info.chain_id) return
       await checkSupportNetwork(props.info.chain_id)
       console.log('transferLiquidity', router, props.info.dex_router)
-      const functionName = buyIsMainCoin.value
-        ? { Uniswap: 'addLiquidityETH', Pegasys: 'addLiquiditySYS' }[router.dex]
-        : { Uniswap: 'addLiquidity', Pegasys: 'addLiquidity' }[router.dex]
-      const deadline = dayjs.utc().add(30, 'minute').unix()
-      const founderAddress = props.info.team_wallet
-      console.log(11111111)
+
+      const { data, error } = await services['Crowdfunding@get-crowdfunding-transfer-lp-sign']({
+        crowdfunding_id: props.info.id
+      })
+      if (error) return
+
       const fee = await crowdfundingContract.fee('get fee', 'waiting')
-      console.log(22222222)
+
       const parameters: any = await fundingContract.parameters('get parameters', 'waiting')
-      console.log(33333333)
-      console.log('parameters=', parameters)
-      const dexInitPrice = parameters[16]
-      const sellTokenAddress = parameters[0]
-      const buyTokenAddress = parameters[1]
-      const buyTokenDecimals = parameters[3]
-      console.log('Fee=', fee)
+      const dexInitPrice = parameters[8]
+      const buyTokenDecimals = parameters[2]
       const swapAmount = ethers.utils.parseUnits(
         String(raiseState.value.swapAmount),
         buyTokenDecimals
       )
 
-      console.log('swapAmount=', swapAmount, String(raiseState.value.swapAmount), buyTokenDecimals)
       const amountB = swapAmount.sub(swapAmount.mul(fee).div(10000))
-      console.log('amountB=', amountB)
       const amountA = amountB.mul(dexInitPrice).div(BigNumber.from(10).pow(buyTokenDecimals))
-      console.log('amountA=', amountA)
 
-      console.log(router.dex)
+      const res = await fundingContract.transferToLiquidity(
+        router.address,
+        amountA,
+        data.data,
+        data.sign,
+        `Transferring liquidity into ${findRouterByAddress(props.info.dex_router!)?.dex}`,
+        'Transaction Submitted'
+      )
 
-      if (router.dex === 'Uniswap') {
-        const params = buyIsMainCoin.value
-          ? [sellTokenAddress, amountA, 0, 0, founderAddress, deadline]
-          : [sellTokenAddress, buyTokenAddress, amountA, amountB, 0, 0, founderAddress, deadline]
-
-        const { encodedData } = encodeDataUniswap({
-          contractAddress: router.address,
-          functionName: functionName!,
-          params
-        })
-
-        console.log('useEncodeData=', encodedData)
-        const contractRes = await fundingContract.transferToLiquidity(
-          router.address,
-          encodedData,
-          'Transferring liquidity into Uniswap',
-          'Transaction Submitted'
-        )
-        console.log('contractRes=', contractRes)
-        if (contractRes) {
-          ctx.emit('refreshData')
-        }
-      }
-
-      if (router.dex === 'Pegasys') {
-        const params = buyIsMainCoin.value
-          ? [sellTokenAddress, amountA, 0, 0, founderAddress, deadline]
-          : [sellTokenAddress, buyTokenAddress, amountA, amountB, 0, 0, founderAddress, deadline]
-
-        const { encodedData } = encodeDataPegasys({
-          contractAddress: router.address,
-          functionName: functionName!,
-          params
-        })
-
-        console.log('useEncodeData=', encodedData)
-        const contractRes = await fundingContract.transferToLiquidity(
-          router.address,
-          encodedData,
-          'Transferring liquidity into Pegasys',
-          'Transaction Submitted'
-        )
-        console.log('contractRes=', contractRes)
-        if (contractRes) {
-          ctx.emit('refreshData')
-        }
-      }
+      console.log('contractRes=', res)
+      if (res) ctx.emit('refreshData')
     }
 
     const founderOperation = computed(() => {
@@ -436,7 +385,7 @@ export const InvestFair = defineComponent({
 
     const disableRemoveOrCancel = computed(() => {
       if (founderOperation.value === 'Remove') {
-        return fundingContractStateSecound.value?.[9] === CrowdfundingStatus.ENDED
+        return fundingContractStateSecound.value?.[4] === CrowdfundingStatus.ENDED
       } else {
         return countDownTime.value.status !== CrowdfundingStatus.UPCOMING
       }
@@ -898,6 +847,7 @@ export const InvestFair = defineComponent({
                         type="primary"
                         class="basis-1/3"
                         size="small"
+                        tag="div"
                         style={{
                           '--n-color-disabled': '#E0E0E0',
                           '--n-opacity-disabled': 1,

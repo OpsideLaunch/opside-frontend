@@ -1,6 +1,7 @@
 import { UCard, UTooltip, UInputNumberGroup, UButton } from '@comunion/components'
 import dayjs from 'dayjs'
-import { defineComponent, computed, ref, type PropType } from 'vue'
+import { ethers } from 'ethers'
+import { defineComponent, computed, ref, watch, type PropType } from 'vue'
 import { CoinType } from '../../[id]'
 import { SaleCrowdfundingStatus } from '../../utils'
 import Founder from './Founder'
@@ -138,16 +139,10 @@ export default defineComponent({
 
     const walletStore = useWalletStore()
 
-    // const saleContract = useWESaleContract({
-    //   chainId: walletStore.chainId,
-    //   addresses: {
-    //     [walletStore.chainId!]: props.info.contract_address!
-    //   }
-    // })
-
-    const investState = useInvestState(walletStore.chainId!, {
+    const { investState, setInvestState } = useInvestState(walletStore.chainId!, {
       [walletStore.chainId!]: props.info.contract_address!
     })
+
     const countdown = useLaunchpadCountdown(
       Number(props.info.started_at) * 1000,
       Number(props.info.ended_at) * 1000,
@@ -202,6 +197,30 @@ export default defineComponent({
       const remainingDaysNextCycle = cyclePeriod - ((dateNow.unix() - dateEnd.unix()) % cyclePeriod)
       return { totalCycle, currentCycle, remainingDaysNextCycle }
     }
+
+    function getMaxCanInvest() {
+      if (!props.buyCoinInfo.balance) return 0
+      if (!props.info.max_invest_amount) return 0
+
+      const restInvestAmount =
+        +props.info.max_invest_amount - +ethers.utils.formatUnits(investState.investedAmount)
+
+      return Math.min(+props.buyCoinInfo.balance, restInvestAmount)
+    }
+
+    watch(
+      () => props.info,
+      () => setInvestState()
+    )
+
+    watch(
+      () => amount.value,
+      value => {
+        if (value > getMaxCanInvest()) {
+          amount.value = getMaxCanInvest()
+        }
+      }
+    )
 
     ctx.expose({
       getFundingState
@@ -261,11 +280,7 @@ export default defineComponent({
                       <div
                         class="cursor-pointer text-primary u-label1"
                         onClick={() => {
-                          if (!props.buyCoinInfo.balance) return
-                          if (!props.info.max_invest_amount) return
-                          if (+props.buyCoinInfo.balance > +props.info.max_invest_amount)
-                            amount.value = +props.info.max_invest_amount
-                          else amount.value = +props.buyCoinInfo.balance
+                          amount.value = getMaxCanInvest()
                         }}
                       >
                         MAX
@@ -284,7 +299,6 @@ export default defineComponent({
                       <span>{props.buyCoinInfo.symbol || 'Token'}</span>
                     </div>
                   )}
-                  onInput={console.log}
                 />
               </div>
             </div>
@@ -369,9 +383,9 @@ export default defineComponent({
                 Switch to {getChainInfoByChainId(props.info.chain_id!)?.name}
               </UButton>
             ) : isFounder.value ? (
-              <Founder {...props} />
+              <Founder {...props} investState={investState} />
             ) : (
-              <Investor {...props} amount={amount.value} />
+              <Investor {...props} amount={amount.value} investState={investState} />
             )}
           </div>
         </UCard>

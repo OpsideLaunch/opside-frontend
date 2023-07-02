@@ -200,13 +200,19 @@ export const VerifyToken = defineComponent({
             : 'hidden',
         render(value) {
           return (
-            <div class="grid grid-cols-[100px,2fr]">
-              <div class="mb-6 text-grey3 u-h5">Name:</div>
-              <div>{props.crowdfundingInfo.sellTokenName}</div>
-              <div class="mb-6 text-grey3 u-h5">Symbol:</div>
-              <div>{props.crowdfundingInfo.sellTokenSymbol}</div>
-              <div class="text-grey3 u-h5">Decimals:</div>
-              <div>{props.crowdfundingInfo.sellTokenDecimals}</div>
+            <div>
+              <div class="mb-6 text-grey3 u-h5 text-yellow-500">
+                If this token has already add liquidity on the exchange, the auto listing model may
+                fail to raise funds
+              </div>
+              <div class="grid grid-cols-[100px,2fr]">
+                <div class="mb-6 text-grey3 u-h5">Name:</div>
+                <div>{props.crowdfundingInfo.sellTokenName}</div>
+                <div class="mb-6 text-grey3 u-h5">Symbol:</div>
+                <div>{props.crowdfundingInfo.sellTokenSymbol}</div>
+                <div class="text-grey3 u-h5">Decimals:</div>
+                <div>{props.crowdfundingInfo.sellTokenDecimals}</div>
+              </div>
             </div>
           )
         }
@@ -326,7 +332,7 @@ export const VerifyToken = defineComponent({
       >
         <UFormItemsFactory fields={this.verifyTokenFields} values={this.crowdfundingInfo} />
         <div
-          style={{ borderColor: '#7459F4', background: '#7459F422' }}
+          style={{ borderColor: '#65b400', background: '#dbef8822' }}
           class="border-1 pl-3 border-solid rounded-0 h-8 text-xs flex row items-center p"
         >
           3% funding you raised as fee.

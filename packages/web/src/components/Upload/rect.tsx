@@ -80,7 +80,7 @@ export default defineComponent({
             ) : (
               <div class="bg-purple flex h-full w-full justify-center items-center">
                 <div class="flex flex-col items-center">
-                  <UploadFilled class="h-10 text-primary w-10" />
+                  <UploadFilled class="h-10 bg-primary w-10" />
                   <p class="mt-4 u-h6">Upload</p>
                 </div>
               </div>

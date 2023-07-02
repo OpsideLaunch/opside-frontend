@@ -47,7 +47,7 @@ export default defineComponent({
     const onLoadMore = () => null
 
     return (
-      <UCard title="Launchpad" class="mb-6 ">
+      <UCard title="Fair Launchpad" class="mb-6 ">
         <UScrollList
           style="max-height:363px"
           class="<lg:-mx-5"

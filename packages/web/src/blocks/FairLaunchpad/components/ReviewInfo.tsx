@@ -89,7 +89,7 @@ export const ReviewInfo = defineComponent({
         {this.crowdfundingInfo.listing === 'Auto Listing' && (
           <div class="review-info-item">
             <div class="w-[220px] title">Router :</div>
-            <div>{findRouterByAddress(this.crowdfundingInfo.Router)?.dex}</div>
+            <div>{findRouterByAddress(this.crowdfundingInfo.Router!)?.dex}</div>
           </div>
         )}
         {this.crowdfundingInfo.listing === 'Auto Listing' && (

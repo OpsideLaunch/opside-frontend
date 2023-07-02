@@ -33,7 +33,7 @@ export default defineComponent({
             colCount={colCount.value}
             cellRender={i => {
               return (
-                <div class="h-[200px] bg-[#5331F4] flex flex-row justify-center items-center text-30px">
+                <div class="h-[200px] bg-[#65b400] flex flex-row justify-center items-center text-30px">
                   {i}
                 </div>
               )

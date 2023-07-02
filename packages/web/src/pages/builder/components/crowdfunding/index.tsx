@@ -88,7 +88,7 @@ export default defineComponent({
     return (
       <USpin show={this.loading}>
         <UCard
-          title="Launchpad"
+          title="Fair Launchpad"
           class="mb-6"
           v-slots={{
             'header-extra': () => {

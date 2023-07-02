@@ -20,7 +20,7 @@ export const HeaderInfo = defineComponent({
     const handleCopy = (text: string) => {
       if (
         copyText({
-          text: `Click the link to earn rewards on WELaunch Network: ${text}`
+          text: `Click the link to earn rewards on GoRollux Network: ${text}`
         })
       ) {
         message.success('Successfully copy.')
@@ -31,9 +31,8 @@ export const HeaderInfo = defineComponent({
         image: 'https://comunion-avatars.s3.ap-northeast-1.amazonaws.com/183484253679616.png',
         route: url,
         description: ' ',
-        text: 'Click the link to earn rewards on WELaunch Network: ',
-        title:
-          'WELaunch is the next generation all-in-one Decentralized Economy BUIDLing and Launch Network.'
+        text: 'Click the link to earn rewards on GoRollux Network: ',
+        title: 'GoRollux is The lead building launchpad on Rollux and Syscoin'
       })
     }
     const downLoad = (name = '') => {
@@ -89,7 +88,7 @@ export const HeaderInfo = defineComponent({
                     }`
                   )
                 }
-                class="group py-2 px-4 ml-5.5 flex items-center border border-[#DADCE0] cursor-pointer hover:text-primary hover:border-[#5331F4] rounded-sm"
+                class="group py-2 px-4 ml-5.5 flex items-center border border-[#DADCE0] cursor-pointer hover:text-primary hover:border-[#65b400] rounded-sm"
               >
                 <TwitterFilled class="text-color2 group-hover:text-primary" />
                 <span class="u-h6 text-color2 ml-2 group-hover:text-primary">share</span>

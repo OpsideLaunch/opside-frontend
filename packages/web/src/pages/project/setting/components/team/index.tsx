@@ -181,7 +181,7 @@ export default defineComponent({
             class="cursor-pointer flex h-4 ml-2 w-4"
             onClick={() => (this.addGroupVisible = !this.addGroupVisible)}
           >
-            <SettingOutlined class="w-full text-color3 hover:text-[#5331F4]" />
+            <SettingOutlined class="w-full text-color3 hover:text-[#65b400]" />
           </div>
           <AddGroupDialog
             group={this.group}

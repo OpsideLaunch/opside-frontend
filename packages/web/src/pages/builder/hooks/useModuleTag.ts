@@ -6,6 +6,7 @@ export function useModuleTag() {
     startup_count: 0,
     bounty_count: 0,
     crowdfunding_count: 0,
+    sale_launchpad_count: 1,
     governance_count: 0
   })
 
@@ -27,6 +28,7 @@ export function useModuleTag() {
         postedCount.startup_count = data.startup_count
         postedCount.bounty_count = data.bounty_count
         postedCount.crowdfunding_count = data.crowdfunding_count
+        postedCount.sale_launchpad_count = data.sale_launchpad_count
         postedCount.governance_count = data.governance_count
       }
 

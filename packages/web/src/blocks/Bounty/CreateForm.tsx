@@ -51,7 +51,7 @@ const CreateBountyForm = defineComponent({
     })
     const tokens = getBuyCoinAddress('0x0000000000000000000000000000000000000000')
     const token0_symbol = tokens[walletStore.chainId!][0].label || 'ETH'
-    console.log(tokens)
+    console.log(tokens, walletStore.chainId, 899899)
     const token1_symbol = tokens[walletStore.chainId!][1].label || 'USDC'
 
     const bountyInfoRef = ref<bountyInfoType>({

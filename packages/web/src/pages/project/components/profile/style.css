@@ -6,6 +6,6 @@
 }
 
 .custom-popover-menu-item:hover {
-  color: #5331f4;
   background: #5e18fe1a;
+  @apply text-primary;
 }

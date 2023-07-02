@@ -6,7 +6,7 @@ export type StartupTypesType = typeof STARTUP_TYPES[number]
 export const STARTUP_TYPES_COLOR_MAP = {
   ORG: '#EA4D56', // new 2022.8.26
   NGO: '#F29F39',
-  DAO: '#5331F4',
+  DAO: '#65b400',
   COM: '#3773F6',
   DCO: '#4BBA64' // new 2022.8.26
 } as const
