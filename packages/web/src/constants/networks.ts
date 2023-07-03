@@ -151,7 +151,7 @@ export const allNetworks: ChainNetworkType[] = [
     explorerUrl: 'https://mumbai.polygonscan.com'
   },
   {
-    logo: syscoin,
+    logo: rollux,
     nologo: nosyscoin,
     chainId: 570,
     name: 'Rollux Mainnet',
