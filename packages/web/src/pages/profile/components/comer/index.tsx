@@ -1,8 +1,9 @@
 import { ULazyImage, UTag } from '@comunion/components'
 import { defineComponent, PropType, computed } from 'vue'
 import styles from '../../index.module.css'
-import defaultCover from './assets/default.png'
 import SocialIcon from '@/components/SocialIcon'
+import defaultCover from '@/pages/builder/components/comer/assets/default.png'
+
 import { contactList } from '@/pages/project/util'
 import type { ComerProfileState } from '@/types'
 
