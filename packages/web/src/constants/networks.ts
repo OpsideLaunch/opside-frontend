@@ -10,8 +10,10 @@ import nofantom from '@/assets/networks/nofantom.svg'
 import nopolygon from '@/assets/networks/nopolygon.svg'
 import nosyscoin from '@/assets/networks/nosyscoin.svg'
 import polygon from '@/assets/networks/polygon.svg'
+import rolluxTestnet from '@/assets/networks/rollux-testnet.svg'
 import rollux from '@/assets/networks/rollux.svg'
 import syscoin from '@/assets/networks/syscoin.svg'
+
 /**
  * https://chainlist.org/
  */
@@ -171,7 +173,7 @@ export const allNetworks: ChainNetworkType[] = [
     explorerUrl: 'https://tanenbaum.io'
   },
   {
-    logo: rollux,
+    logo: rolluxTestnet,
     nologo: nosyscoin,
     chainId: 57000,
     name: 'Rollux Testnet',
