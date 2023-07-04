@@ -16,13 +16,12 @@ import CreateSaleLaunchpadBlock, { type CreateSaleLaunchRef } from '@/blocks/Sal
 
 import CreateStartupBlock, { CreateStartupRef } from '@/blocks/Startup/Create'
 import { services } from '@/services'
-import { useUserStore, useGlobalConfigStore, useWalletStore } from '@/stores'
+import { useUserStore, useGlobalConfigStore } from '@/stores'
 
 const CreateBlock = defineComponent({
   name: 'CreateBlock',
   setup(props, ctx) {
     const router = useRouter()
-    const walletStore = useWalletStore()
     const globalConfigStore = useGlobalConfigStore()
     const userStore = useUserStore()
     const createStartupRef = ref<CreateStartupRef>()
@@ -81,13 +80,13 @@ const CreateBlock = defineComponent({
     }
 
     const onCreateSale = () => {
-      const CHAINS_SUPPORTED_SALE_LAUNCHPAD = [57, 57000]
-      if (!CHAINS_SUPPORTED_SALE_LAUNCHPAD.includes(+walletStore.chainId!)) {
-        message.info(
-          'The current chain does not support the sale launch function, please wait for the launch'
-        )
-        return
-      }
+      // const CHAINS_SUPPORTED_SALE_LAUNCHPAD = [57, 57000]
+      // if (!CHAINS_SUPPORTED_SALE_LAUNCHPAD.includes(+walletStore.chainId!)) {
+      //   message.info(
+      //     'The current chain does not support the sale launch function, please wait for the launch'
+      //   )
+      //   return
+      // }
       if (globalConfigStore.isLargeScreen) {
         if (hasStartup.value) {
           createSaleRef.value?.show()
