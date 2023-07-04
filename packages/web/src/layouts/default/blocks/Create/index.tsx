@@ -16,13 +16,12 @@ import CreateSaleLaunchpadBlock, { type CreateSaleLaunchRef } from '@/blocks/Sal
 
 import CreateStartupBlock, { CreateStartupRef } from '@/blocks/Startup/Create'
 import { services } from '@/services'
-import { useUserStore, useGlobalConfigStore, useWalletStore } from '@/stores'
+import { useUserStore, useGlobalConfigStore } from '@/stores'
 
 const CreateBlock = defineComponent({
   name: 'CreateBlock',
   setup(props, ctx) {
     const router = useRouter()
-    const walletStore = useWalletStore()
     const globalConfigStore = useGlobalConfigStore()
     const userStore = useUserStore()
     const createStartupRef = ref<CreateStartupRef>()
