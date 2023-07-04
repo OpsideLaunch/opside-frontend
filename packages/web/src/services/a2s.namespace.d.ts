@@ -3,10 +3,33 @@ interface BasicDto {
   [key: string]: any
 }
 export declare namespace ApiDocuments {
+  export interface enum_BountyApplicantStatus extends BasicDto {}
+  export interface enum_BountyContactType extends BasicDto {}
+  export interface enum_BountyDepositMode extends BasicDto {}
+  export interface enum_BountyIsLock extends BasicDto {}
+  export interface enum_BountyPaymentMode extends BasicDto {}
+  export interface enum_BountyPaymentPeriodType extends BasicDto {}
+  export interface enum_BountyPaymentStatus extends BasicDto {}
+  export interface enum_BountyStatus extends BasicDto {}
+  export interface enum_ComerAccountType extends BasicDto {}
+  export interface enum_ComerBountyRole extends BasicDto {}
+  export interface enum_CrowdfundingQueryStatus extends BasicDto {}
+  export interface enum_CrowdfundingStatus extends BasicDto {}
+  export interface enum_CrowdfundingSwapAccess extends BasicDto {}
+  export interface enum_CrowdfundingSwapStatus extends BasicDto {}
+  export interface enum_LanguageLevel extends BasicDto {}
+  export interface enum_PostUpdateType extends BasicDto {}
+  export interface enum_ProposalStatus extends BasicDto {}
+  export interface enum_SaleLaunchpadHistoryType extends BasicDto {}
+  export interface enum_SaleLaunchpadStatus extends BasicDto {}
+  export interface enum_SocialBookType extends BasicDto {}
+  export interface enum_StartupType extends BasicDto {}
+  export interface enum_TagType extends BasicDto {}
+  export interface enum_TranscationStatus extends BasicDto {}
   export interface model_BountyContact extends BasicDto {
     bounty_id: number
     id: number
-    type: number
+    type: ApiDocuments.enum_BountyContactType
     value: string
   }
   export interface model_BountyPaymentPeriod extends BasicDto {
@@ -14,7 +37,7 @@ export declare namespace ApiDocuments {
     hours_per_day: number
     id: number
     period: number
-    period_type: number
+    period_type: ApiDocuments.enum_BountyPaymentPeriodType
     terms: string
     token1_amount: number
     token1_symbol: string
@@ -26,7 +49,7 @@ export declare namespace ApiDocuments {
     id: number
     paid_info: string
     sort_index: number
-    status: number
+    status: ApiDocuments.enum_BountyPaymentStatus
     terms: string
     token1_amount: number
     token1_symbol: string
@@ -41,7 +64,7 @@ export declare namespace ApiDocuments {
     is_primary: boolean
     nickname: string
     oin: string
-    type: number
+    type: ApiDocuments.enum_ComerAccountType
   }
   export interface model_ComerAccountORM extends BasicDto {
     avatar: string
@@ -52,7 +75,7 @@ export declare namespace ApiDocuments {
     is_primary: boolean
     nickname: string
     oin: string
-    type: number
+    type: ApiDocuments.enum_ComerAccountType
     updated_at?: string
   }
   export interface model_ComerConnectedTotal extends BasicDto {
@@ -94,7 +117,7 @@ export declare namespace ApiDocuments {
     id: number
     language?: ApiDocuments.model_LanguageORM
     language_id: number
-    level: number
+    level: ApiDocuments.enum_LanguageLevel
     updated_at?: string
   }
   export interface model_ComerORM extends BasicDto {
@@ -194,7 +217,7 @@ export declare namespace ApiDocuments {
     social_tool?: ApiDocuments.model_SocialToolORM
     social_tool_id: number
     target_id: number
-    type: number
+    type: ApiDocuments.enum_SocialBookType
     updated_at?: string
     value: string
   }
@@ -218,7 +241,7 @@ export declare namespace ApiDocuments {
     name: string
     on_chain: boolean
     tx_hash: string
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface model_StartupFinanceWallet extends BasicDto {
     address: string
@@ -246,7 +269,7 @@ export declare namespace ApiDocuments {
     created_at?: string
     id: number
     name: string
-    type: number
+    type: ApiDocuments.enum_TagType
     updated_at?: string
   }
   export interface model_TagRelationORM extends BasicDto {
@@ -255,7 +278,7 @@ export declare namespace ApiDocuments {
     tag?: ApiDocuments.model_TagORM
     tag_id: number
     target_id: number
-    type: number
+    type: ApiDocuments.enum_TagType
     updated_at?: string
   }
   export interface proto_AdminRequest extends BasicDto {
@@ -285,7 +308,7 @@ export declare namespace ApiDocuments {
     description: string
     id: number
     refunded_at: string
-    status: number
+    status: ApiDocuments.enum_BountyApplicantStatus
   }
   export interface proto_BountyBasicResponse extends BasicDto {
     applicant_count: number
@@ -303,13 +326,13 @@ export declare namespace ApiDocuments {
     expired_time: string
     founder_deposit: number
     id: number
-    is_lock: number
-    payment_mode: number
+    is_lock: ApiDocuments.enum_BountyIsLock
+    payment_mode: ApiDocuments.enum_BountyPaymentMode
     reward?: ApiDocuments.model_Reward
     skills?: ApiDocuments.proto_TagRelationResponse[]
     startup?: ApiDocuments.model_StartupBasic
     startup_id: number
-    status: number
+    status: ApiDocuments.enum_BountyStatus
     title: string
     tx_hash: string
   }
@@ -328,7 +351,7 @@ export declare namespace ApiDocuments {
     time_zone: string
   }
   export interface proto_BountyContact extends BasicDto {
-    type: number
+    type: ApiDocuments.enum_BountyContactType
     value: string
   }
   export interface proto_BountyCreateRequest extends BasicDto {
@@ -341,7 +364,7 @@ export declare namespace ApiDocuments {
     description: string
     discussion_link?: string
     founder_deposit?: number
-    payment_mode: number
+    payment_mode: ApiDocuments.enum_BountyPaymentMode
     period?: ApiDocuments.proto_BountyPaymentPeriod
     skills: string[]
     stages?: ApiDocuments.proto_BountyPaymentStage[]
@@ -365,8 +388,8 @@ export declare namespace ApiDocuments {
     comer_id: number
     created_at?: string
     id: number
-    mode: number
-    status: number
+    mode: ApiDocuments.enum_BountyDepositMode
+    status: ApiDocuments.enum_TranscationStatus
     tx_hash: string
   }
   export interface proto_BountyInfoResponse extends BasicDto {
@@ -390,17 +413,17 @@ export declare namespace ApiDocuments {
     founder?: ApiDocuments.proto_BountyComer
     founder_deposit: number
     id: number
-    is_lock: number
+    is_lock: ApiDocuments.enum_BountyIsLock
     my_deposit: number
-    my_role: number
-    my_status: number
-    payment_mode: number
+    my_role: ApiDocuments.enum_ComerBountyRole
+    my_status: ApiDocuments.enum_BountyApplicantStatus
+    payment_mode: ApiDocuments.enum_BountyPaymentMode
     period?: ApiDocuments.model_BountyPaymentPeriod
     post_updates?: ApiDocuments.proto_PostUpdate[]
     skills?: ApiDocuments.proto_TagRelationResponse[]
     startup?: ApiDocuments.proto_StartupCardResponse
     startup_id: number
-    status: number
+    status: ApiDocuments.enum_BountyStatus
     terms?: ApiDocuments.model_BountyPaymentTerms[]
     title: string
     tx_hash: string
@@ -408,7 +431,7 @@ export declare namespace ApiDocuments {
   export interface proto_BountyPaymentPeriod extends BasicDto {
     hours_per_day: number
     period: number
-    period_type: number
+    period_type: ApiDocuments.enum_BountyPaymentPeriodType
     terms: string
     token1_amount: number
     token1_symbol: string
@@ -524,14 +547,14 @@ export declare namespace ApiDocuments {
     /**
      * @description language level, Reference relationship comparison table
      */
-    level: number
+    level: ApiDocuments.enum_LanguageLevel
   }
   export interface proto_ComerLanguageResponse extends BasicDto {
     comer_id: number
     id: number
     language?: ApiDocuments.model_Language
     language_id: number
-    level: number
+    level: ApiDocuments.enum_LanguageLevel
   }
   export interface proto_ComerResponse extends BasicDto {
     activation: boolean
@@ -625,7 +648,7 @@ export declare namespace ApiDocuments {
     start_time?: string
     startup?: ApiDocuments.proto_StartupCardResponse
     startup_id?: number
-    status?: number
+    status?: ApiDocuments.enum_CrowdfundingStatus
     swap_percent?: number
     team_wallet?: string
     title?: string
@@ -683,7 +706,7 @@ export declare namespace ApiDocuments {
     start_time?: string
     startup?: ApiDocuments.proto_StartupCardResponse
     startup_id?: number
-    status?: number
+    status?: ApiDocuments.enum_CrowdfundingStatus
     swap_percent?: number
     swaps?: ApiDocuments.proto_CrowdfundingSwapResponse[]
     team_wallet?: string
@@ -692,7 +715,7 @@ export declare namespace ApiDocuments {
     youtube?: string
   }
   export interface proto_CrowdfundingSwapResponse extends BasicDto {
-    access?: number
+    access?: ApiDocuments.enum_CrowdfundingSwapAccess
     buy_token_amount?: number
     buy_token_symbol?: string
     chain_id?: number
@@ -703,7 +726,7 @@ export declare namespace ApiDocuments {
     price?: number
     sell_token_amount?: number
     sell_token_symbol?: string
-    status?: number
+    status?: ApiDocuments.enum_CrowdfundingSwapStatus
     timestamp?: string
     tx_hash?: string
   }
@@ -732,10 +755,7 @@ export declare namespace ApiDocuments {
     start_time: string
     startup?: ApiDocuments.proto_GovernanceStartupCardResponse
     startup_id: number
-    /**
-     * @description query crowdfunding status
-     */
-    status: number
+    status: ApiDocuments.enum_ProposalStatus
     title: string
     vote_system: string
   }
@@ -755,10 +775,7 @@ export declare namespace ApiDocuments {
     start_time: string
     startup?: ApiDocuments.proto_GovernanceStartupCardResponse
     startup_id: number
-    /**
-     * @description query crowdfunding status
-     */
-    status: number
+    status: ApiDocuments.enum_ProposalStatus
     title: string
     vote_system: string
   }
@@ -799,7 +816,7 @@ export declare namespace ApiDocuments {
     socials?: ApiDocuments.proto_SocialBookResponse[]
     tags?: ApiDocuments.proto_TagRelationResponse[]
     tx_hash: string
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface proto_GovernanceVoteResponse extends BasicDto {
     choice_item_id: number
@@ -896,14 +913,14 @@ export declare namespace ApiDocuments {
     created_at?: string
     id: number
     target_id: number
-    type: number
+    type: ApiDocuments.enum_PostUpdateType
   }
   export interface proto_PostUpdateBountyCreateRequest extends BasicDto {
     /**
      * @description bounty post update
      */
     content?: string
-    type: number
+    type: ApiDocuments.enum_PostUpdateType
   }
   export interface proto_ProjectCountResponse extends BasicDto {
     bounty_count: number
@@ -956,7 +973,7 @@ export declare namespace ApiDocuments {
     started_at?: number
     startup?: ApiDocuments.proto_StartupCardResponse
     startup_id?: number
-    status?: number
+    status?: ApiDocuments.enum_SaleLaunchpadStatus
     team_wallet?: string
     title?: string
     tx_hash?: string
@@ -974,7 +991,7 @@ export declare namespace ApiDocuments {
      */
     token_symbol?: string
     tx_hash?: string
-    type?: number
+    type?: ApiDocuments.enum_SaleLaunchpadHistoryType
   }
   export interface proto_SaleLaunchpadResponse extends BasicDto {
     chain_id?: number
@@ -1015,7 +1032,7 @@ export declare namespace ApiDocuments {
     started_at?: number
     startup?: ApiDocuments.proto_StartupCardResponse
     startup_id?: number
-    status?: number
+    status?: ApiDocuments.enum_SaleLaunchpadStatus
     swaps?: ApiDocuments.proto_SaleLaunchpadHistoryResponse[]
     team_wallet?: string
     title?: string
@@ -1056,7 +1073,7 @@ export declare namespace ApiDocuments {
     social_tool?: ApiDocuments.proto_SocialToolResponse
     social_tool_id: number
     target_id: number
-    type: number
+    type: ApiDocuments.enum_SocialBookType
     value: string
   }
   export interface proto_SocialToolResponse extends BasicDto {
@@ -1081,7 +1098,7 @@ export declare namespace ApiDocuments {
     tags?: ApiDocuments.proto_TagRelationResponse[]
     team?: ApiDocuments.proto_StartupTeam[]
     tx_hash: string
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface proto_StartupCardResponse extends BasicDto {
     banner: string
@@ -1098,7 +1115,7 @@ export declare namespace ApiDocuments {
     socials?: ApiDocuments.proto_SocialBookResponse[]
     tags?: ApiDocuments.proto_TagRelationResponse[]
     tx_hash: string
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface proto_StartupConnectResponse extends BasicDto {
     banner: string
@@ -1113,7 +1130,7 @@ export declare namespace ApiDocuments {
     name: string
     on_chain: boolean
     tx_hash: string
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface proto_StartupCreateRequest extends BasicDto {
     /**
@@ -1139,7 +1156,7 @@ export declare namespace ApiDocuments {
     /**
      * @description startup type, gte and lte must be match StartupType
      */
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface proto_StartupFinance extends BasicDto {
     chain_id: number
@@ -1199,7 +1216,7 @@ export declare namespace ApiDocuments {
     tags?: ApiDocuments.proto_TagRelationResponse[]
     team?: ApiDocuments.proto_StartupTeam[]
     tx_hash: string
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface proto_StartupSecurityUpdateRequest extends BasicDto {
     /**
@@ -1287,7 +1304,7 @@ export declare namespace ApiDocuments {
     /**
      * @description startup type, gte and lte must be match StartupType
      */
-    type: number
+    type: ApiDocuments.enum_StartupType
   }
   export interface proto_StrategyRequest extends BasicDto {
     chain_id: number
@@ -1303,12 +1320,12 @@ export declare namespace ApiDocuments {
     tag?: ApiDocuments.proto_TagResponse
     tag_id: number
     target_id: number
-    type: number
+    type: ApiDocuments.enum_TagType
   }
   export interface proto_TagResponse extends BasicDto {
     id: number
     name: string
-    type: number
+    type: ApiDocuments.enum_TagType
   }
   export interface proto_ThirdPartyVerifyResponse extends BasicDto {
     verify: boolean

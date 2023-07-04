@@ -60,8 +60,10 @@ export default defineComponent({
             class="cursor-pointer h-15 mr-4 w-15"
             onClick={this.toComerDetail}
           />
-          <div class="flex-1">
-            <div class="mb-3 text-color1 truncate u-h3">{this.startup?.name}</div>
+          <div class="flex-1 overflow-hidden">
+            <div class="mb-3 text-color1 truncate u-h3" title={this.startup?.name}>
+              {this.startup?.name}
+            </div>
             <div class="flex items-center">
               {(this.startup?.type || 0) > 0 && <UTag class="text-color2">{this.modeName}</UTag>}
               {this.startup?.chain_id ? (

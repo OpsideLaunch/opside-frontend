@@ -6,7 +6,7 @@ export function useModuleTag() {
     startup_count: 0,
     bounty_count: 0,
     crowdfunding_count: 0,
-    sale_launchpad_count: 1,
+    sale_launchpad_count: 0,
     governance_count: 0
   })
 
@@ -14,6 +14,7 @@ export function useModuleTag() {
     startup_count: 0,
     bounty_count: 0,
     crowdfunding_count: 0,
+    sale_launchpad_count: 0,
     governance_count: 0
   })
 
@@ -41,6 +42,7 @@ export function useModuleTag() {
         participatedCount.startup_count = data2.startup_count
         participatedCount.bounty_count = data2.bounty_count
         participatedCount.crowdfunding_count = data2.crowdfunding_count
+        participatedCount.sale_launchpad_count = data2.sale_launchpad_count
         participatedCount.governance_count = data2.governance_count
       }
     } else {
