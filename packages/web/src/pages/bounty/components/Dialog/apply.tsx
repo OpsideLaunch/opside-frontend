@@ -202,7 +202,7 @@ const ApplyDialog = defineComponent({
           if (this.formData.deposit >= this.deposit) {
             const contractStore = useContractStore()
             contractStore.startContract('Apply for deposit deposits into bounty contract.')
-
+            // TODO: is eth or usdc?
             const res1 = await approve(
               this.bountyDetail?.contract_address || '',
               ethers.utils.parseUnits(

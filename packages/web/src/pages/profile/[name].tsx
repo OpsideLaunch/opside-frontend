@@ -1,11 +1,13 @@
 import { defineComponent, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import iconBounty from './assets/icon-bounty.png'
-import iconCrowdfunding from './assets/icon-crowdfunding.png'
-import iconProject from './assets/icon-project.png'
+
 import ProfileHeader from './components/ProfileHeader'
 import Comer from './components/comer'
 import styles from './index.module.css'
+import iconBounty from '@/assets/create/bounty.png'
+import iconCrowdfunding from '@/assets/create/launchpad.png'
+import iconProject from '@/assets/create/project.png'
+
 import { useModuleTag } from '@/pages/builder/hooks/useModuleTag'
 import { useProfile } from '@/pages/builder/hooks/useProfile'
 import { services } from '@/services'

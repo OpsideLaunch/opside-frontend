@@ -201,7 +201,7 @@ export const VerifyToken = defineComponent({
         render(value) {
           return (
             <div>
-              <div class="mb-6 text-grey3 u-h5 text-yellow-500">
+              <div class="mb-6 text-grey3 text-yellow-500 u-h5">
                 If this token has already add liquidity on the exchange, the auto listing model may
                 fail to raise funds
               </div>
@@ -333,9 +333,9 @@ export const VerifyToken = defineComponent({
         <UFormItemsFactory fields={this.verifyTokenFields} values={this.crowdfundingInfo} />
         <div
           style={{ borderColor: '#65b400', background: '#dbef8822' }}
-          class="border-1 pl-3 border-solid rounded-0 h-8 text-xs flex row items-center p"
+          class="border-solid flex p border-1 rounded-0 h-8 text-xs row pl-3 items-center"
         >
-          3% funding you raised as fee.
+          5% funding you raised as fee.
         </div>
       </UForm>
     )
