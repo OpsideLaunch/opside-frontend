@@ -11,7 +11,7 @@ import {
 import dayjs from 'dayjs'
 import { computed, defineComponent, Ref, PropType, ref, h, onMounted, watch } from 'vue'
 import { CrowdfundingInfo } from '../typing'
-import { getBuyCoinAddress } from '../utils'
+import { getBuyCoinAddress } from '@/blocks/FairLaunchpad/utils'
 import { allNetworks } from '@/constants'
 import { useErc20Contract } from '@/contracts'
 import { useWalletStore } from '@/stores'
@@ -528,7 +528,7 @@ export const Information = defineComponent({
                 {props.crowdfundingInfo.isRebaseToken && (
                   <div
                     style={{ borderColor: '#F46359', background: '#F4695922', color: '#F12323' }}
-                    class="border-1 pl-3 border-solid rounded-0 h-8 text-xs flex row items-center p mt-3"
+                    class="border-solid flex p border-1 rounded-0 h-8 mt-3 text-xs row pl-3 items-center"
                   >
                     The presale tokens are rebase tokens, and therefore cannot be used with Vesting
                     Contributor.
