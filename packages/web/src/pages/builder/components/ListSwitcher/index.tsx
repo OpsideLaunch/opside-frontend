@@ -20,7 +20,9 @@ export default defineComponent({
         (props.moduleName === 'Bounty' && props.moduleCount.postedCount.bounty_count === 0) ||
         (props.moduleName === 'Launchpad' &&
           props.moduleCount.postedCount.crowdfunding_count === 0) ||
-        (props.moduleName === 'Proposal' && props.moduleCount.postedCount.governance_count === 0)
+        (props.moduleName === 'Proposal' && props.moduleCount.postedCount.governance_count === 0) ||
+        (props.moduleName === 'SaleLaunchpad' &&
+          props.moduleCount.postedCount.sale_launchpad_count === 0)
       )
     })
 

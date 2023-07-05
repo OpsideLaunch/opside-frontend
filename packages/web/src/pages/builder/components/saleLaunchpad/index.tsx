@@ -94,7 +94,7 @@ export default defineComponent({
             'header-extra': () => {
               return (
                 <ListSwitcher
-                  moduleName="Launchpad"
+                  moduleName="SaleLaunchpad"
                   moduleCount={this.moduleCount}
                   onCreatedByMe={this.toggleList}
                 />
