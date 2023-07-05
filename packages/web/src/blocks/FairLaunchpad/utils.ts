@@ -52,6 +52,10 @@ export function getBuyCoinAddress(mainCoinAddress: string): Record<number, Selec
       { label: 'SYS', value: mainCoinAddress },
       { label: 'USDC', value: AVAX_USDC_ADDR[57] }
     ],
+    570: [
+      { label: 'SYS', value: mainCoinAddress },
+      { label: 'USDC', value: AVAX_USDC_ADDR[570] }
+    ],
     57000: [
       { label: 'TSYS', value: mainCoinAddress },
       { label: 'USDC', value: AVAX_USDC_ADDR[57000] }
