@@ -54,6 +54,13 @@ export const routers: Router[] = [
     address: '0x52B2031Ea4232b68b88e1577206dc388EFcE2E49',
     chainId: 43113
   },
+  // TODO: 570 router info
+  {
+    icon: '',
+    dex: 'Pegasys',
+    address: '0x52B2031Ea4232b68b88e1577206dc388EFcE2E49',
+    chainId: 570
+  },
   {
     icon: '',
     dex: 'Uniswap',
