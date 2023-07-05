@@ -592,6 +592,10 @@ export const services = {
      * @description query startup id
      */
     startup_id?: number
+    /**
+     * @description query crowdfunding status
+     */
+    status?: number
   }) {
     return requestAdapter<
       ApiDocuments.proto_PageData & {
@@ -603,7 +607,15 @@ export const services = {
       ...extract(
         'GET',
         args,
-        ['page', 'size', 'founder_comer_id', 'keyword', 'participate_comer_id', 'startup_id'],
+        [
+          'page',
+          'size',
+          'founder_comer_id',
+          'keyword',
+          'participate_comer_id',
+          'startup_id',
+          'status'
+        ],
         []
       )
     })
@@ -751,6 +763,10 @@ export const services = {
      * @description query startup id
      */
     startup_id?: number
+    /**
+     * @description query crowdfunding status
+     */
+    status?: number
   }) {
     return requestAdapter<
       ApiDocuments.proto_PageData & {
@@ -762,7 +778,15 @@ export const services = {
       ...extract(
         'GET',
         args,
-        ['page', 'size', 'founder_comer_id', 'keyword', 'participate_comer_id', 'startup_id'],
+        [
+          'page',
+          'size',
+          'founder_comer_id',
+          'keyword',
+          'participate_comer_id',
+          'startup_id',
+          'status'
+        ],
         []
       )
     })
@@ -864,6 +888,10 @@ export const services = {
      * @description query startup id
      */
     startup_id?: number
+    /**
+     * @description query crowdfunding status
+     */
+    status?: number
   }) {
     return requestAdapter<
       ApiDocuments.proto_PageData & {
@@ -875,7 +903,15 @@ export const services = {
       ...extract(
         'GET',
         args,
-        ['page', 'size', 'founder_comer_id', 'keyword', 'participate_comer_id', 'startup_id'],
+        [
+          'page',
+          'size',
+          'founder_comer_id',
+          'keyword',
+          'participate_comer_id',
+          'startup_id',
+          'status'
+        ],
         []
       )
     })
@@ -1019,6 +1055,10 @@ export const services = {
      * @description query starup tags
      */
     tags?: string[]
+    /**
+     * @description startup type, gte and lte must be match StartupType
+     */
+    type?: number
   }) {
     return requestAdapter<
       ApiDocuments.proto_PageData & {
@@ -1038,7 +1078,8 @@ export const services = {
           'connected',
           'keyword',
           'startup_team_comer_id',
-          'tags'
+          'tags',
+          'type'
         ],
         []
       )
