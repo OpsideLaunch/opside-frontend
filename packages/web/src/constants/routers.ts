@@ -56,6 +56,12 @@ export const routers: Router[] = [
   },
   {
     icon: '',
+    dex: 'Pegasys',
+    address: '0x4dB158Eec5c5d63F9A09535882b835f36d3fd012',
+    chainId: 570
+  },
+  {
+    icon: '',
     dex: 'Uniswap',
     address: '0x52B2031Ea4232b68b88e1577206dc388EFcE2E49',
     chainId: 5700
