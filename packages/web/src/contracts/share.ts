@@ -24,7 +24,7 @@ export function wrapTransaction(
     const contract = getContract(contractArgs)
     const fn = contract[functionName]
     const tx = fn(...fnArgs, overrides)
-    console.log(tx.await, 6666666)
+
     return tx
       .then((res: any) => {
         if (waitingText) {
