@@ -315,7 +315,7 @@ export default defineComponent({
         if (!err) {
           this.loading = true
           const startupContract = useStartupContract()
-          if (this.info.switchChain) {
+          if (this.info.switchChain && !this.data.on_chain) {
             const res = await startupContract.createStartup(
               [this.info.name, this.info.chain_id || 0, true],
               'The fields of network and name will be registered to blockchain.',
