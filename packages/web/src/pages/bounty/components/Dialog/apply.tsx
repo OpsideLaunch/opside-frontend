@@ -203,28 +203,48 @@ const ApplyDialog = defineComponent({
             const contractStore = useContractStore()
             contractStore.startContract('Apply for deposit deposits into bounty contract.')
             // TODO: is eth or usdc?
-            const res1 = await approve(
-              this.bountyDetail?.contract_address || '',
-              ethers.utils.parseUnits(
-                this.formData.deposit.toString(),
-                this.bountyDetail?.deposit_contract_token_decimal
-              )
+            const depositAmount = ethers.utils.parseUnits(
+              this.formData.deposit.toString(),
+              this.bountyDetail?.deposit_contract_token_decimal
             )
-            if (!res1) {
-              return contractStore.endContract('failed', { success: false })
-            }
             console.log('applyFor deposit', this.formData.deposit)
-            const res2 = await bountyContract.applyFor(
-              ethers.utils.parseUnits(
-                this.formData.deposit.toString(),
-                this.bountyDetail?.deposit_contract_token_decimal
-              ),
-              'The deposits are transfering to deposit contract.',
-              `Apply to ${this.formData.deposit} ${tokenSymbol}`
-            )
-            if (!res2) {
-              return contractStore.endContract('failed', { success: false })
+            let res2
+            if (
+              this.bountyDetail?.deposit_contract_address !==
+              '0x0000000000000000000000000000000000000000'
+            ) {
+              const res1 = await approve(
+                this.bountyDetail?.contract_address || '',
+                ethers.utils.parseUnits(
+                  this.formData.deposit.toString(),
+                  this.bountyDetail?.deposit_contract_token_decimal
+                )
+              )
+              if (!res1) {
+                return contractStore.endContract('failed', { success: false })
+              }
+              res2 = await bountyContract.applyFor(
+                depositAmount,
+                'The deposits are transfering to deposit contract.',
+                `Apply to ${this.formData.deposit} ${tokenSymbol}`
+              )
+              if (!res2) {
+                return contractStore.endContract('failed', { success: false })
+              }
+            } else {
+              res2 = await bountyContract.applyFor(
+                depositAmount,
+                'The deposits are transfering to deposit contract.',
+                `Apply to ${this.formData.deposit} ${tokenSymbol}`,
+                {
+                  value: depositAmount
+                }
+              )
+              if (!res2) {
+                return contractStore.endContract('failed', { success: false })
+              }
             }
+
             // send request
             if (this.paramBountyId) {
               await services['Bounty@apply-bounty']({

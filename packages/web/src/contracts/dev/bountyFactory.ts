@@ -4,8 +4,8 @@ import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
 
 export const BountyFactoryAddresses: Record<number, string> = {
-  5700: '0x8ab5971f601087e88a0c3Fd0c12AC5314a10091e',
-  57000: '0xb4CA1B277D45ecD03eD8BeBFB3157a23da3b0e34'
+  5700: '0x21f4C0533B222C6775411D0Cd54fFBeee31FdF31',
+  57000: '0x61c2b9595c289369476074Cc7F6d56DEF1405920'
 }
 
 const abi =
