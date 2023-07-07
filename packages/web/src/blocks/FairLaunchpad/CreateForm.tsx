@@ -169,12 +169,20 @@ const CreateCrowdfundingForm = defineComponent({
         contractStore.startContract(approvePendingText)
         // approve sellToken to crowdfund factory contract
         const erc20Res = await erc20TokenContract(crowdfundingInfo.sellTokenContract!)
-        // TODO raiseGoalTotal === 0?
-        console.log(crowdfundingInfo.totalSellToken, 8888)
+        console.log(
+          'need totalSellToken:',
+          crowdfundingInfo.totalSellToken,
+          'decimals:',
+          crowdfundingInfo.sellTokenDecimals,
+          'contract:',
+          crowdfundingInfo.sellTokenContract
+        )
         const approveRes = await erc20Res.approve(
           factoryAddress,
-          ethers.utils.parseUnits(String(crowdfundingInfo.totalSellToken))
-          // ethers.BigNumber.from(crowdfundingInfo.totalSellToken)
+          ethers.utils.parseUnits(
+            String(crowdfundingInfo.totalSellToken),
+            crowdfundingInfo.sellTokenDecimals
+          )
         )
         await approveRes.wait()
         // TODO listingRate
