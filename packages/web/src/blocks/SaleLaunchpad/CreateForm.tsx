@@ -172,9 +172,11 @@ const CreateCrowdfundingForm = defineComponent({
         const erc20Res = await erc20TokenContract(crowdfundingInfo.sellTokenContract!)
         const approveRes = await erc20Res.approve(
           factoryAddress,
-          ethers.utils.parseUnits(String(crowdfundingInfo.totalSellToken))
+          ethers.utils.parseUnits(
+            String(crowdfundingInfo.totalSellToken),
+            crowdfundingInfo.sellTokenDecimals
+          )
         )
-        await approveRes.wait()
         await approveRes.wait()
 
         const contractRes: any = await crowdfundingContract.createSale(
@@ -199,7 +201,7 @@ const CreateCrowdfundingForm = defineComponent({
             crowdfundingInfo.listing === 'Auto Listing'
               ? ethers.utils.parseUnits(
                   String(crowdfundingInfo.listingRate!),
-                  crowdfundingInfo.buyTokenDecimals
+                  crowdfundingInfo.sellTokenDecimals
                 )
               : 0,
             dayjs(crowdfundingInfo.startTime).valueOf() / 1000,
