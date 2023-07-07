@@ -186,6 +186,7 @@ const CreateCrowdfundingForm = defineComponent({
         )
         await approveRes.wait()
         // TODO listingRate
+
         const contractRes: any = await crowdfundingContract.createCrowdfundingContract(
           [
             crowdfundingInfo.sellTokenContract!,
@@ -217,7 +218,7 @@ const CreateCrowdfundingForm = defineComponent({
             crowdfundingInfo.listing === 'Auto Listing'
               ? ethers.utils.parseUnits(
                   String(crowdfundingInfo.listingRate!),
-                  crowdfundingInfo.buyTokenDecimals
+                  crowdfundingInfo.sellTokenDecimals
                 )
               : 0
           ],
