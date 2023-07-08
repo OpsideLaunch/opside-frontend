@@ -185,7 +185,6 @@ const CreateCrowdfundingForm = defineComponent({
           )
         )
         await approveRes.wait()
-        // TODO listingRate
 
         const contractRes: any = await crowdfundingContract.createCrowdfundingContract(
           [
@@ -226,33 +225,7 @@ const CreateCrowdfundingForm = defineComponent({
           `Launchpad is creating`
         )
         console.log('here', contractRes)
-        console.log([
-          crowdfundingInfo.sellTokenContract!,
-          crowdfundingInfo.buyTokenContract === MAIN_COIN_ADDR
-            ? crowdfundingInfo.sellTokenContract!
-            : crowdfundingInfo.buyTokenContract,
-          Number(crowdfundingInfo.sellTokenDecimals),
-          Number(crowdfundingInfo.buyTokenDecimals),
-          crowdfundingInfo.buyTokenContract === MAIN_COIN_ADDR, // buyTokenIsNative
-          ethers.utils.parseUnits(
-            crowdfundingInfo.raiseGoal!.toString(),
-            crowdfundingInfo.buyTokenDecimals
-          ),
-          ethers.utils.parseUnits(
-            crowdfundingInfo.buyPrice!.toString(),
-            crowdfundingInfo.sellTokenDecimals
-          ),
-          ethers.utils.parseUnits(crowdfundingInfo.swapPercent!.toString(), 2),
-          ethers.utils.parseUnits(crowdfundingInfo.sellTax!.toString(), 2),
-          ethers.utils.parseUnits(crowdfundingInfo.maxBuyAmount!.toString(), 18),
-          ethers.utils.parseUnits(crowdfundingInfo.minBuyAmount!.toString(), 18),
-          ethers.utils.parseUnits(crowdfundingInfo.maxSell!.toString(), 2),
-          crowdfundingInfo.teamWallet,
-          dayjs(crowdfundingInfo.startTime).valueOf() / 1000,
-          dayjs(crowdfundingInfo.endTime).valueOf() / 1000,
-          crowdfundingInfo.Router,
-          crowdfundingInfo.listingRate!
-        ])
+
         return contractRes
       } catch (e: any) {
         reportError(e as Error)

@@ -87,7 +87,10 @@ export const ReviewInfo = defineComponent({
         {this.crowdfundingInfo.listing === 'Auto Listing' && (
           <div class="review-info-item">
             <div class="w-[220px] title">Listing Rate :</div>
-            <div>{this.crowdfundingInfo.listingRate}</div>
+            <div>
+              1 {this.crowdfundingInfo.buyTokenSymbol} = {this.crowdfundingInfo.listingRate}{' '}
+              {this.crowdfundingInfo.sellTokenSymbol}
+            </div>
           </div>
         )}
         {this.crowdfundingInfo.usingVestingContributor && (

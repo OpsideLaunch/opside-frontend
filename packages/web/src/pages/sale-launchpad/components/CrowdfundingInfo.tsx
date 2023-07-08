@@ -203,7 +203,10 @@ export const CrowdfundingInfo = defineComponent({
               <div class="text-color1">Router :</div>
               <div>{findRouterByAddress(props.info.dex_router!)?.dex}</div>
               <div class="text-color1">Listing Rate :</div>
-              <div>{props.info.dex_init_price}</div>
+              <div>
+                1 {buyCoinInfo.value.symbol} = {props.info.dex_init_price}
+                {sellCoinInfo.value.symbol}
+              </div>
             </>
           )}
 
