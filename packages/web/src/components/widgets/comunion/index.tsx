@@ -48,7 +48,7 @@ export default defineComponent({
       {
         icons: [comp3, comp3, comp3],
         h1line1: 'A new startup and innovation paradigm',
-        h1line2: 'GoRollux',
+        h1line2: 'Opside launchpad',
         content:
           'The new startup paradigm which is formed by bounty, dCrowdfunding, on-chain governance and other dApps that help everyone to launch and manage their startup without limiting          '
       },
@@ -68,7 +68,7 @@ export default defineComponent({
     return (
       <div class="flex flex-col items-center">
         <Title
-          title="What is GoRollux"
+          title="What is Opside launchpad"
           subTitle="Generates an all-in-one meeting place for being dedicated to building a thriving and collaborative ecosystem, community, and economy"
         />
         <div class="flex flex-row flex-wrap mx-auto mt-20 max-w-1120px <sm:mt-10 <md:hidden">

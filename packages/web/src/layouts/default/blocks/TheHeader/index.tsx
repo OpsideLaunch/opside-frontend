@@ -68,6 +68,15 @@ const TheHeader = defineComponent({
           subMenu: MarketplaceSubMenu
         },
         {
+          name: 'Swap',
+          icon: (
+            <ShareOutlined
+              class={globalConfigStore.isLargeScreen ? 'h-3.5 w-3.5' : 'h-4 w-4 text-color2'}
+            />
+          ),
+          link: '//www.sideswap.finance'
+        },
+        {
           name: 'Chart',
           icon: (
             <ShareOutlined
@@ -170,7 +179,9 @@ const TheHeader = defineComponent({
             onClick={this.goHome}
           >
             <ULogo height={this.globalConfigStore.isLargeScreen ? 28 : 36} />
-            <span class="font-600 text-lg ml-1 text-[#636366] hidden 1366:block">GoRollux</span>
+            <span class="font-700 text-sm ml-1 text-color1 hidden 2xl:block uppercase">
+              Opside launchpad
+            </span>
           </div>
           <div class="flex-1 hidden <lg:block">
             <MobileNav class="h-10 ml-2 w-10" navigations={this.navigations} />

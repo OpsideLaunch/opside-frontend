@@ -20,25 +20,25 @@ const contractEnvMap: {
 } = {
   dev: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/GoRollux/gorollux-contract/develop',
+    rootDir: '/OpsideLaunch/opside-contract/develop',
     confDir: '/conf',
     confFileName: 'contractAddress_dev.json'
   },
   saleLaunchpadDev: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/GoRollux/gorollux-sale-launch/develop',
+    rootDir: '/OpsideLaunch/opside-sale-launch/develop',
     confDir: '/conf',
     confFileName: 'contractAddress_dev.json'
   },
   saleLaunchpadRelease: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/GoRollux/gorollux-sale-launch/release',
+    rootDir: '/OpsideLaunch/opside-sale-launch/release',
     confDir: '/conf',
     confFileName: 'contractAddress_rel.json'
   },
   saleLaunchpadProd: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/GoRollux/gorollux-sale-launch/main',
+    rootDir: '/OpsideLaunch/opside-sale-launch/main',
     confDir: '/conf',
     confFileName: 'contractAddress_main.json'
   },
@@ -62,7 +62,7 @@ const contractEnvMap: {
   // },
   prod: {
     url: GITHUB_RAW_PROXY_URL,
-    rootDir: '/GoRollux/gorollux-contract/main',
+    rootDir: '/OpsideLaunch/opside-contract/main',
     confDir: '/conf',
     confFileName: 'contractAddress_main.json'
   }

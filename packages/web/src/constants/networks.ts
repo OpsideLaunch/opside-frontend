@@ -181,6 +181,17 @@ export const allNetworks: ChainNetworkType[] = [
     currencySymbol: 'TSYS',
     rpcUrl: 'https://rpc-tanenbaum.rollux.com',
     explorerUrl: 'https://rollux.tanenbaum.io'
+  },
+  {
+    // Polygon zkEVM Testnet
+    logo: polygon,
+    nologo: nopolygon,
+    chainId: 1442,
+    name: 'Polygon zkEVM Testnet',
+    shortName: 'Polygon Testnet',
+    currencySymbol: 'ETH',
+    rpcUrl: 'https://rpc.public.zkevm-test.net',
+    explorerUrl: 'https://testnet-zkevm.polygonscan.com'
   }
 ].map(item => ({ ...item, routers: findRouterByChainId(item.chainId) }))
 
