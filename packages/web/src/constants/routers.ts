@@ -32,13 +32,13 @@ export const routers: Router[] = [
   },
   {
     icon: '',
-    dex: 'Quickswap',
+    dex: 'Uniswap',
     address: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
     chainId: 137
   },
   {
     icon: '',
-    dex: 'Quickswap',
+    dex: 'Uniswap',
     address: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
     chainId: 80001
   },
