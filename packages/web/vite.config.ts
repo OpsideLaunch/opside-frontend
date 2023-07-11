@@ -23,7 +23,7 @@ export default defineConfig({
   server: {
     port: process.env.PORT ? +process.env.PORT : 9001,
     proxy: {
-      '/api': 'https://d.gorollux.com'
+      '/api': 'https://launchpad.opside.network'
     }
   },
   define: {
