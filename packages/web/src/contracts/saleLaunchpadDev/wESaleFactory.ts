@@ -4,8 +4,8 @@ import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
 
 export const WESaleFactoryAddresses: Record<number, string> = {
-  5700: '0x4014Ace66199706D8d5D913Da2Cf8ab8010f68b5',
-  57000: '0x98DD3242644AC01D9FC8c9FEfe11C1D239413964'
+  137: '0xCd392957586B7bE4Ed3c2E78440DD43bbEdc1C43',
+  80001: '0xCd392957586B7bE4Ed3c2E78440DD43bbEdc1C43'
 }
 
 const abi =
