@@ -6,6 +6,7 @@ import WalletAddress from '../Address'
 import CreateBlock from '../Create'
 import NetworkSwitcher from '../Network'
 import MobileNav from './MobileNav'
+import textLogo from '@/assets/logoText.svg'
 import ULogo from '@/components/ULogo'
 import { useGlobalConfigStore } from '@/stores'
 
@@ -174,14 +175,12 @@ const TheHeader = defineComponent({
           class={`px-10 relative top-0 z-3000 <lg:fixed left-0 right-0 <lg:flex items-center <lg:px-4 <lg:py-2 bg-color-body`}
         >
           <div
-            class="cursor-pointer flex transition-all top-5 left-4 z-10 fixed items-center <lg:static"
+            class="cursor-pointer flex transition-all top-6 left-4 z-10 fixed items-center <lg:static"
             style={this.fixedLogoStyle}
             onClick={this.goHome}
           >
-            <ULogo height={this.globalConfigStore.isLargeScreen ? 28 : 36} />
-            <span class="font-700 text-sm ml-1 text-color1 hidden 2xl:block uppercase">
-              Opside launchpad
-            </span>
+            <ULogo height={this.globalConfigStore.isLargeScreen ? 20 : 32} />
+            <img src={textLogo} class=" h-[10px] ml-1 hidden  2xl:block" />
           </div>
           <div class="flex-1 hidden <lg:block">
             <MobileNav class="h-10 ml-2 w-10" navigations={this.navigations} />
