@@ -4,8 +4,8 @@ import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
 
 export const CrowdfundingFactoryAddresses: Record<number, string> = {
-  5700: '0xCd1eA68781637eE46b140374B2689a5b81A365bb',
-  57000: '0x7C4c161a923dF21b1dd1d62b8620Ea24d6E928c4'
+  137: '0xb2220d4566a91754a3DD052F9463De3D5a31236C',
+  80001: '0x92b6dA4d76C15B0a87209FccB8De1CEb615f4b1A'
 }
 
 const abi =

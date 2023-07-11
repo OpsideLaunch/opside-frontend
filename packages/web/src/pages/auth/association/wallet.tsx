@@ -38,8 +38,8 @@ export default defineComponent({
         v-slots={{
           content: () => (
             <p>
-              If you already have data from another account at GoRollux, you can associate it with
-              that account.
+              If you already have data from another account at Opside launchpad, you can associate
+              it with that account.
             </p>
           ),
           footer: () => (

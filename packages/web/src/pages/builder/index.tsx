@@ -147,10 +147,10 @@ export default defineComponent({
               noShadow: true
             }}
             route={`https://${import.meta.env.VITE_HOST}/profile/${this.profile.custom_domain}`}
-            title={this.profile.name + '--Builder | GoRollux'}
-            description={`Check out the Web3Profile on GoRollux, The lead building launchpad on Rollux and Syscoin`}
-            text={`Connect this #Web3Profile on #GoRollux Network:`}
-            copyText={`Connect this #Web3Profile on #GoRollux Network: https://${
+            title={this.profile.name + '--Builder | Opside launchpad'}
+            description={`Check out the Web3Profile on Opside launchpad, The lead building launchpad on Rollux and Syscoin`}
+            text={`Connect this #Web3Profile on #Opside launchpad Network:`}
+            copyText={`Connect this #Web3Profile on #Opside launchpad Network: https://${
               import.meta.env.VITE_HOST
             }/profile/${this.profile.custom_domain}`}
           />

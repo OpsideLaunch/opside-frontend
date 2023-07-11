@@ -191,8 +191,10 @@ export default defineComponent({
                   ]
                 }}
                 route={window.location.href}
-                title={this.bountySection.detail.value.startup?.name + '--Bounty | GoRollux'}
-                description={`Check out the bounty on GoRollux, The lead building launchpad on Rollux and Syscoin`}
+                title={
+                  this.bountySection.detail.value.startup?.name + '--Bounty | Opside launchpad'
+                }
+                description={`Check out the bounty on Opside launchpad, The lead building launchpad on Rollux and Syscoin`}
                 text={`${
                   this.bountySection.detail.value.startup.name
                 } just posted a #bounty that pays out ${this.rewordsInfo?.token1_amount || 0} ${
@@ -201,7 +203,7 @@ export default defineComponent({
                   this.rewordsInfo?.token2_amount
                     ? '+' + this.rewordsInfo?.token2_amount + ' ' + this.rewordsInfo?.token2_symbol
                     : ''
-                }, check out this #rewards on #GoRollux Network: `}
+                }, check out this #rewards on #Opside launchpad Network: `}
                 tipPlacement="right"
               />
             )}

@@ -20,7 +20,7 @@ export const HeaderInfo = defineComponent({
     const handleCopy = (text: string) => {
       if (
         copyText({
-          text: `Click the link to earn rewards on GoRollux Network: ${text}`
+          text: `Click the link to earn rewards on Opside launchpad Network: ${text}`
         })
       ) {
         message.success('Successfully copy.')
@@ -31,8 +31,8 @@ export const HeaderInfo = defineComponent({
         image: 'https://comunion-avatars.s3.ap-northeast-1.amazonaws.com/183484253679616.png',
         route: url,
         description: ' ',
-        text: 'Click the link to earn rewards on GoRollux Network: ',
-        title: 'GoRollux is The lead building launchpad on Rollux and Syscoin'
+        text: 'Click the link to earn rewards on Opside launchpad Network: ',
+        title: 'Opside launchpad is The lead building launchpad on Rollux and Syscoin'
       })
     }
     const downLoad = (name = '') => {
