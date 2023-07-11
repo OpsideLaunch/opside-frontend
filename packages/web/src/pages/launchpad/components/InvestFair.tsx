@@ -1092,7 +1092,7 @@ export const InvestFair = defineComponent({
                 </span>
                 {props.buyCoinInfo.symbol}
               </div>
-              <div class="mt-1 text-color3 u-h7">Raised Goal</div>
+              <div class="mt-1 text-color3 u-h7">Raise Goal</div>
             </div>
             <div class="rounded-sm flex flex-col bg-[rgba(28,96,243,0.06)] bg-opacity-6 h-19 pl-4 justify-center">
               <div class="flex text-primary items-end">
