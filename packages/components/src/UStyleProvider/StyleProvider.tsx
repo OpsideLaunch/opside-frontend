@@ -13,7 +13,7 @@ export const UStyleProviderProps = {
   // ui 2.0
   primaryColor: {
     type: String,
-    default: '#65B400'
+    default: '#30bf43'
   },
   color1: {
     type: String,

@@ -134,8 +134,8 @@ export default defineComponent({
             v-slots={{
               content: () => (
                 <p>
-                  After unbinding, you will not be able to sign in to the GoRollux account with this
-                  social account.
+                  After unbinding, you will not be able to sign in to the Opside launchpad account
+                  with this social account.
                 </p>
               ),
               footer: () => (
