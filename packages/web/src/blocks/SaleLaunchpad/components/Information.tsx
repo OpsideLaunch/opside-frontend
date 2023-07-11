@@ -449,9 +449,6 @@ export const Information = defineComponent({
                   v-model:value={props.crowdfundingInfo.listingRate}
                   class="flex-1"
                 ></UInputBigNumber>
-                <div class="my-1 text-xs text-color3">
-                  The price is at when investors buy token during Launchpad.
-                </div>
               </div>
             )
           }
