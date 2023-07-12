@@ -179,7 +179,7 @@ const TheHeader = defineComponent({
             style={this.fixedLogoStyle}
             onClick={this.goHome}
           >
-            <ULogo height={this.globalConfigStore.isLargeScreen ? 20 : 32} />
+            <ULogo height={this.globalConfigStore.isLargeScreen ? 22 : 32} />
             <img src={textLogo} class=" h-[10px] ml-1 hidden  2xl:block" />
           </div>
           <div class="flex-1 hidden <lg:block">
