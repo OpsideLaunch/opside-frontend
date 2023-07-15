@@ -191,10 +191,22 @@ const CreateCrowdfundingForm = defineComponent({
             crowdfundingInfo.listing === 'Auto Listing'
               ? ethers.utils.parseUnits(crowdfundingInfo.liquidityPercent!.toString(), 4)
               : 0,
-            ethers.utils.parseUnits(crowdfundingInfo.minBuyAmount!.toString(), 18),
-            ethers.utils.parseUnits(crowdfundingInfo.maxBuyAmount!.toString(), 18),
-            ethers.utils.parseUnits(crowdfundingInfo.softCap!.toString(), 18),
-            ethers.utils.parseUnits(crowdfundingInfo.hardCap!.toString(), 18),
+            ethers.utils.parseUnits(
+              crowdfundingInfo.minBuyAmount!.toString(),
+              Number(crowdfundingInfo.buyTokenDecimals)
+            ),
+            ethers.utils.parseUnits(
+              crowdfundingInfo.maxBuyAmount!.toString(),
+              Number(crowdfundingInfo.buyTokenDecimals)
+            ),
+            ethers.utils.parseUnits(
+              crowdfundingInfo.softCap!.toString(),
+              Number(crowdfundingInfo.buyTokenDecimals)
+            ),
+            ethers.utils.parseUnits(
+              crowdfundingInfo.hardCap!.toString(),
+              Number(crowdfundingInfo.buyTokenDecimals)
+            ),
             crowdfundingInfo.listing === 'Auto Listing'
               ? crowdfundingInfo.Router!
               : '0x0000000000000000000000000000000000000000',

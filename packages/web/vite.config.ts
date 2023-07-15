@@ -23,7 +23,7 @@ export default defineConfig({
   server: {
     port: process.env.PORT ? +process.env.PORT : 9001,
     proxy: {
-      '/api': 'https://launchpad.opside.network'
+      '/api': 'https://d-launchpad.opside.network'
     }
   },
   define: {

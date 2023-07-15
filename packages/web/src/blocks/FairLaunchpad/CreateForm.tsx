@@ -205,8 +205,14 @@ const CreateCrowdfundingForm = defineComponent({
             ),
             ethers.utils.parseUnits(crowdfundingInfo.swapPercent!.toString(), 2),
             ethers.utils.parseUnits(crowdfundingInfo.sellTax!.toString(), 2),
-            ethers.utils.parseUnits(crowdfundingInfo.maxBuyAmount!.toString(), 18),
-            ethers.utils.parseUnits(crowdfundingInfo.minBuyAmount!.toString(), 18),
+            ethers.utils.parseUnits(
+              crowdfundingInfo.maxBuyAmount!.toString(),
+              Number(crowdfundingInfo.buyTokenDecimals)
+            ),
+            ethers.utils.parseUnits(
+              crowdfundingInfo.minBuyAmount!.toString(),
+              Number(crowdfundingInfo.buyTokenDecimals)
+            ),
             ethers.utils.parseUnits(crowdfundingInfo.maxSell!.toString(), 2),
             crowdfundingInfo.teamWallet,
             dayjs(crowdfundingInfo.startTime).valueOf() / 1000,
