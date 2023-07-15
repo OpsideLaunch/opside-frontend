@@ -95,7 +95,7 @@ export const InvestFair = defineComponent({
     }
 
     const getBuyCoinDecimal = () => {
-      return buyIsMainCoin.value ? 18 : props.buyCoinInfo.decimal || 18
+      return props.info.buy_token_decimals || 18
     }
 
     const maxBuyAmount = computed(() => {
@@ -472,7 +472,10 @@ export const InvestFair = defineComponent({
       const buyPendingText = 'The transaction of buying is processing.'
       const waitingText = 'Waiting to confirm.'
       try {
-        const buyAmount = ethers.utils.parseEther(fromValue.value)
+        const buyAmount = ethers.utils.parseUnits(
+          fromValue.value.toString(),
+          props.info.buy_token_decimals
+        )
         // main coin buy token
         const contractRes: any = await fundingContract.buy(
           buyAmount,
@@ -480,7 +483,7 @@ export const InvestFair = defineComponent({
           buyPendingText,
           waitingText,
           {
-            value: ethers.utils.parseEther(fromValue.value)
+            value: buyAmount
           }
         )
         if (contractRes && contractRes.hash) {
@@ -499,10 +502,9 @@ export const InvestFair = defineComponent({
         const buyAmount = ethers.utils.parseUnits(fromValue.value)
         contractStore.startContract(approvePendingText)
         const buyTokenRes = await tokenContract(props.info.buy_token_contract!)
-        const decimal = await buyTokenRes.decimals()
         const approveRes: Contract = await buyTokenRes.approve(
           props.info.crowdfunding_contract,
-          ethers.utils.parseUnits(fromValue.value.toString(), decimal)
+          props.info.buy_token_decimals
         )
         await approveRes.wait()
 
@@ -608,7 +610,7 @@ export const InvestFair = defineComponent({
         return console.warn('chain id is not match!')
       }
       if (mode.value === 'buy') {
-        const sellAmount = ethers.utils.parseUnits(toValue.value)
+        const sellAmount = ethers.utils.parseUnits(toValue.value, props.info.sell_token_decimals)
         if (buyIsMainCoin.value) {
           await buyFromMainCoin(sellAmount)
         } else {
