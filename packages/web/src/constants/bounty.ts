@@ -59,4 +59,4 @@ export const PERIOD_OPTIONS = [
 ]
 
 // Get the currency types supported by bounty
-export const BASE_CURRENCY: string[] = ['USDC', 'USD', 'RMB']
+export const BASE_CURRENCY: string[] = ['USDC', 'USD']
