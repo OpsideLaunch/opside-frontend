@@ -23,3 +23,4 @@ yarn-error.log*
 tsconfig.tsbuildinfo
 packages/components/lib
 /.history
+packages/web/src/contracts/index.ts
