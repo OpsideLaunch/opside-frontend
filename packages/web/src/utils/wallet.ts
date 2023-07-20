@@ -13,8 +13,8 @@ export async function checkSupportNetwork(
     await walletStore.ensureWalletConnected()
     message.warning(`Please switch to ${chainInfo?.name}`)
     // not supported network, try to switch
-    walletStore.openNetworkSwitcher()
-    walletStore.wallet?.switchNetwork(chainId).then(res => {
+
+    walletStore.switchNetwork({ chainId }).then(res => {
       typeof callback === 'function' && callback(false, res)
     })
     return false

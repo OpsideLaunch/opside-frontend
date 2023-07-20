@@ -11,7 +11,7 @@ const abi =
 export function useBountyContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: BountyAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   applyFor: (
     _amount: number | BigNumber,
     pendingText: string,

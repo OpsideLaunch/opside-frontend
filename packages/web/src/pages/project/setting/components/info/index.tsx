@@ -76,7 +76,7 @@ export default defineComponent({
     const netWorkChange = async (chainId: number) => {
       if (walletStore.chainId !== chainId && info.switchChain) {
         await walletStore.ensureWalletConnected()
-        const result = await walletStore.wallet?.switchNetwork(chainId)
+        const result = await walletStore.switchNetwork({ chainId })
         if (!result) {
           info.switchChain = false
         }
@@ -125,11 +125,9 @@ export default defineComponent({
               h('img', {
                 src: option.logo,
                 round: true,
-                size: 20,
                 style: {
-                  width: '20px',
-                  height: '20px',
-                  marginRight: '12px'
+                  marginRight: '12px',
+                  width: '20px'
                 }
               }),
               option.label as string

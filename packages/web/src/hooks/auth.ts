@@ -22,7 +22,6 @@ export async function useCheckUserProfile(params?: useCheckUserProfileParamsType
   await userStore.init()
   if (!userStore.logged) {
     if (!params?.withoutJump && route) {
-      // alert(1111111111, params?.flag, route && route.path)
       userStore.logout(
         false,
         route

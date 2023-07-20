@@ -87,7 +87,7 @@ export default defineComponent({
         return
       }
       if (this.walletConnected) {
-        const { bountyContract } = useBountyContractWrapper(this.bountyDetail as BountyInfo)
+        const { bountyContract } = await useBountyContractWrapper(this.bountyDetail as BountyInfo)
         const response = (await bountyContract.approveApplicant(
           this.applicant?.comer?.address || '',
           'Approve for the applicant to work for this bounty.',

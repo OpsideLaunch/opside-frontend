@@ -159,7 +159,7 @@ export default defineComponent({
 
     const netWorkChange = async (value: number) => {
       await walletStore.ensureWalletConnected()
-      await walletStore.wallet?.switchNetwork(value)
+      await walletStore.switchNetwork({ chainId: value })
     }
 
     const getFundingState = async (chainID?: number) => {
@@ -256,7 +256,7 @@ export default defineComponent({
           </div>
 
           {!isFounder.value && (
-            <div class="flex-1 overflow-hidden mb-10">
+            <div class="flex-1 mb-10 overflow-hidden">
               <div class="flex mb-2 justify-between">
                 <span class="text-color3 u-h7" />
                 <span class="text-primary1 u-num1">
@@ -361,7 +361,7 @@ export default defineComponent({
               </div>
             </div>
           </div>
-          <div class="actions mt-8">
+          <div class="mt-8 actions">
             {!walletStore.address ? (
               <UButton
                 tag="div"

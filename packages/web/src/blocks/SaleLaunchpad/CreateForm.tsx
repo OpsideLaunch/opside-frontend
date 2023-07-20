@@ -88,7 +88,7 @@ const CreateCrowdfundingForm = defineComponent({
 
     // reload contract and wallet store
     const initContract = () => {
-      walletStore.init(true).then(() => {
+      walletStore.init().then(() => {
         crowdfundingContract = useWESaleFactoryContract()
       })
     }
@@ -113,7 +113,7 @@ const CreateCrowdfundingForm = defineComponent({
     const netWorkChange = async (value: number) => {
       if (walletStore.chainId !== value) {
         await walletStore.ensureWalletConnected()
-        const result = await walletStore.wallet?.switchNetwork(value)
+        const result = await walletStore.switchNetwork({ chainId: value })
         if (!result) {
           closeDrawer()
         } else {
@@ -162,11 +162,15 @@ const CreateCrowdfundingForm = defineComponent({
       modalVisibleState.value = false
       ctx.emit('cancel')
     }
+
     const contractSubmit = async () => {
       const approvePendingText = 'Apply for creating Launchpad contract on blockchain.'
       try {
         // get dcrowdfunding factory address
         const factoryAddress = WESaleFactoryAddresses[walletStore.chainId!]
+        if (!factoryAddress) {
+          alert('Contract have not deploy on this chain')
+        }
         contractStore.startContract(approvePendingText)
         // approve sellToken to crowdfund factory contract
         const erc20Res = await erc20TokenContract(crowdfundingInfo.sellTokenContract!)

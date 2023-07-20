@@ -54,7 +54,7 @@ export default defineComponent({
       () => tabsInstance.value,
       tabs => {
         if (tabs[0].totalRows === 0) {
-          const targetIndex = tabs.findIndex(tab => tab.totalRows > 0)
+          const targetIndex = tabs.findIndex(tab => Number(tab.totalRows) > 0)
           if (targetIndex !== -1) {
             currentTabId.value = String(targetIndex)
           }

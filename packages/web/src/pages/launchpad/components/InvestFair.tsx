@@ -330,7 +330,7 @@ export const InvestFair = defineComponent({
     })
 
     const transferLiquidity = async () => {
-      const { provider } = fundingContract.getContract()
+      const { provider } = await fundingContract.getContract()
       const blockNumber = await provider.getBlockNumber()
       const block = await provider.getBlock(blockNumber)
 
@@ -504,7 +504,7 @@ export const InvestFair = defineComponent({
         const buyTokenRes = await tokenContract(props.info.buy_token_contract!)
         const approveRes: Contract = await buyTokenRes.approve(
           props.info.crowdfunding_contract,
-          props.info.buy_token_decimals
+          ethers.utils.parseUnits(fromValue.value.toString(), props.info.buy_token_decimals)
         )
         await approveRes.wait()
 
@@ -541,7 +541,7 @@ export const InvestFair = defineComponent({
         const approvePendingText = 'The transaction of selling is processing.'
         contractStore.startContract(approvePendingText)
 
-        const sellTokenRes = tokenContract(props.info.sell_token_contract!)
+        const sellTokenRes = await tokenContract(props.info.sell_token_contract!)
 
         const approveRes: Contract = await sellTokenRes.approve(
           props.info.crowdfunding_contract,
@@ -581,7 +581,7 @@ export const InvestFair = defineComponent({
 
         const approvePendingText = 'The transaction of selling is processing.'
         contractStore.startContract(approvePendingText)
-        const sellTokenRes = tokenContract(props.info.sell_token_contract!)
+        const sellTokenRes = await tokenContract(props.info.sell_token_contract!)
         const approveRes: Contract = await sellTokenRes.approve(
           props.info.crowdfunding_contract,
           fromAmount
@@ -750,7 +750,7 @@ export const InvestFair = defineComponent({
 
     const netWorkChange = async (value: number) => {
       await walletStore.ensureWalletConnected()
-      await walletStore.wallet?.switchNetwork(value)
+      await walletStore.switchNetwork({ chainId: value })
     }
 
     const numberTip = (data: number | '--', symbol = '') => {
@@ -860,7 +860,7 @@ export const InvestFair = defineComponent({
                         Transfer Liquidity
                       </UButton>
                     ),
-                    default: () => <div>Liquidity has been transferred. </div>
+                    default: () => <div>Liquidity has been transferred.</div>
                   }}
                 </UTooltip>
               ) : (

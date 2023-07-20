@@ -24,6 +24,7 @@ export type ChainNetworkType = {
   chainId: number
   name: string
   shortName?: string
+  wagmiChainName?: string
   currencySymbol: string
   rpcUrl: string
   explorerUrl: string
@@ -33,6 +34,9 @@ export type ChainNetworkType = {
     address: string
     abi: string
   }>
+  coingeckoId?: string
+  coingeckoPlatformId?: string
+  defillamaId?: string
 }
 
 /**
@@ -47,19 +51,39 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 1,
     name: 'Ethereum',
     shortName: 'Ethereum',
+    wagmiChainName: 'mainnet',
     currencySymbol: 'ETH',
     rpcUrl: 'https://mainnet.infura.io/v3/',
-    explorerUrl: 'https://etherscan.io'
+    explorerUrl: 'https://etherscan.io',
+    coingeckoId: 'ethereum',
+    coingeckoPlatformId: 'ethereum'
+  },
+  {
+    logo: ethereum,
+    nologo: noethereum,
+    chainId: 10,
+    name: 'Optimism',
+    shortName: 'Optimism',
+    wagmiChainName: 'optimism',
+    currencySymbol: 'ETH',
+    rpcUrl: 'https://mainnet.optimism.io',
+    explorerUrl: 'https://optimistic.etherscan.io',
+    coingeckoId: 'optimism',
+    coingeckoPlatformId: 'optimistic-ethereum'
   },
   {
     logo: binance,
     nologo: nobinance,
     chainId: 56,
-    name: 'BNB Chain',
-    shortName: 'BNB Chain',
+    name: 'Binance Smart Chain',
+    shortName: 'BSC',
+    wagmiChainName: 'bsc',
     currencySymbol: 'BNB',
-    rpcUrl: 'https://bsc-dataseed1.binance.org',
-    explorerUrl: 'https://bscscan.com'
+    rpcUrl: 'https://bsc.blockpi.network/v1/rpc/public',
+    explorerUrl: 'https://bscscan.com',
+    coingeckoId: 'binancecoin',
+    coingeckoPlatformId: 'binance-smart-chain',
+    defillamaId: 'bsc'
   },
   {
     logo: syscoin,
@@ -67,9 +91,26 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 57,
     name: 'Syscoin',
     shortName: 'Syscoin',
+    wagmiChainName: 'syscoin',
     currencySymbol: 'SYS',
     rpcUrl: 'https://rpc.syscoin.org',
-    explorerUrl: 'https://explorer.syscoin.org'
+    explorerUrl: 'https://explorer.syscoin.org',
+    coingeckoId: 'syscoin',
+    coingeckoPlatformId: 'syscoin'
+  },
+  {
+    logo: ethereum,
+    nologo: noethereum,
+    chainId: 100,
+    name: 'Gnosis Chain',
+    shortName: 'Gnosis',
+    wagmiChainName: 'gnosis',
+    currencySymbol: 'xDAI',
+    rpcUrl: 'https://rpc.gnosischain.com',
+    explorerUrl: 'https://gnosisscan.io',
+    coingeckoId: 'gnosis',
+    coingeckoPlatformId: 'xdai',
+    defillamaId: 'xdai'
   },
   {
     logo: polygon,
@@ -77,9 +118,12 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 137,
     name: 'Polygon',
     shortName: 'Polygon',
+    wagmiChainName: 'polygon',
     currencySymbol: 'MATIC',
     rpcUrl: 'https://polygon-rpc.com',
-    explorerUrl: 'https://polygonscan.com'
+    explorerUrl: 'https://polygonscan.com',
+    coingeckoId: 'matic-network',
+    coingeckoPlatformId: 'polygon-pos'
   },
   {
     logo: fantom,
@@ -87,9 +131,39 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 250,
     name: 'Fantom',
     shortName: 'Fantom',
+    wagmiChainName: 'fantom',
     currencySymbol: 'FTM',
     rpcUrl: 'https://rpc.ftm.tools',
-    explorerUrl: 'https://ftmscan.com'
+    explorerUrl: 'https://ftmscan.com',
+    coingeckoId: 'fantom',
+    coingeckoPlatformId: 'fantom'
+  },
+  {
+    logo: ethereum,
+    nologo: noethereum,
+    chainId: 288,
+    name: 'BOBA NETWORK',
+    shortName: 'BOBA',
+    wagmiChainName: 'boba',
+    currencySymbol: 'ETH',
+    rpcUrl: 'https://mainnet.boba.network',
+    explorerUrl: 'https://bobascan.com',
+    coingeckoId: 'boba-network',
+    coingeckoPlatformId: 'boba'
+  },
+  {
+    logo: ethereum,
+    nologo: noethereum,
+    chainId: 42161,
+    name: 'Arbitrum One',
+    shortName: 'Arbitrum',
+    wagmiChainName: 'arbitrum',
+    currencySymbol: 'ETH',
+    rpcUrl: 'https://arb1.arbitrum.io/rpc',
+    explorerUrl: 'https://arbiscan.io/',
+    coingeckoId: 'arbitrum',
+    coingeckoPlatformId: 'arbitrum-one',
+    defillamaId: 'arbitrum'
   },
   {
     logo: avalanche,
@@ -97,9 +171,13 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 43114,
     name: 'Avalanche',
     shortName: 'Avalanche',
+    wagmiChainName: 'avalanche',
     currencySymbol: 'AVAX',
     rpcUrl: 'https://api.avax.network/ext/bc/C/rpc',
-    explorerUrl: 'https://snowtrace.io'
+    explorerUrl: 'https://snowtrace.io',
+    coingeckoId: 'avalanche-2',
+    coingeckoPlatformId: 'avalanche',
+    defillamaId: 'avax'
   },
   // testnet
   {
@@ -108,8 +186,9 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 5,
     name: 'Goerli',
     shortName: 'Goerli',
+    wagmiChainName: 'goerli',
     currencySymbol: 'ETH',
-    rpcUrl: 'https://goerli.infura.io/v3/',
+    rpcUrl: 'https://goerli.infura.io/v3',
     explorerUrl: 'https://goerli.etherscan.io'
   },
   {
@@ -117,7 +196,8 @@ export const allNetworks: ChainNetworkType[] = [
     nologo: nobinance,
     chainId: 97,
     name: 'BNB Chain Testnet',
-    shortName: 'BNB Chain Testnet',
+    shortName: 'BNB Testnet',
+    wagmiChainName: 'bscTestnet',
     currencySymbol: 'tBNB',
     rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545',
     explorerUrl: 'https://testnet.bscscan.com'
@@ -128,6 +208,7 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 4002,
     name: 'Fantom Testnet',
     shortName: 'Fantom Testnet',
+    wagmiChainName: 'fantomTestnet',
     currencySymbol: 'FTM',
     rpcUrl: 'https://rpc.testnet.fantom.network',
     explorerUrl: 'https://testnet.ftmscan.com'
@@ -137,7 +218,8 @@ export const allNetworks: ChainNetworkType[] = [
     nologo: noavalanche,
     chainId: 43113,
     name: 'Avalanche Fuji Testnet',
-    shortName: 'Avalanche Fuji Testnet',
+    shortName: 'Avalanche Testnet',
+    wagmiChainName: 'avalancheFuji',
     currencySymbol: 'AVAX',
     rpcUrl: 'https://api.avax-test.network/ext/bc/C/rpc',
     explorerUrl: 'https://cchain.explorer.avax-test.network'
@@ -148,6 +230,7 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 80001,
     name: 'Mumbai',
     shortName: 'Mumbai',
+    wagmiChainName: 'polygonMumbai',
     currencySymbol: 'MATIC',
     rpcUrl: 'https://matic-mumbai.chainstacklabs.com',
     explorerUrl: 'https://mumbai.polygonscan.com'
@@ -155,12 +238,12 @@ export const allNetworks: ChainNetworkType[] = [
   {
     logo: rollux,
     nologo: nosyscoin,
-    chainId: 570,
-    name: 'Rollux Mainnet',
-    shortName: 'Rollux',
-    currencySymbol: 'SYS',
-    rpcUrl: 'https://rpc.rollux.com/',
-    explorerUrl: 'https://explorer.rollux.com/'
+    chainId: 2814,
+    name: 'Rollux OPv1 Private',
+    shortName: 'Rollux Private',
+    currencySymbol: 'RSYS',
+    rpcUrl: 'https://testnet.rollux.com:2814',
+    explorerUrl: 'https://explorer.testnet.rollux.com'
   },
   {
     logo: syscoin,
@@ -189,6 +272,7 @@ export const allNetworks: ChainNetworkType[] = [
     chainId: 1442,
     name: 'Polygon zkEVM Testnet',
     shortName: 'Polygon Testnet',
+    wagmiChainName: 'polygonZkEvm',
     currencySymbol: 'ETH',
     rpcUrl: 'https://rpc.public.zkevm-test.net',
     explorerUrl: 'https://testnet-zkevm.polygonscan.com'
@@ -227,5 +311,13 @@ export const supportedChainIds = import.meta.env.VITE_SUPPORTED_CHAIN_ID?.split(
 export const supportedNetworks: ChainNetworkType[] = allNetworks.filter(network =>
   supportedChainIds.includes(network.chainId)
 )
+
+export const getNetByChainId = (chainId: number) => {
+  return allNetworks.find(item => item.chainId === chainId)
+}
+
+export const getNetByChainName = (chainName: string) => {
+  return allNetworks.find(item => item.name.toLowerCase() === chainName.toLowerCase())
+}
 
 export const infuraKey = '65b449dc78314fe583ece8797faccc0a'

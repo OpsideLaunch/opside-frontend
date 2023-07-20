@@ -1,11 +1,11 @@
 import { message, UButton, UCard, UModal, USpin } from '@comunion/components'
+import { signTypedData, fetchBlockNumber } from '@wagmi/core'
 import dayjs from 'dayjs'
 import { defineComponent, onMounted, PropType, reactive, ref } from 'vue'
 import { BasicInfo } from './components/BasicInfo'
 import { Vote } from './components/Vote'
 import { ProposalInfo, VoteOption } from './typing'
 import { StepProps } from '@/components/Step'
-import { infuraKey } from '@/constants'
 import { signerProposalTypes } from '@/pages/governance/utils'
 import { services } from '@/services'
 import { useUserStore, useWalletStore } from '@/stores'
@@ -130,9 +130,7 @@ const CreateProposalFrom = defineComponent({
             // const blockNumber = await walletStore.wallet?.getProvider().getBlockNumber()
             let blockNumber: number | undefined = undefined
             if (govSetting) {
-              blockNumber = await walletStore
-                .getRpcProvider(govSetting!.chainId || 1, infuraKey) // default chainId is eth
-                ?.getBlockNumber()
+              blockNumber = Number(await fetchBlockNumber())
             }
 
             const domain = { name: 'Comunion' }
@@ -152,11 +150,12 @@ const CreateProposalFrom = defineComponent({
             }
             console.log('saveContent===>', saveContent)
 
-            const signature = await walletStore.wallet?.signTypedData(
+            const signature = await signTypedData({
               domain,
-              signerProposalTypes,
-              saveContent
-            )
+              types: signerProposalTypes,
+              message: saveContent,
+              primaryType: 'proposalInfo'
+            })
 
             // sign(JSON.stringify(saveContent, null, 2))
             if (signature) {
@@ -174,7 +173,7 @@ const CreateProposalFrom = defineComponent({
                   submitLoading.value = false
                 })
               if (!ipfsClientRes) {
-                return null
+                return console.error('ipfsClientRes error')
               }
               const reqParams = {
                 author_comer_id: userInfo.profile!.id!,

@@ -4,8 +4,8 @@ import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
 
 export const WESaleFactoryAddresses: Record<number, string> = {
-  137: '0xCd392957586B7bE4Ed3c2E78440DD43bbEdc1C43',
-  80001: '0xCd392957586B7bE4Ed3c2E78440DD43bbEdc1C43'
+  80001: '0xdd9D0b2e8eE0552ee93AAEd6af62D386bF19b70E',
+  43113: '0x5339340f11789E38F2b4a00C7f29D9c112B3333F'
 }
 
 const abi =
@@ -14,7 +14,7 @@ const abi =
 export function useWESaleFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: WESaleFactoryAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   DEFAULT_ADMIN_ROLE: (
     pendingText: string,
     waitingText: string,

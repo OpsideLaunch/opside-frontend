@@ -1,9 +1,11 @@
 import { UButton } from '@comunion/components'
 import { DisConnectFilled, SignOutFilled, UserFilled } from '@comunion/icons'
 import { shortenAddress } from '@comunion/utils'
-import { defineComponent } from 'vue'
+import { useMediaQuery } from '@vueuse/core'
+import { defineComponent, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import HeaderDropdown from '../../components/HeaderDropdown'
+import MobileConnectModal from '@/components/MobileConnectModal'
 import { useUserStore, useWalletStore, useGlobalConfigStore } from '@/stores'
 
 const WalletAddress = defineComponent({
@@ -13,12 +15,30 @@ const WalletAddress = defineComponent({
     const router = useRouter()
     const walletStore = useWalletStore()
     const userStore = useUserStore()
+    const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
-    const connectWallet = async () => {
+    const connectWallet = () => {
       if (walletStore.connected && walletStore.address) {
         return
       }
+
       walletStore.ensureWalletConnected()
+      const unsubscribe = watch(
+        () => walletStore.address,
+        () => {
+          if (walletStore.address && !userStore.logged) {
+            if (isLargeScreen.value) {
+              userStore.loginWithWalletAddress(walletStore.address)
+            } else {
+              globalConfigStore.mobileConnectModal = true
+            }
+
+            unsubscribe()
+          }
+        }
+      )
+
+      // userStore.loginWithWalletAddress()
     }
 
     const onClick = (v: string) => {
@@ -88,6 +108,8 @@ const WalletAddress = defineComponent({
           ) : (
             btn
           )}
+          {/* mobile modal */}
+          <MobileConnectModal />
         </>
       )
     }

@@ -1,19 +1,35 @@
 {
   "compilerOptions": {
+    "strict": true,
     "baseUrl": ".",
     "outDir": "./dist",
     "rootDir": "./src",
     "jsx": "preserve",
     "skipLibCheck": true,
     "composite": false,
-    "lib": ["esnext", "dom"],
-    "types": ["node", "vite/client", "vite-plugin-pages/client", "vite-plugin-vue-layouts/client"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "node",
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client"
+    ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "dist"],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "extends": "../../tsconfig.package.json",
-  "include": ["./src/**/*"]
+  "include": [
+    "./src/**/*"
+  ]
 }

@@ -53,7 +53,9 @@ type useBountyContractWrapperType = {
   chainId: number | undefined
 }
 
-export function useBountyContractWrapper(detail: BountyInfo): useBountyContractWrapperType {
+export async function useBountyContractWrapper(
+  detail: BountyInfo
+): Promise<useBountyContractWrapperType> {
   const walletStore = useWalletStore()
 
   const bountyContract = useBountyContract({
@@ -62,7 +64,7 @@ export function useBountyContractWrapper(detail: BountyInfo): useBountyContractW
   })
 
   const usdcTokenContract = useErc20Contract()
-  const usdc = usdcTokenContract(AVAX_USDC_ADDR[walletStore.chainId!])
+  const usdc = await usdcTokenContract(AVAX_USDC_ADDR[walletStore.chainId!])
 
   const approve = async (contractAddress: string, amount: BigNumber) => {
     // const usdcRes = await usdc.approve(contractAddress, amount)

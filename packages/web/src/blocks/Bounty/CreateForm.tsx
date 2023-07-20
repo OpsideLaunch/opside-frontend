@@ -51,7 +51,7 @@ const CreateBountyForm = defineComponent({
     })
     const tokens = getBuyCoinAddress('0x0000000000000000000000000000000000000000')
     const token0_symbol = tokens[walletStore.chainId!][0].label || 'ETH'
-    console.log(tokens, walletStore.chainId, 899899)
+    console.log(tokens)
     const token1_symbol = tokens[walletStore.chainId!][1].label || 'USDC'
 
     const bountyInfoRef = ref<bountyInfoType>({
@@ -280,7 +280,7 @@ const CreateBountyForm = defineComponent({
 
     // reload contract and wallet store
     const initContract = () => {
-      walletStore.init(true).then(() => {
+      walletStore.init().then(() => {
         bountyContract = useBountyFactoryContract()
       })
     }
@@ -314,8 +314,7 @@ const CreateBountyForm = defineComponent({
     }
     const netWorkChange = async (value: number) => {
       if (walletStore.chainId !== value) {
-        await walletStore.ensureWalletConnected()
-        const result = await walletStore.wallet?.switchNetwork(value)
+        const result = await walletStore.switchNetwork({ chainId: value })
         if (!result) {
           closeDrawer()
         } else {

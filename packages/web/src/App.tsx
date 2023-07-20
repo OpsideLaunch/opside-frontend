@@ -15,7 +15,6 @@ import { upload as onUpload } from './services/a2s.adapter'
 import { useUserStore, useWalletStore } from './stores'
 import { useContractStore } from './stores/contract'
 import { comunionTimeAgo } from './utils/timeago'
-import WalletConnectBlock from '@/components/UWalletConnect'
 
 export default defineComponent({
   name: 'App',
@@ -57,7 +56,6 @@ export default defineComponent({
             </UHashInputProvider>
           </UUploadProvider>
         </ULoadingBarProvider>
-        <WalletConnectBlock />
       </UStyleProvider>
     )
   }
