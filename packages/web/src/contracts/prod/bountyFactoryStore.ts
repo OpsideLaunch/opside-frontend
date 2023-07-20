@@ -11,7 +11,7 @@ const abi =
 export function useBountyFactoryStoreContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: BountyFactoryStoreAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   primary: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ string]>
   push: (bounty: string, pendingText: string, waitingText: string, overrides?: any) => Promise<[]>
   transferPrimary: (
