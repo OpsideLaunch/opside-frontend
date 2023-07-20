@@ -11,7 +11,7 @@ const abi =
 export function useSecondaryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: SecondaryAddresses }
 ): {
-  getContract: () => Promise<Contract>
+  getContract: () => Contract
   primary: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ string]>
   transferPrimary: (
     recipient: string,

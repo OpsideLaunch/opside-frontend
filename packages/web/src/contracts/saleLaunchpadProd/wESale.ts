@@ -11,7 +11,7 @@ const abi =
 export function useWESaleContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: WESaleAddresses }
 ): {
-  getContract: () => Promise<Contract>
+  getContract: () => Contract
   FEE: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ any]>
   URGENT_DIVEST_FEE: (
     pendingText: string,

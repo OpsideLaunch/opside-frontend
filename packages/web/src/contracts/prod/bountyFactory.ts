@@ -4,12 +4,7 @@ import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
 
 export const BountyFactoryAddresses: Record<number, string> = {
-  1: '0x7B5f3fFD2018D9d0B6f1b5b0d8D3E7384d324884',
-  43114: '0x5EF58fc4051d73aa461D09418ab6Dfca89cEA5ad',
-  56: '0x357fa1565B94D9F7C770D30c95a405F805d95fEA',
-  250: '0x0c9Fe2A4D3FFDe1Ee416Ed6814F380663006E879',
-  137: '0x001547114664D1050271943eaC4657bE2c15EFcC',
-  57: '0xe3f80B82ef0de5b6C779f008B79FD96fA27EE6C7'
+  137: '0x2E68F383EEed7A47C9d8a15AEC7ef4990daC9450'
 }
 
 const abi =
@@ -18,7 +13,7 @@ const abi =
 export function useBountyFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: BountyFactoryAddresses }
 ): {
-  getContract: () => Promise<Contract>
+  getContract: () => Contract
   children: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ any]>
   createBounty: (
     _depositToken: string,

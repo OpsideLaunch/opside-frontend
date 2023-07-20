@@ -11,7 +11,7 @@ const abi =
 export function useFactoryStoreContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: FactoryStoreAddresses }
 ): {
-  getContract: () => Promise<Contract>
+  getContract: () => Contract
   children: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ any]>
   isChild: (
     childAddr: string,

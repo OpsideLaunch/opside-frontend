@@ -11,7 +11,7 @@ const abi =
 export function useCrowdfundingContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: CrowdfundingAddresses }
 ): {
-  getContract: () => Promise<Contract>
+  getContract: () => Contract
   buy: (
     _buyAmount: number | BigNumber,
     _sellAmount: number | BigNumber,

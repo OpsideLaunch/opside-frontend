@@ -1,6 +1,6 @@
 import { message } from '@comunion/components'
 import { onMounted, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useOnLoggedIn } from '@/hooks'
 import type { ServiceKeys } from '@/services'
 import { services } from '@/services'
@@ -12,7 +12,6 @@ export default function useCommonCallback(
   localCallbackPath: string,
   service: ServiceKeys | ((code: string) => Promise<UserResponse>)
 ) {
-  const { push } = useRouter()
   const { query } = useRoute()
   const errMsg = ref<string | undefined>()
 
@@ -37,7 +36,6 @@ export default function useCommonCallback(
             user = response.data
           } else if (response.error && response.code === 400) {
             message.error('The social account has been connected')
-            push('/auth/association?type=account')
             return
           }
         }

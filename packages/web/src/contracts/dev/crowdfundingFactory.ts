@@ -4,14 +4,8 @@ import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
 
 export const CrowdfundingFactoryAddresses: Record<number, string> = {
-  5: '0x8ab5971f601087e88a0c3Fd0c12AC5314a10091e',
-  43113: '0xa021452136D1F002aC194cEcd1BA8f64800C1160',
-  97: '0x30FCf17e77B767c098182075F1BB3Cfb50f1a9D3',
-  4002: '0x1813E37D76316eCE03D3f7a9D908052D061355Fb',
-  80001: '0x9582559C0101F7F6a764Aa06d6Ab75268c9c1102',
-  2814: '0x914B75c95f3c1A090A2F255be95Bdb2B10CBD770',
-  5700: '0x001547114664D1050271943eaC4657bE2c15EFcC',
-  57000: '0xCad5f778b1285bFD01bD0bc754cdd325a82df396'
+  137: '0xb2220d4566a91754a3DD052F9463De3D5a31236C',
+  80001: '0x92b6dA4d76C15B0a87209FccB8De1CEb615f4b1A'
 }
 
 const abi =
@@ -20,7 +14,7 @@ const abi =
 export function useCrowdfundingFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: CrowdfundingFactoryAddresses }
 ): {
-  getContract: () => Promise<Contract>
+  getContract: () => Contract
   addToDexRouters: (
     _router: string,
     pendingText: string,

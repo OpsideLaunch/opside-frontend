@@ -4,14 +4,8 @@ import { getContract, GetContractArgs, wrapTransaction } from '../share'
 import { useWalletStore } from '@/stores'
 
 export const StartupAddresses: Record<number, string> = {
-  5: '0x744E0A1452F5E3Dc42E75c4C4B4de9faa16E3948',
-  43113: '0xeb0900e96fcc5dfb5CE8a3EB2a138bf3ca3A0d5e',
-  97: '0xEDD8b1e92c6584AFc0A4509f1122244195e0157B',
-  4002: '0x3e94b5b6fE0C0e6bd70015C44E0887E2EB6Ea870',
-  80001: '0x357fa1565B94D9F7C770D30c95a405F805d95fEA',
-  5700: '0xc7a1bAe0Db6203F3Ee3C721909B3b959a1b437Ca',
-  2814: '0xFaA67922D07bbe135462C55Dd74a708D7d55C96C',
-  57000: '0x01E06d112B316c418c46B89471135504F86B2798'
+  137: '0xE7c1f9DFEb55fe2196b62Abb7BeB84b9202103d5',
+  80001: '0xd41D4FeF58b8c008F6e4d9614f2Fa9ed2Aec8aAb'
 }
 
 const abi =
@@ -20,7 +14,7 @@ const abi =
 export function useStartupContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: StartupAddresses }
 ): {
-  getContract: () => Promise<Contract>
+  getContract: () => Contract
   createStartup: (
     p: [name: string, chainId: number | BigNumber, used: any],
     pendingText: string,
