@@ -385,7 +385,8 @@ export const InvestFair = defineComponent({
 
     const disableRemoveOrCancel = computed(() => {
       if (founderOperation.value === 'Remove') {
-        return fundingContractStateSecound.value?.[4] === CrowdfundingStatus.ENDED
+        // return fundingContractStateSecound.value?.[4] === CrowdfundingStatus.ENDED
+        return props.info.raise_balance != 0
       } else {
         return countDownTime.value.status !== CrowdfundingStatus.UPCOMING
       }
