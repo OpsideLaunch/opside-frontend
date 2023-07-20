@@ -147,7 +147,9 @@ export default defineComponent({
         return this.userStore.logout()
       }
 
-      const { bountyContract, approve } = useBountyContractWrapper(this.bountyDetail as BountyInfo)
+      const { bountyContract, approve } = await useBountyContractWrapper(
+        this.bountyDetail as BountyInfo
+      )
 
       const { deposit } = bountyContract
 
@@ -158,33 +160,51 @@ export default defineComponent({
           contractStore.startContract(approvePendingText)
           const tokenSymbol = this.bountyDetail?.deposit_contract_token_symbol
           // console.log(this.bountyDetail?.contract_address, this.formData.increaseDeposit)
-          const res1 = await approve(
-            this.bountyDetail?.contract_address || '',
-            ethers.utils.parseUnits(
-              this.formData.increaseDeposit.toString(),
-              this.bountyDetail?.deposit_contract_token_decimal
-            )
+          const isMainCoin =
+            this.bountyDetail?.deposit_contract_address ===
+            '0x0000000000000000000000000000000000000000'
+          const depositValue = ethers.utils.parseUnits(
+            this.formData.increaseDeposit.toString(),
+            this.bountyDetail?.deposit_contract_token_decimal
           )
-          if (!res1) {
-            contractStore.endContract('failed', { success: false })
+          let response
+          if (isMainCoin) {
+            response = await deposit(
+              depositValue,
+              'The bounty credit will be enchanced by increasing the deposits.',
+              `Increase deposits to ${this.formData.increaseDeposit} ${tokenSymbol}.`,
+              {
+                value: depositValue
+              }
+            )
           } else {
-            console.log('this.formData.increaseDeposit', this.formData.increaseDeposit)
-            const response = (await deposit(
+            const res1 = await approve(
+              this.bountyDetail?.contract_address || '',
               ethers.utils.parseUnits(
                 this.formData.increaseDeposit.toString(),
                 this.bountyDetail?.deposit_contract_token_decimal
-              ),
-              'The bounty credit will be enchanced by increasing the deposits.',
-              `Increase deposits to ${this.formData.increaseDeposit} ${tokenSymbol}.`
-            ).catch((error: { message: string | (() => VNodeChild) }) => {
-              message.error(error.message)
-              return null
-            })) as unknown as BountyContractReturnType
-            if (!response) {
+              )
+            )
+            if (!res1) {
               contractStore.endContract('failed', { success: false })
+            } else {
+              console.log('this.formData.increaseDeposit', this.formData.increaseDeposit)
+
+              response = (await deposit(
+                depositValue,
+                'The bounty credit will be enchanced by increasing the deposits.',
+                `Increase deposits to ${this.formData.increaseDeposit} ${tokenSymbol}.`
+              ).catch((error: { message: string | (() => VNodeChild) }) => {
+                message.error(error.message)
+                return null
+              })) as unknown as BountyContractReturnType
             }
-            console.log('should trigger socket reload...')
           }
+
+          if (!response) {
+            contractStore.endContract('failed', { success: false })
+          }
+          console.log('should trigger socket reload...')
           triggerDialog()
         }
       })

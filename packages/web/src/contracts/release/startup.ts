@@ -15,7 +15,7 @@ const abi =
 export function useStartupContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: StartupAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   createStartup: (
     p: [name: string, chainId: number | BigNumber, used: any],
     pendingText: string,

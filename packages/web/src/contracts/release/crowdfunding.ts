@@ -11,7 +11,7 @@ const abi =
 export function useCrowdfundingContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: CrowdfundingAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   account: (
     pendingText: string,
     waitingText: string,

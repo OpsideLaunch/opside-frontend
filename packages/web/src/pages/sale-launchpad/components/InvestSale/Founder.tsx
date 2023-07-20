@@ -52,7 +52,7 @@ export default defineComponent({
     }
 
     async function transfer() {
-      const { provider } = saleContract.getContract()
+      const { provider } = await saleContract.getContract()
       const blockNumber = await provider.getBlockNumber()
       const block = await provider.getBlock(blockNumber)
       const blockTimeStamp = block.timestamp * 1000
@@ -105,9 +105,9 @@ export default defineComponent({
     }
 
     return () => (
-      <div class="flex justify-between gap-4 <lg:px-0">
+      <div class="flex gap-4 justify-between <lg:px-0">
         {investState.isFailed ? (
-          <div class="w-full h-[70px] flex flex-col justify-center">
+          <div class="flex flex-col h-[70px] w-full justify-center">
             {investState.totalPreSale.isZero() ? (
               <UTooltip>
                 {{
@@ -124,7 +124,7 @@ export default defineComponent({
                 Withdraw deposit
               </UButton>
             )}
-            <span class="text-center mt-2 text-gray-500">Since the soft cap was not reached</span>
+            <span class="mt-2 text-center text-gray-500">Since the soft cap was not reached</span>
           </div>
         ) : investState.isCancel ? (
           <UButton class="flex-1" size="small" onClick={cancel} disabled={true}>

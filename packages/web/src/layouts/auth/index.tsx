@@ -16,9 +16,7 @@ const AuthLayout = defineComponent({
         withoutJump: true
       })
       console.log('userIsSet', userIsSet)
-      if (route.path === '/auth/association') {
-        return
-      } else if (userIsSet) {
+      if (userIsSet) {
         // const loginRedirect = storage('session').get('login:redirect')
         location.href = (route ? (route.query.from as string) : '') || landingRoute
         // setTimeout(() => storage('session').remove('login:redirect'), 0)

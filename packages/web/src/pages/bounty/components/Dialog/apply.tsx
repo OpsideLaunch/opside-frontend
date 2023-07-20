@@ -16,7 +16,6 @@ import { defineComponent, Ref, computed, h, ref, reactive, watch, inject, Comput
 import { useRoute } from 'vue-router'
 import { useBountyContractWrapper } from '../../hooks/useBountyContractWrapper'
 import { MAX_AMOUNT, renderUnit } from '@/blocks/Bounty/components/BasicInfo'
-import { BountyFactoryAddresses } from '@/contracts'
 import { services } from '@/services'
 import { useWalletStore, useUserStore } from '@/stores'
 import { useContractStore } from '@/stores/contract'
@@ -190,7 +189,9 @@ const ApplyDialog = defineComponent({
       if (!this.walletConnected) {
         return this.userStore.logout()
       }
-      const { bountyContract, approve } = useBountyContractWrapper(this.bountyDetail as BountyInfo)
+      const { bountyContract, approve } = await useBountyContractWrapper(
+        this.bountyDetail as BountyInfo
+      )
 
       // submit
       this.form?.validate(async err => {
@@ -199,12 +200,12 @@ const ApplyDialog = defineComponent({
           if (this.formData.deposit >= this.deposit) {
             const contractStore = useContractStore()
             contractStore.startContract('Apply for deposit deposits into bounty contract.')
-            // TODO: is eth or usdc?
+
             const depositAmount = ethers.utils.parseUnits(
               this.formData.deposit.toString(),
               this.bountyDetail?.deposit_contract_token_decimal
             )
-            console.log('applyFor deposit', this.formData.deposit, BountyFactoryAddresses)
+            console.log('applyFor deposit', this.formData.deposit)
             let res2
             if (
               this.bountyDetail?.deposit_contract_address !==
@@ -241,7 +242,6 @@ const ApplyDialog = defineComponent({
                 return contractStore.endContract('failed', { success: false })
               }
             }
-
             // send request
             if (this.paramBountyId) {
               await services['Bounty@apply-bounty']({

@@ -26,16 +26,28 @@ export default defineConfig({
       '/api': 'https://d-launchpad.opside.network'
     }
   },
-  define: {
-    'process.env.NODE_DEBUG': false, // for @coinbase/wallet-sdk
-    'process.env.LINK_API_URL': null, // for @coinbase/wallet-sdk
-    'process.env.SDK_VERSION': null // for @coinbase/wallet-sdk
+  optimizeDeps: {
+    // 👈 optimizedeps
+    esbuildOptions: {
+      target: 'esnext',
+      // Node.js global to browser globalThis
+      define: {
+        global: 'globalThis'
+      },
+      supported: {
+        bigint: true
+      }
+    }
   },
-  // optimizeDeps: {
-  //   include: ['bn.js', 'hash.js']
-  // },
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          // treat all tags with a dash as custom elements
+          isCustomElement: tag => tag.includes('-')
+        }
+      }
+    }),
     vueJsx({
       // enableObjectSlots: true
     }),
@@ -96,6 +108,7 @@ export default defineConfig({
     // polyfillNode()
   ],
   build: {
+    target: 'esnext',
     rollupOptions: {
       output: {
         // manualChunks: {
@@ -106,21 +119,22 @@ export default defineConfig({
         // }
         manualChunks(id) {
           const chunkMap = {
-            '@walletconnect/web3-provider': 'wallet',
-            '@ethersproject': 'ethers',
-            inherits: 'inherits',
             ethers: 'ethers',
             vue: 'vue',
             'vue-router': 'vue',
-            pinia: 'vue',
+            pinia: 'tools',
             'naive-ui': 'ui',
             axios: 'tools',
             buffer: 'tools',
             events: 'tools',
-            'lodash-es': 'tools',
-            'date-fns': 'tools',
-            util: 'tools',
-            vuedraggable: 'vuedraggable'
+            vuedraggable: 'vuedraggable',
+            '@sentry/vue': 'sentry',
+            '@sentry/tracing': 'sentry',
+            '@vueuse/core': 'vue',
+            '@wagmi/core': 'wallet',
+            '@web3modal/html': 'wallet',
+            '@web3modal/ethereum': 'wallet',
+            viem: 'wallet'
           }
           const splited = id.split('node_modules')
           if (splited.length > 1) {

@@ -1,9 +1,8 @@
-import { Provider } from '@ethersproject/abstract-provider'
-import { Signer } from '@ethersproject/abstract-signer'
 import { Contract } from 'ethers'
+import { getEthersSigner } from './utils'
 import { useWalletStore } from '@/stores'
 
-const erc20ABI = `[
+const erc20ABI: any = `[
   {
       "constant": true,
       "inputs": [],
@@ -227,14 +226,16 @@ const erc20ABI = `[
 ]
 `
 
-export function useErc20Contract(): (address: string, provider?: Signer | Provider) => Contract {
+export function useErc20Contract(): (address: string, provider?: any) => Promise<Contract> {
   const walletStore = useWalletStore()
-  return (address: string, provider?: Signer | Provider) => {
-    console.log(address, 900090)
+  return async (address: string, provider?: any) => {
     if (provider) {
       return new Contract(address, erc20ABI, provider)
     }
-    const signer = walletStore.wallet?.getSigner()
+    const signer = await getEthersSigner({
+      chainId: walletStore.chainId
+    })
+
     if (!signer) {
       throw new Error('Wallet is not initialized')
     }

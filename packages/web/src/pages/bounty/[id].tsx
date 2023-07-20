@@ -87,14 +87,14 @@ export default defineComponent({
 
     watch(
       () => bountySection.detail.value,
-      detail => {
+      async detail => {
         if (!detail) {
           loading.value = true
         } else {
           loading.value = false
 
           if (detail?.contract_address && !postUpdate.value && walletStore.connected) {
-            const { bountyContract } = useBountyContractWrapper(detail)
+            const { bountyContract } = await useBountyContractWrapper(detail)
             postUpdate.value = bountyContract.postUpdate
           }
           if (detail?.expired_time) {

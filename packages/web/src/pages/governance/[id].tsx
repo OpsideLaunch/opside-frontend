@@ -18,6 +18,7 @@ import {
   UrlOutlined
 } from '@comunion/icons'
 import { shortenAddress } from '@comunion/utils'
+import { signTypedData } from '@wagmi/core'
 import dayjs from 'dayjs'
 import { ethers } from 'ethers'
 import { NSpin } from 'naive-ui'
@@ -220,11 +221,13 @@ const ProposalDetail = defineComponent({
           console.log('saveContent==>', saveContent)
 
           // const signature = await walletStore.wallet?.sign(JSON.stringify(saveContent, null, 4))
-          const signature = await walletStore.wallet?.signTypedData(
+
+          const signature = await signTypedData({
             domain,
-            signerVoteTypes,
-            saveContent
-          )
+            types: signerVoteTypes,
+            message: saveContent,
+            primaryType: 'voteInfo'
+          })
           if (signature) {
             voteLoading.value = true
             const voteRes = await ipfsClient
@@ -744,7 +747,7 @@ const ProposalDetail = defineComponent({
                   disabled={
                     !Number(this.votePower) ||
                     (!this.proposalInfo?.allowMember &&
-                      this.votePower < Number(this.govSetting?.proposalThreshold))
+                      Number(this.votePower) < Number(this.govSetting?.proposalThreshold))
                   }
                 >
                   Vote

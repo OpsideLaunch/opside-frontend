@@ -1,5 +1,6 @@
 import { USpin, UTooltip } from '@comunion/components'
 import { SettingOutlined } from '@comunion/icons'
+import { fetchBalance } from '@wagmi/core'
 import { ethers } from 'ethers'
 import { defineComponent, onMounted, ref, computed, onBeforeUnmount, provide, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -13,7 +14,6 @@ import { ShareButtonGroup, ShareButtonClass } from '@/components/Share'
 import StartupCard from '@/components/StartupCard'
 import { useErc20Contract } from '@/contracts'
 import { ServiceReturn, services } from '@/services'
-
 import {
   useWalletStore,
   useSocketStore,
@@ -107,7 +107,8 @@ const CrowdfundingDetail = defineComponent({
             buyCoinInfo.value.symbol = getChainInfoByChainId(
               crowdfundingInfo.value!.chain_id!
             )?.currencySymbol
-            buyCoinInfo.value.balance = (await walletStore.getBalance(walletStore.address!)) || '--'
+            buyCoinInfo.value.balance =
+              (await fetchBalance({ address: walletStore.address as any })).formatted || '--'
           } else {
             const [buyName, buyDecimal, buySymbol, buyBalance] = await Promise.all([
               await buyTokenRes.name(),

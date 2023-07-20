@@ -1,12 +1,12 @@
 import { message } from '@comunion/components'
 import { storage } from '@comunion/utils'
+import { signMessage } from '@wagmi/core'
 import { defineStore } from 'pinia'
 import { STORE_KEY_TOKEN } from '@/constants'
 import router from '@/router'
 import { services } from '@/services'
 import { useWalletStore } from '@/stores'
 import type { UserProfileState, UserResponse, ComerProfileState } from '@/types'
-import AbstractWallet from '@/wallets/AbstractWallet'
 
 export type UserState = {
   // user token
@@ -62,6 +62,7 @@ export const useUserStore = defineStore('user', {
           return null
         }
       } else {
+        this.logout()
         return null
       }
     },
@@ -76,8 +77,7 @@ export const useUserStore = defineStore('user', {
         this.profile = profile as UserProfileState
       }
     },
-    async loginWithWalletAddress(wallet: AbstractWallet) {
-      const address = await wallet.getAddress()
+    async loginWithWalletAddress(address: string) {
       const invitation_code = this.invitation_code
       const { error, data } = await services['Authorization@get-nonce-by-address']({
         wallet_address: address
@@ -85,9 +85,16 @@ export const useUserStore = defineStore('user', {
       if (!error) {
         let signedMsg
         try {
-          signedMsg = await wallet.sign(data.nonce!)
+          const signData = await signMessage({
+            message: data.nonce!
+          })
+          if (signData) {
+            signedMsg = signData
+          } else {
+            return new Error()
+          }
         } catch (err) {
-          console.error('Wallet sign errored', err)
+          alert('Wallet sign error:' + JSON.stringify(err))
           return false
         }
         const { error: tokenError, data: tokenData } = await services[
@@ -102,6 +109,7 @@ export const useUserStore = defineStore('user', {
           console.error('get token fail')
           return false
         }
+        console.log(2222222, tokenData)
         this.setLocalToken(tokenData?.token || '')
         const { error: error2, data: data2 } = await services['Comer@get-comer']()
         if (!error2) {
@@ -134,7 +142,8 @@ export const useUserStore = defineStore('user', {
       this.comerProfile = null
       storage('session').clear()
       storage('local').remove(STORE_KEY_TOKEN)
-      walletStore.wallet && walletStore.disconnectWallet()
+      console.log('onLogout disconnectWallet')
+      walletStore.disconnectWallet()
     },
     logout(msg?: false | string, query?: any) {
       this.onLogout()
