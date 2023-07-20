@@ -1,7 +1,7 @@
 import { UButton } from '@comunion/components'
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import logo from '@/assets/textLogo.svg'
+import logo from '@/assets/textLogo.png'
 import { useWalletStore } from '@/stores'
 
 export default defineComponent({
@@ -59,8 +59,8 @@ export default defineComponent({
             backdropFilter: 'blur(3.5px)'
           }}
         >
-          <div class="flex w-32 items-center <sm:w-30">
-            <img src={logo} class="w-full" />
+          <div class="flex flex-col h-full justify-center ">
+            <img src={logo} class="h-9" />
           </div>
 
           <div class="flex items-center">

@@ -173,6 +173,7 @@ export default defineComponent({
             }
             const erc20Token = await tokenContract(tokenContractAddress, provider)
             const decimal = await erc20Token.decimals()
+            console.log(chainId, tokenContractAddress, symbol, code, decimal)
             // govSetting.strategies?.push({ ...strategy, voteDecimals: decimal, symbol })
             govSetting.strategies = [{ ...strategy, voteDecimals: decimal, voteSymbol: symbol }]
             strategyModal.value = undefined
