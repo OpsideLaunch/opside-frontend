@@ -144,7 +144,18 @@ export default defineComponent({
               <UTooltip>
                 {{
                   trigger: () => (
-                    <UButton class="flex-1" tag="div" size="small" type="primary" disabled>
+                    <UButton
+                      class="flex-1"
+                      tag="div"
+                      size="small"
+                      type="primary"
+                      disabled
+                      style={{
+                        '--n-color-disabled': '#E0E0E0',
+                        '--n-opacity-disabled': 1,
+                        '--n-border-disabled': '1px solid #E0E0E0'
+                      }}
+                    >
                       {isAutoListing ? 'Transfer Liquidity' : 'Remove'}
                     </UButton>
                   ),
