@@ -81,6 +81,9 @@ export const useWalletStore = defineStore('wallet', {
               storage('session').clear()
               storage('local').remove(STORE_KEY_TOKEN)
               this.disconnectWallet()
+              setTimeout(() => {
+                window.location.href = '/'
+              }, 100)
             } else {
               this.address = account.address
             }
