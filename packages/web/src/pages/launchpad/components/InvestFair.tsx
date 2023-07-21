@@ -841,7 +841,7 @@ export const InvestFair = defineComponent({
                   default: () => <div class="max-w-90">{disableRemoveOrCancelReason.value}</div>
                 }}
               </UTooltip>
-            ) : !canLiquidity.value ? (
+            ) : canLiquidity.value ? (
               disableRemoveOrCancel.value ? (
                 <UTooltip>
                   {{
