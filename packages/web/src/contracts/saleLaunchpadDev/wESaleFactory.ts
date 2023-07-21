@@ -14,7 +14,7 @@ const abi =
 export function useWESaleFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: WESaleFactoryAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   DEFAULT_ADMIN_ROLE: (
     pendingText: string,
     waitingText: string,

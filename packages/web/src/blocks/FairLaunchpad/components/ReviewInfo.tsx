@@ -36,9 +36,9 @@ export const ReviewInfo = defineComponent({
         </div>
         <div class="review-info-item">
           <div class="w-[220px] title">Tokens For Launchpad :</div>
+
           <div>
-            {this.crowdfundingInfo.buyPrice! * this.crowdfundingInfo.raiseGoal!}{' '}
-            {this.crowdfundingInfo.sellTokenSymbol}
+            {this.crowdfundingInfo.totalSellToken} {this.crowdfundingInfo.sellTokenSymbol}
           </div>
         </div>
         <div class="review-info-item">

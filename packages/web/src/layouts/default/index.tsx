@@ -26,7 +26,7 @@ const DefaultLayout = defineComponent({
                 <UTransactionWaiting
                   key={transaction.hash}
                   {...transaction}
-                  blockchainExplorerUrl={walletStore.blockchainExplorerUrl}
+                  blockchainExplorerUrl={walletStore.explorerUrl}
                   onClose={() => contractStore.closeTransaction(transaction)}
                 />
               )

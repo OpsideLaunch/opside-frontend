@@ -6,7 +6,7 @@ import WalletAddress from '../Address'
 import CreateBlock from '../Create'
 import NetworkSwitcher from '../Network'
 import MobileNav from './MobileNav'
-import textLogo from '@/assets/logoText.svg'
+import logoText from '@/assets/logoText.svg'
 import ULogo from '@/components/ULogo'
 import { useGlobalConfigStore } from '@/stores'
 
@@ -180,7 +180,7 @@ const TheHeader = defineComponent({
             onClick={this.goHome}
           >
             <ULogo height={this.globalConfigStore.isLargeScreen ? 22 : 32} />
-            <img src={textLogo} class=" h-[10px] ml-1 hidden  2xl:block" />
+            <img src={logoText} class=" h-[10px] ml-1 hidden  2xl:block" />
           </div>
           <div class="flex-1 hidden <lg:block">
             <MobileNav class="h-10 ml-2 w-10" navigations={this.navigations} />

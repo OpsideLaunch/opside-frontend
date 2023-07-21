@@ -13,7 +13,7 @@ const abi =
 export function useBountyFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: BountyFactoryAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   children: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ any]>
   createBounty: (
     _depositToken: string,

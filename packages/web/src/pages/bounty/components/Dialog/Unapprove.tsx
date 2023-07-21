@@ -60,7 +60,7 @@ export const UnapprovePromptSet = defineComponent({
         return this.userStore.logout()
       }
 
-      const { bountyContract } = useBountyContractWrapper(this.bountyDetail as BountyInfo)
+      const { bountyContract } = await useBountyContractWrapper(this.bountyDetail as BountyInfo)
       await bountyContract.unapproveApplicant(address, '', '')
       // const { error } = await services['bounty@bounty-founder-unapprove']({
       //   bountyID: this.route.params.id as string,

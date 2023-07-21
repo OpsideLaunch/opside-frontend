@@ -1,5 +1,6 @@
 import { USpin, UTooltip } from '@comunion/components'
 import { SettingOutlined } from '@comunion/icons'
+import { fetchBalance } from '@wagmi/core'
 import { ethers } from 'ethers'
 import { defineComponent, onMounted, ref, computed, onBeforeUnmount, provide, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -13,7 +14,6 @@ import { ShareButtonGroup, ShareButtonClass } from '@/components/Share'
 import StartupCard from '@/components/StartupCard'
 import { useErc20Contract } from '@/contracts'
 import { ServiceReturn, services } from '@/services'
-
 import {
   useWalletStore,
   useSocketStore,
@@ -80,7 +80,7 @@ const CrowdfundingDetail = defineComponent({
     const setCoinInfo = async () => {
       if (crowdfundingInfo.value && walletStore.connected) {
         const tokenContract = useErc20Contract()
-        const sellTokenRes = tokenContract(crowdfundingInfo.value.presale_token_contract!)
+        const sellTokenRes = await tokenContract(crowdfundingInfo.value.presale_token_contract!)
         if (isInCrowdChain.value) {
           const [name, decimal, supply, symbol, balance] = await Promise.all([
             sellTokenRes.name(),
@@ -103,13 +103,14 @@ const CrowdfundingDetail = defineComponent({
             '--' || (crowdfundingInfo.value?.presale_token_balance || 0).toString()
         }
 
-        const buyTokenRes = tokenContract(crowdfundingInfo.value.invest_token_contract!)
+        const buyTokenRes = await tokenContract(crowdfundingInfo.value.invest_token_contract!)
         if (isInCrowdChain.value) {
           if (buyIsMainCoin.value) {
             buyCoinInfo.value.symbol = getChainInfoByChainId(
               crowdfundingInfo.value!.chain_id!
             )?.currencySymbol
-            buyCoinInfo.value.balance = (await walletStore.getBalance(walletStore.address!)) || '--'
+            buyCoinInfo.value.balance =
+              (await fetchBalance({ address: walletStore.address as any })).formatted || '--'
           } else {
             const [buyName, buyDecimal, buySymbol, buyBalance] = await Promise.all([
               await buyTokenRes.name(),

@@ -51,7 +51,7 @@ export const BasicInfo = defineComponent({
             const userAddress = walletStore.address
 
             const rpcProvider = walletStore.getRpcProvider(strategy.chainId, infuraKey)
-            const tokenRes = tokenContract(strategy.tokenContractAddress, rpcProvider)
+            const tokenRes = await tokenContract(strategy.tokenContractAddress, rpcProvider)
             const userBalance = await tokenRes.balanceOf(userAddress)
             return ethers.utils.formatUnits(userBalance, strategy.voteDecimals)
           }

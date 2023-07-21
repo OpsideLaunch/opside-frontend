@@ -51,7 +51,7 @@ export default defineComponent({
       if (!this.walletConnected) {
         return this.userStore.logout()
       }
-      const { bountyContract } = useBountyContractWrapper(this.bountyDetail as BountyInfo)
+      const { bountyContract } = await useBountyContractWrapper(this.bountyDetail as BountyInfo)
       await bountyContract.unlock(
         'Unlock the deposits from bounty contract.',
         'Successfully unlock.'
@@ -76,7 +76,7 @@ export default defineComponent({
       if (!this.walletConnected) {
         return this.userStore.logout()
       }
-      const { bountyContract } = useBountyContractWrapper(this.bountyDetail as BountyInfo)
+      const { bountyContract } = await useBountyContractWrapper(this.bountyDetail as BountyInfo)
       await bountyContract.lock('Lock the deposits into bounty contract.', 'Successfully lock.')
       // services['bounty@bounty-applicant-lock']({
       //   bountyID: parseInt(this.route.params.id as string)

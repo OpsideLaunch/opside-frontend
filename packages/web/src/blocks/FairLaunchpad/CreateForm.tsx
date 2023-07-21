@@ -87,7 +87,7 @@ const CreateCrowdfundingForm = defineComponent({
 
     // reload contract and wallet store
     const initContract = () => {
-      walletStore.init(true).then(() => {
+      walletStore.init().then(() => {
         crowdfundingContract = useCrowdfundingFactoryContract()
       })
     }
@@ -112,7 +112,7 @@ const CreateCrowdfundingForm = defineComponent({
     const netWorkChange = async (value: number) => {
       if (walletStore.chainId !== value) {
         await walletStore.ensureWalletConnected()
-        const result = await walletStore.wallet?.switchNetwork(value)
+        const result = await walletStore.switchNetwork({ chainId: value })
         if (!result) {
           closeDrawer()
         } else {
@@ -177,6 +177,7 @@ const CreateCrowdfundingForm = defineComponent({
           'contract:',
           crowdfundingInfo.sellTokenContract
         )
+        //
         const approveRes = await erc20Res.approve(
           factoryAddress,
           ethers.utils.parseUnits(
@@ -184,8 +185,9 @@ const CreateCrowdfundingForm = defineComponent({
             crowdfundingInfo.sellTokenDecimals
           )
         )
+        console.log(approveRes)
         await approveRes.wait()
-
+        //  listingRate
         const contractRes: any = await crowdfundingContract.createCrowdfundingContract(
           [
             crowdfundingInfo.sellTokenContract!,
@@ -231,7 +233,33 @@ const CreateCrowdfundingForm = defineComponent({
           `Launchpad is creating`
         )
         console.log('here', contractRes)
-
+        console.log([
+          crowdfundingInfo.sellTokenContract!,
+          crowdfundingInfo.buyTokenContract === MAIN_COIN_ADDR
+            ? crowdfundingInfo.sellTokenContract!
+            : crowdfundingInfo.buyTokenContract,
+          Number(crowdfundingInfo.sellTokenDecimals),
+          Number(crowdfundingInfo.buyTokenDecimals),
+          crowdfundingInfo.buyTokenContract === MAIN_COIN_ADDR, // buyTokenIsNative
+          ethers.utils.parseUnits(
+            crowdfundingInfo.raiseGoal!.toString(),
+            crowdfundingInfo.buyTokenDecimals
+          ),
+          ethers.utils.parseUnits(
+            crowdfundingInfo.buyPrice!.toString(),
+            crowdfundingInfo.sellTokenDecimals
+          ),
+          ethers.utils.parseUnits(crowdfundingInfo.swapPercent!.toString(), 2),
+          ethers.utils.parseUnits(crowdfundingInfo.sellTax!.toString(), 2),
+          ethers.utils.parseUnits(crowdfundingInfo.maxBuyAmount!.toString(), 18),
+          ethers.utils.parseUnits(crowdfundingInfo.minBuyAmount!.toString(), 18),
+          ethers.utils.parseUnits(crowdfundingInfo.maxSell!.toString(), 2),
+          crowdfundingInfo.teamWallet,
+          dayjs(crowdfundingInfo.startTime).valueOf() / 1000,
+          dayjs(crowdfundingInfo.endTime).valueOf() / 1000,
+          crowdfundingInfo.Router,
+          crowdfundingInfo.listingRate!
+        ])
         return contractRes
       } catch (e: any) {
         reportError(e as Error)

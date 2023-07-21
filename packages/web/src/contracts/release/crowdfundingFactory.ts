@@ -14,7 +14,7 @@ const abi =
 export function useCrowdfundingFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: CrowdfundingFactoryAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   children: (pendingText: string, waitingText: string, overrides?: any) => Promise<[/**  */ any]>
   createCrowdfundingContract: (
     _sellToken: string,

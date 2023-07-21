@@ -1,14 +1,20 @@
 import { UButton } from '@comunion/components'
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { useMediaQuery } from '@vueuse/core'
+import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import logo from '@/assets/textLogo.svg'
-import { useWalletStore } from '@/stores'
+import MobileConnectModal from '@/components/MobileConnectModal'
+import { useWalletStore, useUserStore, useGlobalConfigStore } from '@/stores'
 
 export default defineComponent({
   name: 'Header',
   setup() {
     const walletStore = useWalletStore()
+    const userStore = useUserStore()
+    const globalConfigStore = useGlobalConfigStore()
     const router = useRouter()
+    const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+
     const { path } = useRoute()
     const headerClass = ref<string>('flex justify-between')
     const scrollFn = () => {
@@ -29,15 +35,30 @@ export default defineComponent({
     })
 
     const loading = ref(false)
-    const { ensureWalletConnected } = walletStore
     const walletLogin = async () => {
       loading.value = true
       try {
-        await ensureWalletConnected(true)
+        walletStore.ensureWalletConnected().then(() => {
+          loading.value = false
+        })
+        const unsubscribe = watch(
+          () => walletStore.address,
+          () => {
+            if (walletStore.address && !userStore.logged) {
+              if (isLargeScreen.value) {
+                userStore.loginWithWalletAddress(walletStore.address)
+              } else {
+                globalConfigStore.mobileConnectModal = true
+              }
+              unsubscribe()
+              loading.value = false
+            }
+          }
+        )
       } catch (error) {
         // do nothing
+        loading.value = false
       }
-      loading.value = false
     }
 
     return {
@@ -79,6 +100,7 @@ export default defineComponent({
             </UButton>
           </div>
         </div>
+        <MobileConnectModal />
       </>
     )
   }

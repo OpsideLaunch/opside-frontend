@@ -9,7 +9,7 @@ export const <%= title %>Addresses: Record<number, string> = {<% addresses.forEa
 const abi = '<%= abi %>'
 
 export function use<%= title %>Contract(params: Omit<GetContractArgs, 'abi'> = { addresses: <%= title %>Addresses }): {
-  getContract: () => Contract<% abiArr.forEach(function(func, index) { %>
+  getContract: () => Promise<Contract><% abiArr.forEach(function(func, index) { %>
   <%= func.name %>: (<%=generateArgs(func.inputs) ? generateArgs(func.inputs) + ',' : '' %> pendingText: string, waitingText: string, overrides?: any) => Promise<[<%= generateArgs(func.outputs, true) %>]><% }) %>
 } {
   const walletStore = useWalletStore()

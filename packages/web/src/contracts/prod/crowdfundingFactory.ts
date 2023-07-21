@@ -13,7 +13,7 @@ const abi =
 export function useCrowdfundingFactoryContract(
   params: Omit<GetContractArgs, 'abi'> = { addresses: CrowdfundingFactoryAddresses }
 ): {
-  getContract: () => Contract
+  getContract: () => Promise<Contract>
   addToDexRouters: (
     _router: string,
     pendingText: string,

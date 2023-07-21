@@ -167,7 +167,7 @@ const CreateStartupForm = defineComponent({
 
     // reload contract and wallet store
     const initContract = () => {
-      walletStore.init(true).then(() => {
+      walletStore.init().then(() => {
         startupContract = useStartupContract()
       })
     }
@@ -175,7 +175,7 @@ const CreateStartupForm = defineComponent({
     const netWorkChange = async (value: number) => {
       if (value && walletStore.chainId !== value) {
         await walletStore.ensureWalletConnected()
-        const result = await walletStore.wallet?.switchNetwork(value)
+        const result = await walletStore.switchNetwork({ chainId: value })
         if (!result) {
           model.chain_id = walletStore.chainId
         } else {

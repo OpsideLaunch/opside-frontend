@@ -6,6 +6,10 @@ const SearchInput = defineComponent({
   name: 'SearchInput',
   extends: NInput,
   inheritAttrs: true,
+  props: {
+    loading: Boolean,
+    placeholder: String
+  },
   setup(props, ctx) {
     const inputRef = ref()
     const input = ref<string>('')

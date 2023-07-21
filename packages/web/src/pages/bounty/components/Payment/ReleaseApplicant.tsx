@@ -52,7 +52,7 @@ export default defineComponent({
       if (!this.walletConnectd) {
         return this.userStore.logout()
       }
-      const { bountyContract } = useBountyContractWrapper(this.bountyDetail as BountyInfo)
+      const { bountyContract } = await useBountyContractWrapper(this.bountyDetail as BountyInfo)
       const response = (await bountyContract.releaseMyDeposit(
         'Waiting to submit all contents to blockchain for release my deposit',
         'Release my deposit succeedes'
