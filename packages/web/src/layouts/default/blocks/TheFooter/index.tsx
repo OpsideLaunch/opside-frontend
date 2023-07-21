@@ -8,11 +8,13 @@ export default defineComponent({
     }
   },
   render() {
-    ;<div class="border-color-border mt-10 text-center pt-4 pb-6 text-color2">
-      {/* Powered by
-      <a class="text-primary px-1" href="https://twitter.com/WEconomyNetwork" target="_blank">
-        @WEconomy
-      </a> */}
-    </div>
+    return (
+      <div class="border-color-border mt-10 text-center pt-4 pb-6 text-color2">
+        {/* Powered by
+        <a class="text-primary px-1" href="https://twitter.com/WEconomyNetwork" target="_blank">
+          @WEconomy
+        </a> */}
+      </div>
+    )
   }
 })
