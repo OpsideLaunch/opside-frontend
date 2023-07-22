@@ -1,3 +1,4 @@
+import { Chain } from '@wagmi/core'
 import {
   mainnet,
   goerli,
@@ -98,7 +99,33 @@ import {
   foundry
 } from '@wagmi/core/chains'
 
+export const rollux = {
+  id: 570,
+  name: 'Rollux',
+  network: 'rollux',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'SYS',
+    symbol: 'SYS'
+  },
+  rpcUrls: {
+    public: { http: ['https://rpc.rollux.com'] },
+    default: { http: ['https://rpc.rollux.com'] }
+  },
+  blockExplorers: {
+    etherscan: { name: 'explorer', url: 'https://explorer.rollux.com' },
+    default: { name: 'explorer', url: 'https://explorer.rollux.com' }
+  },
+  contracts: {
+    multicall3: {
+      address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+      blockCreated: 119222
+    }
+  }
+} as Chain
+
 export default {
+  rollux,
   mainnet,
   goerli,
   arbitrum,
