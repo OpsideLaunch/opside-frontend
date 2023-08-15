@@ -152,6 +152,17 @@ export const allNetworks: ChainNetworkType[] = [
     coingeckoPlatformId: 'boba'
   },
   {
+    logo: rollux,
+    nologo: noethereum,
+    chainId: 570,
+    name: 'Rollux',
+    shortName: 'Rollux',
+    wagmiChainName: 'rollux',
+    currencySymbol: 'SYS',
+    rpcUrl: 'https://rpc.rollux.com',
+    explorerUrl: 'https://explorer.rollux.com'
+  },
+  {
     logo: ethereum,
     nologo: noethereum,
     chainId: 42161,
