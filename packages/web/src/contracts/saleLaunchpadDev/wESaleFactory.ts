@@ -5,7 +5,7 @@ import { useWalletStore } from '@/stores'
 
 export const WESaleFactoryAddresses: Record<number, string> = {
   137: '0xCd392957586B7bE4Ed3c2E78440DD43bbEdc1C43',
-  80001: '0xCd392957586B7bE4Ed3c2E78440DD43bbEdc1C43'
+  80001: '0x6327da34dfBc7E342429b9a769998755dC9fa30A'
 }
 
 const abi =
