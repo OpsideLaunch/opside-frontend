@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { defineComponent } from 'vue'
-import LogoImage from '@/assets/logo.png'
+import LogoImage from '@/assets/logo.svg'
 
 export const ULogoProps = {
   theme: {
