@@ -179,8 +179,8 @@ const TheHeader = defineComponent({
             style={this.fixedLogoStyle}
             onClick={this.goHome}
           >
-            <ULogo height={this.globalConfigStore.isLargeScreen ? 22 : 32} />
-            <img src={logoText} class=" h-[10px] ml-1 hidden  2xl:block" />
+            <ULogo height={this.globalConfigStore.isLargeScreen ? 22 : 30} />
+            <img src={logoText} class=" h-[20px] ml-2 hidden  2xl:block" />
           </div>
           <div class="flex-1 hidden <lg:block">
             <MobileNav class="h-10 ml-2 w-10" navigations={this.navigations} />
